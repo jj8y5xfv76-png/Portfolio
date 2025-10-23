@@ -17,21 +17,19 @@
     .menu a{color:var(--muted);font-weight:600}
     .menu a:hover{color:var(--ink)}
 
-    /* HERO SECTION */
+    /* HERO */
     .hero{
-      height:78vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background:
-        linear-gradient(to bottom, rgba(11,12,16,0.3), rgba(11,12,16,0.9)),
-        url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg') center/cover no-repeat;
-      position:relative;
+      height:78vh;display:flex;justify-content:center;align-items:center;position:relative;
+      background-image:url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/refs/heads/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg');
+      background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10
     }
+    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
     .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
     .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px}
     .hero-content p{color:var(--muted);font-size:18px;max-width:60ch;margin:auto}
     .cta{display:flex;justify-content:center;gap:12px;margin-top:22px}
+
+    /* Buttons */
     .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid rgba(255,255,255,.12);background:#1a1c24;display:inline-flex;align-items:center;gap:8px;transition:all .2s ease}
     .btn.primary{background:linear-gradient(135deg,var(--brand),#6347ff);border:none;box-shadow:0 8px 24px rgba(124,92,255,.45);color:#fff}
     .btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(124,92,255,.55)}
@@ -41,16 +39,40 @@
     .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
     .section-head h2{font-size:28px;margin:0}
     .section-head p{color:var(--muted)}
+
+    /* About */
     .about{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
     @media(max-width:900px){.about{grid-template-columns:1fr}}
     .pane{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
+
+    /* Cards / grid */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
     .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
     .pill{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);border-radius:999px;padding:6px 10px;font-size:12px}
     .card-body{padding:14px}
+
+    /* Workflow equal-height panes */
+    .case{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+    @media(max-width:900px){.case{grid-template-columns:1fr}}
+    .pane.flex{display:flex;flex-direction:column;height:100%}
+    .pane .btn.stick-bottom{margin-top:auto}
+
+    /* Systems 2x2 */
+    #systems .grid{grid-template-columns:repeat(2,1fr)}
+    @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
+
+    /* Other Work header */
+    .other-head{text-align:center;padding-top:40px}
+    .other-head h3{font-weight:400;color:var(--muted);font-size:20px;margin:0}
+
+    /* Contact aligned */
+    #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
+    #contact .section-head{display:block;margin-bottom:18px}
+    #contact .section-head p{color:var(--muted);margin:6px 0 0}
+
     footer{border-top:1px solid rgba(255,255,255,.08);padding:20px 0 50px;text-align:center;color:var(--muted)}
-    form{display:grid;gap:12px;max-width:600px;margin:auto}
+    form{display:grid;gap:12px}
     input,textarea{background:#0e1016;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
     textarea{min-height:120px;resize:vertical}
     button{cursor:pointer}
@@ -59,42 +81,160 @@
 <body>
   <header>
     <div class="nav">
-      <div class="brand">
-        <div class="logo"></div>
-        <b>Max</b>
-        <span style="color:var(--muted);font-weight:600">/ Video Editor • Producer • Workflow Architect</span>
-      </div>
+      <div class="brand"><div class="logo"></div><b>Max</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Producer • Workflow Architect</span></div>
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#case">Workflow</a>
         <a href="#systems">Systems</a>
+        <a href="#audio">Audio</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-content">
       <h1>Max — video editor with a clean cut and a heavy drop.</h1>
       <p>I craft tight, story-driven edits for marketing, social, and music content. Fast turnaround, tasteful motion, and export specs your team will love.</p>
       <div class="cta">
         <a class="btn primary" href="#work">▶ View My Work</a>
-        <a class="btn" href="#contact">Let's Collaborate</a>
+        <a class="btn" href="#contact">Let’s Collaborate</a>
       </div>
     </div>
   </section>
 
   <main>
-    <!-- Your other sections (About, Work, Workflow, Systems, Contact, etc.) go here -->
+    <!-- ABOUT ABOVE WORK -->
+    <section id="about">
+      <div class="section-head"><h2>About</h2><p>Brooklyn-based editor blending emo-alt aesthetics with clean commercial craft.</p></div>
+      <div class="about">
+        <div class="pane"><p>I’m Max — a video editor, producer, and workflow architect. I’ve cut product launches, music videos, shorts, and narrative pieces. I also build lightweight tools that make post workflows smoother — like a Brightcove analytics → spreadsheet export app.</p>
+          <div style="margin-top:10px">
+            <div>Premiere Pro • After Effects • Audition • Resolve</div>
+            <div>Color basics, audio cleanup, captions, and delivery specs</div>
+            <div>Brightcove, YouTube, TikTok, IG Reels export pipelines</div>
+          </div></div>
+        <div class="pane"><h3>Capabilities</h3><div>
+          <div>Editing & pacing for impact</div>
+          <div>Motion graphics for titles/supers</div>
+          <div>Sound design & loudness normalization</div>
+          <div>Versioning for platforms & aspect ratios</div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK (6 cards) -->
+    <section id="work">
+      <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
+      <div class="grid">
+        <a class="card" href="#case" aria-label="Open case study: Product Launch 2025">
+          <div class="thumb"><span class="pill">Commercial</span></div>
+          <div class="card-body">
+            <h3>Product Launch 2025 — :30 Highlights</h3>
+            <p>Paced for social, punchy supers, tasteful SFX sweetening.</p>
+          </div>
+        </a>
+        <a class="card" href="https://youtu.be/" target="_blank" rel="noopener">
+          <div class="thumb"><span class="pill">Music</span></div>
+          <div class="card-body">
+            <h3>“Static Signal” — Official Music Video</h3>
+            <p>Gritty textures, match-on-action, and analog vibes.</p>
+          </div>
+        </a>
+        <a class="card" href="assets/max-recap.mp4">
+          <div class="thumb"><span class="pill">Event</span></div>
+          <div class="card-body">
+            <h3>Tech Summit — Recap</h3>
+            <p>Interview-driven narrative cut with kinetic b-roll.</p>
+          </div>
+        </a>
+        <a class="card" href="https://players.brightcove.net/" target="_blank" rel="noopener">
+          <div class="thumb"><span class="pill">Campaign</span></div>
+          <div class="card-body">
+            <h3>“Move Fast, Tell Stories”</h3>
+            <p>Cut suite: 6s/15s/30s, captions, platform-specific safe areas.</p>
+          </div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><span class="pill">Podcast</span></div>
+          <div class="card-body">
+            <h3>Podcast Highlights — S1 (2019)</h3>
+            <p>30–60s excerpt showing flow, cleanup, and musicality.</p>
+          </div>
+        </a>
+        <a class="card" href="#">
+          <div class="thumb"><span class="pill">Studio</span></div>
+          <div class="card-body">
+            <h3>Multi‑Cam Studio Edit — Highlights</h3>
+            <p>Cut rhythm, reaction cuts, matched exposure across angles.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="case">
+      <div class="section-head"><h2>Workflow — How I Edit</h2><p>My process spans creative exploration and structured, standards-driven delivery.</p></div>
+      <div class="case">
+        <div class="pane flex"><h3>Exploration → Finding the Cut</h3><p>I love the play phase — testing rhythms, trying alt music cues, and discovering the emotional spine. I build a rough sequence quickly, mark story beats, and keep time‑stamped notes so ideas are traceable.</p></div>
+        <div class="pane flex"><h3>Structure → Brand‑Safe Delivery</h3><p>When precision matters, I switch into standards mode: consistent templates, captioning, and repeatable exports. Feedback is collected in <b>Frame.io</b> with <b>timestamped comments</b> for accountability.</p>
+          <a class="btn primary stick-bottom" href="assets/workflow.pdf" download>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download My Workflow (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEMS 2x2 -->
+    <section id="systems">
+      <div class="section-head"><h2>Creative Systems & Tools</h2><p>Beyond editing, I build workflows and tools that help teams move faster and stay consistent.</p></div>
+      <div class="grid">
+        <div class="pane"><h3>JavaScript Metrics App</h3><p>Built a lightweight app to fetch Brightcove performance metrics and export to spreadsheets — no engineering needed.</p></div>
+        <div class="pane"><h3>Editing Standards & Best Practices</h3><p>Authored a living guide for naming, bins, proxies, captions, and delivery specs. Keeps multi‑editor teams aligned.</p></div>
+        <div class="pane"><h3>Curriculum & Training</h3><p>Wrote a starter curriculum for producing and editing: story fundamentals, pacing, audio cleanup, and platform deliverables.</p></div>
+        <div class="pane"><h3>Shared Asset Library</h3><p>Managed a central library of graphics, lower‑thirds, presets, and LUTs for faster, consistent branding.</p></div>
+      </div>
+    </section>
+
+    <!-- OTHER WORK header + AUDIO -->
+    <div class="other-head"><h3>Other work</h3></div>
+    <section id="audio">
+      <div class="section-head">
+        <h2>Audio & Voice Work</h2>
+        <p>Voiceover artist and weekly podcast producer/host/editor.</p>
+      </div>
+      <div class="grid">
+        <div class="pane">
+          <h3>Voiceover Demo</h3>
+          <p>Warm, confident delivery suited for commercials, narration, and trailers.</p>
+          <audio controls src="assets/vo-demo.mp3" style="width:100%"></audio>
+        </div>
+        <div class="pane">
+          <h3>Podcast Series — Weekly Host & Producer</h3>
+          <p>Produced, hosted, and edited a weekly podcast series. Highlight reel below (45–90s excerpt).</p>
+          <audio controls src="assets/podcast-highlight.mp3" style="width:100%"></audio>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    © <span id="y"></span> Max — Video Editor • NYC
-  </footer>
+  <!-- CONTACT aligned to form width -->
+  <section id="contact">
+    <div class="narrow">
+      <div class="section-head"><h2>Let’s work</h2><p>Tell me about the project, timeline, and deliverables.</p></div>
+      <form>
+        <input type="text" placeholder="Your name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Project details" required></textarea>
+        <button class="btn primary" type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear()
-  </script>
+  <footer>© <span id="y"></span> Max — Video Editor • NYC</footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
