@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Max — Video Editor</title>
+  <title>Video Editor Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {--bg:#0b0c10;--panel:#121318;--ink:#e8eaf0;--muted:#9aa0aa;--brand:#7c5cff;--radius:18px;}
@@ -21,7 +21,7 @@
     .hero{
       height:78vh;display:flex;justify-content:center;align-items:center;position:relative;
       background-image:url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/refs/heads/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg');
-      background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10
+      background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
     }
     .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
     .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
@@ -40,9 +40,8 @@
     .section-head h2{font-size:28px;margin:0}
     .section-head p{color:var(--muted)}
 
-    /* About */
-    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:26px}
-    @media(max-width:900px){.about{grid-template-columns:1fr}}
+    /* About (expanded full width) */
+    .about{display:block}
     .pane{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
 
     /* Cards / grid */
@@ -81,7 +80,7 @@
 <body>
   <header>
     <div class="nav">
-      <div class="brand"><div class="logo"></div><b>Max</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Producer • Workflow Architect</span></div>
+      <div class="brand"><div class="logo"></div><b>Max</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span></div>
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#work">Work</a>
@@ -106,16 +105,24 @@
   </section>
 
   <main>
-    <!-- ABOUT ABOVE WORK -->
+    <!-- ABOUT (expanded full width) -->
     <section id="about">
-      <div class="section-head"><h2>About</h2><p>Brooklyn-based editor blending emo-alt aesthetics with clean commercial craft.</p></div>
+      <div class="section-head">
+        <h2>About</h2>
+        <p>Brooklyn-based editor blending creative exploration with standards-driven delivery.</p>
+      </div>
       <div class="about">
-        <div class="pane"><p>I’m Kevin — a video editor, producer, and workflow architect. I’ve cut product launches, promos, shorts, and narrative pieces. I also build lightweight tools that make post workflows smoother. I also work in voiceover occasionally.</p>
-          <div style="margin-top:10px">
-            <div>Premiere Pro • After Effects • Audition • Final Cut</div>
-            <div>Color basics, audio cleanup, captions, and delivery specs</div>
-            
-         
+        <div class="pane">
+          <p>
+            I’m a video editor and workflow architect who can move between two modes:
+            the exploratory cut—where rhythm, tone, and story are discovered—and the
+            assembly-line cut—where brand standards, specs, and deadlines rule. I’ve edited product launches,
+            trailers, podcasts, and multi-cam studio work, and I document everything so collaboration stays smooth and accountable.
+          </p>
+          <p style="margin-top:10px">
+            Tools I reach for: Premiere Pro, After Effects, Audition, Resolve. I handle color basics, audio cleanup, captions, and delivery specs across YouTube, TikTok, IG Reels, and more. I also build lightweight tools that make post workflows smoother—like a small JavaScript app that exports Brightcove performance metrics to spreadsheets.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -161,7 +168,7 @@
         <a class="card" href="#">
           <div class="thumb"><span class="pill">Studio</span></div>
           <div class="card-body">
-            <h3>Multi‑Cam Studio Edit — Highlights</h3>
+            <h3>Multi-Cam Studio Edit — Highlights</h3>
             <p>Cut rhythm, reaction cuts, matched exposure across angles.</p>
           </div>
         </a>
@@ -170,10 +177,15 @@
 
     <!-- WORKFLOW -->
     <section id="case">
-      <div class="section-head"><h2>Workflow — How I Edit</h2><p>My process spans creative exploration and structured, standards-driven delivery.</p></div>
+      <div class="section-head"><h2>Workflow — How I Edit</h2><p>From creative exploration to brand-safe delivery, with documented feedback at every step.</p></div>
       <div class="case">
-        <div class="pane flex"><h3>Exploration → Finding the Cut</h3><p>I love the play phase — testing rhythms, trying alt music cues, and discovering the emotional spine. I build a rough sequence quickly, mark story beats, and keep time‑stamped notes so ideas are traceable.</p></div>
-        <div class="pane flex"><h3>Structure → Brand‑Safe Delivery</h3><p>When precision matters, I switch into standards mode: consistent templates, captioning, and repeatable exports. Feedback is collected in <b>Frame.io</b> with <b>timestamped comments</b> for accountability.</p>
+        <div class="pane flex">
+          <h3>Exploration → Finding the Cut</h3>
+          <p>I move fast in the play phase—testing rhythms, alt music cues, and visual tone. I mark story beats, keep time-stamped notes, and quickly assemble a rough sequence to find the emotional spine.</p>
+        </div>
+        <div class="pane flex">
+          <h3>Structure → Brand-Safe Delivery</h3>
+          <p>When precision matters, I switch into standards mode: templates, captions, QC, and repeatable exports. Feedback is collected in <b>Frame.io</b> with <b>timestamped comments</b> for accountability and a clean paper trail.</p>
           <a class="btn primary stick-bottom" href="assets/workflow.pdf" download>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download My Workflow (PDF)
@@ -184,12 +196,12 @@
 
     <!-- SYSTEMS 2x2 -->
     <section id="systems">
-      <div class="section-head"><h2>Creative Systems & Tools</h2><p>Beyond editing, I build workflows and tools that help teams move faster and stay consistent.</p></div>
+      <div class="section-head"><h2>Creative Systems & Tools</h2><p>Workflows and tooling that help teams move faster and stay consistent.</p></div>
       <div class="grid">
-        <div class="pane"><h3>JavaScript Metrics App</h3><p>Built a lightweight app to fetch Brightcove performance metrics and export to spreadsheets — no engineering needed.</p></div>
-        <div class="pane"><h3>Editing Standards & Best Practices</h3><p>Authored a living guide for naming, bins, proxies, captions, and delivery specs. Keeps multi‑editor teams aligned.</p></div>
-        <div class="pane"><h3>Curriculum & Training</h3><p>Wrote a starter curriculum for producing and editing: story fundamentals, pacing, audio cleanup, and platform deliverables.</p></div>
-        <div class="pane"><h3>Shared Asset Library</h3><p>Managed a central library of graphics, lower‑thirds, presets, and LUTs for faster, consistent branding.</p></div>
+        <div class="pane"><h3>JavaScript Metrics App</h3><p>Lightweight app to fetch Brightcove performance metrics and export to spreadsheets—no engineering needed.</p></div>
+        <div class="pane"><h3>Editing Standards & Best Practices</h3><p>Living guide for naming, bins, proxies, captions, and delivery specs. Keeps multi-editor teams aligned.</p></div>
+        <div class="pane"><h3>Curriculum & Training</h3><p>Starter curriculum for producing and editing: story, pacing, audio cleanup, and deliverables.</p></div>
+        <div class="pane"><h3>Shared Asset Library</h3><p>Central library of graphics, lower-thirds, presets, and LUTs for faster, consistent branding.</p></div>
       </div>
     </section>
 
@@ -215,11 +227,11 @@
     </section>
   </main>
 
-  <!-- CONTACT aligned to form width -->
+  <!-- CONTACT -->
   <section id="contact">
     <div class="narrow">
       <div class="section-head"><h2>Let’s work</h2><p>Tell me about the project, timeline, and deliverables.</p></div>
-      <form>
+      <form action="#" method="post">
         <input type="text" placeholder="Your name" required>
         <input type="email" placeholder="Email" required>
         <textarea placeholder="Project details" required></textarea>
