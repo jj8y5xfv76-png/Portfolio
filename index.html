@@ -75,6 +75,14 @@
     input,textarea{background:#0e1016;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
     textarea{min-height:120px;resize:vertical}
     button{cursor:pointer}
+
+    /* Modal player */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}
+    .modal.open{display:flex}
+    .modal .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8)}
+    .modal .panel{position:relative;background:#0b0c10;border:1px solid rgba(255,255,255,.12);border-radius:16px;max-width:960px;width:92%;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    .modal .panel iframe,.modal .panel video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px}
+    .modal .close{position:absolute;top:-44px;right:0;background:#1a1c24;border:1px solid rgba(255,255,255,.18);color:#e8eaf0;border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:700}
   </style>
 </head>
 <body>
@@ -120,7 +128,7 @@
             trailers, podcasts, and multi-cam studio work, and I document everything so collaboration stays smooth and accountable.
           </p>
           <p style="margin-top:10px">
-            My tools a re Premiere Pro, After Effects, Audition, and Final Cut. I handle color basics, audio cleanup, captions, and delivery specs across YouTube, TikTok, IG Reels, and more. I also build lightweight tools that make post workflows smoother.
+            My tools are Premiere Pro, After Effects, Audition, and Final Cut. I handle color basics, audio cleanup, captions, and delivery specs across YouTube, TikTok, IG Reels, and more. I also build lightweight tools that make post workflows smoother.
           </p>
         </div>
       </div>
@@ -130,6 +138,7 @@
     <section id="work">
       <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
       <div class="grid">
+        <!-- Add data-video when you want a card to open the modal. If absent, it navigates normally. -->
         <a class="card" href="#case" aria-label="Open case study: Product Launch 2025">
           <div class="thumb"><span class="pill">Commercial</span></div>
           <div class="card-body">
@@ -137,20 +146,26 @@
             <p>Paced for social, punchy supers, tasteful SFX sweetening.</p>
           </div>
         </a>
-        <a class="card" href="https://www.youtube.com/watch?v=k4z_OY9Yd8o" target="_blank" rel="noopener">
+
+        <!-- YouTube example (modal) -->
+        <a class="card" href="https://www.youtube.com/watch?v=k4z_OY9Yd8o" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Open video: Assault on Precinct 13 — Modern Trailer">
           <div class="thumb"><span class="pill">Trailer</span></div>
           <div class="card-body">
             <h3>“Assault on Precinct 13” — Modern Trailer</h3>
             <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
           </div>
         </a>
-        <a class="card" href="assets/max-recap.mp4">
+
+        <!-- MP4 example (modal) -->
+        <a class="card" href="assets/max-recap.mp4" data-video="assets/max-recap.mp4">
           <div class="thumb"><span class="pill">Event</span></div>
           <div class="card-body">
             <h3>Tech Summit — Recap</h3>
             <p>Interview-driven narrative cut with kinetic b-roll.</p>
           </div>
         </a>
+
+        <!-- External player (keeps normal link for now unless you add an embeddable URL) -->
         <a class="card" href="https://players.brightcove.net/" target="_blank" rel="noopener">
           <div class="thumb"><span class="pill">Campaign</span></div>
           <div class="card-body">
@@ -158,6 +173,8 @@
             <p>Cut suite: 6s/15s/30s, captions, platform-specific safe areas.</p>
           </div>
         </a>
+
+        <!-- Placeholders (add data-video when ready) -->
         <a class="card" href="#">
           <div class="thumb"><span class="pill">Podcast</span></div>
           <div class="card-body">
@@ -165,6 +182,7 @@
             <p>30–60s excerpt showing flow, cleanup, and musicality.</p>
           </div>
         </a>
+
         <a class="card" href="#">
           <div class="thumb"><span class="pill">Studio</span></div>
           <div class="card-body">
@@ -241,6 +259,88 @@
   </section>
 
   <footer>© <span id="y"></span> Max — Video Editor • NYC</footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <!-- Modal for inline video playback -->
+  <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-label="Video player">
+    <div class="backdrop" data-close></div>
+    <div class="panel">
+      <button class="close" data-close>Close ✕</button>
+      <div id="videoMount"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    (function(){
+      const modal = document.getElementById('videoModal');
+      const mount = document.getElementById('videoMount');
+      const closeEls = modal.querySelectorAll('[data-close]');
+
+      // Convert common YouTube URLs to embed format
+      function ytToEmbed(url){
+        try{
+          const u = new URL(url);
+          if(u.hostname.includes('youtu.be')){
+            const id = u.pathname.replace('/','');
+            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+          }
+          if(u.hostname.includes('youtube.com')){
+            const id = u.searchParams.get('v');
+            if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+          }
+        }catch(e){}
+        return null;
+      }
+
+      function openModal(src){
+        mount.innerHTML = '';
+        let node;
+        if(/\\.mp4($|\\?)/i.test(src)){
+          node = document.createElement('video');
+          node.setAttribute('controls','');
+          node.setAttribute('autoplay','');
+          node.src = src;
+          node.style.width = '100%';
+          node.style.height = '100%';
+        } else {
+          const yt = ytToEmbed(src);
+          const iframeSrc = yt || (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
+          node = document.createElement('iframe');
+          node.src = iframeSrc;
+          node.allow = 'autoplay; fullscreen; picture-in-picture';
+          node.loading = 'lazy';
+          node.referrerPolicy = 'no-referrer-when-downgrade';
+          node.style.width = '100%';
+          node.style.height = '100%';
+        }
+        mount.appendChild(node);
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        mount.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('click', (e)=>{
+        const card = e.target.closest('a.card');
+        if(!card) return;
+
+        const src = card.getAttribute('data-video');
+        if(src){
+          e.preventDefault();
+          openModal(src);
+        } // else: no data-video -> normal navigation
+      });
+
+      closeEls.forEach(el=> el.addEventListener('click', closeModal));
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+    })();
+  </script>
 </body>
 </html>
