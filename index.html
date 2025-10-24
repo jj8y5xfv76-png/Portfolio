@@ -134,12 +134,12 @@
       </div>
     </section>
 
-    <!-- SELECTED WORK (6 cards) -->
+    <!-- SELECTED WORK (6 cards — all modal-enabled) -->
     <section id="work">
       <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
       <div class="grid">
-        <!-- Add data-video when you want a card to open the modal. If absent, it navigates normally. -->
-        <a class="card" href="https://youtu.be/JBV_dYfvuIY" aria-label="Open case study: Product Launch 2025">
+        <!-- 1) YouTube (modal) -->
+        <a class="card" href="https://youtu.be/JBV_dYfvuIY" data-video="https://youtu.be/JBV_dYfvuIY" aria-label="Pega Academy 2.0 Launch">
           <div class="thumb"><span class="pill">Commercial</span></div>
           <div class="card-body">
             <h3>Pega Academy 2.0 Launch</h3>
@@ -147,8 +147,8 @@
           </div>
         </a>
 
-        <!-- YouTube example (modal) -->
-        <a class="card" href="https://www.youtube.com/watch?v=k4z_OY9Yd8o" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Open video: Assault on Precinct 13 — Modern Trailer">
+        <!-- 2) YouTube (modal) -->
+        <a class="card" href="https://www.youtube.com/watch?v=k4z_OY9Yd8o" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Assault on Precinct 13 — Modern Trailer">
           <div class="thumb"><span class="pill">Trailer</span></div>
           <div class="card-body">
             <h3>“Assault on Precinct 13” — Modern Trailer</h3>
@@ -156,8 +156,8 @@
           </div>
         </a>
 
-        <!-- MP4 example (modal) -->
-        <a class="card" href="assets/max-recap.mp4" data-video="assets/max-recap.mp4">
+        <!-- 3) MP4 (modal) -->
+        <a class="card" href="assets/max-recap.mp4" data-video="assets/max-recap.mp4" aria-label="Tech Summit — Recap">
           <div class="thumb"><span class="pill">Event</span></div>
           <div class="card-body">
             <h3>Tech Summit — Recap</h3>
@@ -165,8 +165,8 @@
           </div>
         </a>
 
-        <!-- External player (keeps normal link for now unless you add an embeddable URL) -->
-        <a class="card" href="https://players.brightcove.net/" target="_blank" rel="noopener">
+        <!-- 4) External player (modal via iframe; replace with real Brightcove embed URL) -->
+        <a class="card" href="https://players.brightcove.net/" data-video="https://players.brightcove.net/" aria-label="Move Fast, Tell Stories">
           <div class="thumb"><span class="pill">Campaign</span></div>
           <div class="card-body">
             <h3>“Move Fast, Tell Stories”</h3>
@@ -174,8 +174,8 @@
           </div>
         </a>
 
-        <!-- Placeholders (add data-video when ready) -->
-        <a class="card" href="#">
+        <!-- 5) MP4 placeholder (modal) -->
+        <a class="card" href="assets/podcast-clip.mp4" data-video="assets/podcast-clip.mp4" aria-label="Podcast Highlights — S1 (2019)">
           <div class="thumb"><span class="pill">Podcast</span></div>
           <div class="card-body">
             <h3>Podcast Highlights — S1 (2019)</h3>
@@ -183,7 +183,8 @@
           </div>
         </a>
 
-        <a class="card" href="#">
+        <!-- 6) MP4 placeholder (modal) -->
+        <a class="card" href="assets/studio-multicam.mp4" data-video="assets/studio-multicam.mp4" aria-label="Multi-Cam Studio Edit — Highlights">
           <div class="thumb"><span class="pill">Studio</span></div>
           <div class="card-body">
             <h3>Multi-Cam Studio Edit — Highlights</h3>
@@ -296,7 +297,7 @@
       function openModal(src){
         mount.innerHTML = '';
         let node;
-        if(/\\.mp4($|\\?)/i.test(src)){
+        if(/\.mp4($|\?)/i.test(src)){
           node = document.createElement('video');
           node.setAttribute('controls','');
           node.setAttribute('autoplay','');
@@ -330,12 +331,11 @@
       document.addEventListener('click', (e)=>{
         const card = e.target.closest('a.card');
         if(!card) return;
-
         const src = card.getAttribute('data-video');
         if(src){
           e.preventDefault();
           openModal(src);
-        } // else: no data-video -> normal navigation
+        } // if no data-video, follow the normal link
       });
 
       closeEls.forEach(el=> el.addEventListener('click', closeModal));
