@@ -246,18 +246,30 @@
     </section>
   </main>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="narrow">
-      <div class="section-head"><h2>Let’s work</h2><p>Tell me about the project, timeline, and deliverables.</p></div>
-      <form action="#" method="post">
-        <input type="text" placeholder="Your name" required>
-        <input type="email" placeholder="mailto:kevinmaxeditor@gmail.com" required>
-        <textarea placeholder="Project details" required></textarea>
-        <button class="btn primary" type="submit"><center>Send Message</center></button>
-      </form>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="narrow">
+    <div class="section-head">
+      <h2>Let’s work</h2>
+      <p>Tell me about the project, timeline, and deliverables.</p>
     </div>
-  </section>
+
+    <!-- FormSubmit integration -->
+    <form action="https://formsubmit.co/youremail@example.com" method="POST">
+      <!-- Optional hidden settings -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://your-portfolio-site-url.com/thank-you.html">
+      <input type="hidden" name="_subject" value="New message from your portfolio site!">
+
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Project details" required></textarea>
+      
+      <button class="btn primary" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
 
   <footer>© <span id="y"></span> Kevin Max Cotter — Video Editor • Boston</footer>
 
