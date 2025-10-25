@@ -1,4 +1,4 @@
-max<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -46,7 +46,7 @@ max<!DOCTYPE html>
 
     /* Cards / grid */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;cursor:pointer}
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
     .pill{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);border-radius:999px;padding:6px 10px;font-size:12px}
     .card-body{padding:14px}
@@ -120,140 +120,136 @@ max<!DOCTYPE html>
   </section>
 
   <main>
-<!-- ABOUT (expanded full width) -->
-<section id="about">
-  <div class="section-head">
-    <h2>About</h2>
-    <p>Boston-based video editor blending creative exploration with standards-driven delivery.</p>
-  </div>
-  <div class="about">
-    <div class="pane">
-      <p>
-        I’m a video editor and workflow architect who can move between two modes:
-        the exploratory cut—where rhythm, tone, and story are discovered—and the
-        assembly-line cut—where brand standards, specs, and deadlines rule. I’ve edited product launches,
-        trailers, podcasts, and multi-cam studio work, and I document everything so collaboration stays smooth and accountable.
-      </p>
-      <p style="margin-top:10px">
-        My tools are Premiere Pro, After Effects, Audition, and Final Cut. I handle color basics, audio cleanup, captions, and delivery specs across YouTube, TikTok, IG Reels, and more. I also build lightweight tools that make post workflows smoother.
-      </p>
-
-      <!-- Resume download button -->
-      <div style="margin-top:20px; text-align:left;">
-        <a class="btn primary" 
-           href="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/KevinCotterResume.pdf?raw=true" 
-           target="_blank" 
-           rel="noopener">
-          📄 Download my résumé
-        </a>
+    <!-- ABOUT (expanded full width) -->
+    <section id="about">
+      <div class="section-head">
+        <h2>About</h2>
+        <p>Boston-based video editor blending creative exploration with standards-driven delivery.</p>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="about">
+        <div class="pane">
+          <p>
+            I’m a video editor and workflow architect who can move between two modes:
+            the exploratory cut—where rhythm, tone, and story are discovered—and the
+            assembly-line cut—where brand standards, specs, and deadlines rule. I’ve edited product launches,
+            trailers, podcasts, and multi-cam studio work, and I document everything so collaboration stays smooth and accountable.
+          </p>
+          <p style="margin-top:10px">
+            My tools are Premiere Pro, After Effects, Audition, and Final Cut. I handle color basics, audio cleanup, captions, and delivery specs across YouTube, TikTok, IG Reels, and more. I also build lightweight tools that make post workflows smoother.
+          </p>
 
+          <!-- Resume download button -->
+          <div style="margin-top:20px; text-align:left;">
+            <a class="btn primary" 
+               href="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/KevinCotterResume.pdf?raw=true" 
+               target="_blank" 
+               rel="noopener">
+              📄 Download my résumé
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SELECTED WORK (6 cards — all modal-enabled) -->
     <section id="work">
       <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
       <div class="grid">
         <!-- 1) YouTube (modal) -->
-<a class="card"
-   href="https://youtu.be/JBV_dYfvuIY"
-   data-video="https://youtu.be/JBV_dYfvuIY"
-   aria-label="Pega Academy 2.0 Launch">
-  <div class="thumb"
-       style="
-         background:
-           linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-           url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')
-           center / cover no-repeat;">
-    <span class="pill">Commercial</span>
-  </div>
-  <div class="card-body">
-    <h3>Pega Academy 2.0 Launch</h3>
-    <p>A promo video cut together to announce the newly-redesigned Pega Academy.</p>
-  </div>
-</a>
+        <a class="card"
+           href="https://youtu.be/JBV_dYfvuIY"
+           data-video="https://youtu.be/JBV_dYfvuIY"
+           aria-label="Pega Academy 2.0 Launch">
+          <div class="thumb"
+               style="
+                 background:
+                   linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+                   url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')
+                   center / cover no-repeat;">
+            <span class="pill">Commercial</span>
+          </div>
+          <div class="card-body">
+            <h3>Pega Academy 2.0 Launch</h3>
+            <p>A promo video cut together to announce the newly-redesigned Pega Academy.</p>
+          </div>
+        </a>
 
-<!-- 2) YouTube (modal) -->
-<a class="card"
-   href="https://www.youtube.com/watch?v=k4z_OY9Yd8o"
-   data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o"
-   aria-label="Assault on Precinct 13 — Modern Trailer">
-  <div class="thumb"
-       style="
-         background:
-           linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-           url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
-           center / cover no-repeat;">
-    <span class="pill">Trailer</span>
-  </div>
-  <div class="card-body">
-    <h3>“Assault on Precinct 13” — Modern Trailer</h3>
-    <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
-  </div>
-</a>
+        <!-- 2) YouTube (modal) -->
+        <a class="card"
+           href="https://www.youtube.com/watch?v=K4Z_OY9Yd8o"
+           data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o"
+           aria-label="Assault on Precinct 13 — Modern Trailer">
+          <div class="thumb"
+               style="
+                 background:
+                   linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+                   url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
+                   center / cover no-repeat;">
+            <span class="pill">Trailer</span>
+          </div>
+          <div class="card-body">
+            <h3>“Assault on Precinct 13” — Modern Trailer</h3>
+            <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
+          </div>
+        </a>
 
-<!-- 3) YouTube (modal) -->
-<a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
-   data-video="https://www.youtube.com/watch?v=018mzJBiXo8"
-   aria-label="Promo">
-  <div class="thumb"
-       style="
-         background:
-           linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-           url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')
-           center / cover no-repeat;">
-    <span class="pill">Event</span>
-  </div>
-  <div class="card-body">
-    <h3>Pega Community Hackathon</h3>
-    <p>This was created as part of a promotional strategy for users to enter the annual Pega Community Hackathon.</p>
-  </div>
-</a>
+        <!-- 3) YouTube (modal) -->
+        <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
+           data-video="https://www.youtube.com/watch?v=018mzJBiXo8"
+           aria-label="Promo">
+          <div class="thumb"
+               style="
+                 background:
+                   linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+                   url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')
+                   center / cover no-repeat;">
+            <span class="pill">Event</span>
+          </div>
+          <div class="card-body">
+            <h3>Pega Community Hackathon</h3>
+            <p>This was created as part of a promotional strategy for users to enter the annual Pega Community Hackathon.</p>
+          </div>
+        </a>
 
-<!-- 4) External player (video modal) + project story (text modal) -->
-<a class="card" href="https://players.brightcove.net/"
-   data-video="https://players.brightcove.net/"
-   aria-label="Move Fast, Tell Stories">
-  <div class="thumb"
-       style="
-         background:
-           linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-           url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh.png?raw=true')
-           center / cover no-repeat;">
-    <span class="pill">Campaign</span>
-  </div>
-  <div class="card-body">
-    <h3>“Move Fast, Tell Stories”</h3>
-    <p>Cut suite: 6s/15s/30s, captions, platform-specific safe areas.</p>
-    <!-- Learn more link triggers text modal -->
-    <a href="#"
-       class="learn-more"
-       data-project="project-movefast"
-       style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">
-      Learn more about this project →
-    </a>
-  </div>
-</a>
+        <!-- 4) External player (video modal) + project story (text modal) -->
+        <div class="card" data-video="https://players.brightcove.net/" aria-label="Move Fast, Tell Stories">
+          <div class="thumb"
+               style="
+                 background:
+                   linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+                   url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh.png?raw=true')
+                   center / cover no-repeat;">
+            <span class="pill">Campaign</span>
+          </div>
+          <div class="card-body">
+            <h3>“Move Fast, Tell Stories”</h3>
+            <p>Cut suite: 6s/15s/30s, captions, platform-specific safe areas.</p>
+            <a href="#"
+               class="learn-more"
+               data-project="project-movefast"
+               style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">
+              Learn more about this project →
+            </a>
+          </div>
+        </div>
 
-<!-- 5) MP4 placeholder (modal) -->
-<a class="card" href="assets/podcast-clip.mp4" data-video="assets/podcast-clip.mp4" aria-label="Podcast Highlights — S1 (2019)">
-  <div class="thumb"><span class="pill">Podcast</span></div>
-  <div class="card-body">
-    <h3>Podcast Highlights — S1 (2019)</h3>
-    <p>30–60s excerpt showing flow, cleanup, and musicality.</p>
-  </div>
-</a>
+        <!-- 5) MP4 placeholder (modal) -->
+        <a class="card" href="assets/podcast-clip.mp4" data-video="assets/podcast-clip.mp4" aria-label="Podcast Highlights — S1 (2019)">
+          <div class="thumb"><span class="pill">Podcast</span></div>
+          <div class="card-body">
+            <h3>Podcast Highlights — S1 (2019)</h3>
+            <p>30–60s excerpt showing flow, cleanup, and musicality.</p>
+          </div>
+        </a>
 
-<!-- 6) MP4 placeholder (modal) -->
-<a class="card" href="assets/studio-multicam.mp4" data-video="assets/studio-multicam.mp4" aria-label="Multi-Cam Studio Edit — Highlights">
-  <div class="thumb"><span class="pill">Studio</span></div>
-  <div class="card-body">
-    <h3>Multi-Cam Studio Edit — Highlights</h3>
-    <p>Cut rhythm, reaction cuts, matched exposure across angles.</p>
-  </div>
-</a>
+        <!-- 6) MP4 placeholder (modal) -->
+        <a class="card" href="assets/studio-multicam.mp4" data-video="assets/studio-multicam.mp4" aria-label="Multi-Cam Studio Edit — Highlights">
+          <div class="thumb"><span class="pill">Studio</span></div>
+          <div class="card-body">
+            <h3>Multi-Cam Studio Edit — Highlights</h3>
+            <p>Cut rhythm, reaction cuts, matched exposure across angles.</p>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -276,48 +272,47 @@ max<!DOCTYPE html>
       </div>
     </section>
 
-<!-- SYSTEMS 2x2 -->
-<section id="systems">
-  <div class="section-head">
-    <h2>Creative Systems & Tools</h2>
-    <p>Workflows and tooling that help teams move faster and stay consistent.</p>
-  </div>
+    <!-- SYSTEMS 2x2 -->
+    <section id="systems">
+      <div class="section-head">
+        <h2>Creative Systems & Tools</h2>
+        <p>Workflows and tooling that help teams move faster and stay consistent.</p>
+      </div>
 
-  <!-- Inspiration first -->
-  <div class="pane" style="margin-bottom:28px;">
-    <h3>Inspiration & Previsualization Tools</h3>
-    <p>
-      Visual reference platforms like 
-      <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;">Frame Set</a> and 
-      <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:#7c5cff;">ShotDeck</a> are part of my creative process.
-      I use them to study composition, pacing, and tone—helping define the visual direction before cutting a frame.
-    </p>
-  </div>
+      <!-- Inspiration first -->
+      <div class="pane" style="margin-bottom:28px;">
+        <h3>Inspiration & Previsualization Tools</h3>
+        <p>
+          Visual reference platforms like 
+          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;">Frame Set</a> and 
+          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:#7c5cff;">ShotDeck</a> are part of my creative process.
+          I use them to study composition, pacing, and tone—helping define the visual direction before cutting a frame.
+        </p>
+      </div>
 
-  <!-- Grid of core systems -->
-  <div class="grid">
-    <div class="pane">
-      <h3>JavaScript Metrics App</h3>
-      <p>Lightweight app to fetch Brightcove performance metrics and export to spreadsheets—no engineering needed.</p>
-    </div>
+      <!-- Grid of core systems -->
+      <div class="grid">
+        <div class="pane">
+          <h3>JavaScript Metrics App</h3>
+          <p>Lightweight app to fetch Brightcove performance metrics and export to spreadsheets—no engineering needed.</p>
+        </div>
 
-    <div class="pane">
-      <h3>Editing Standards & Best Practices</h3>
-      <p>Living guide for naming, bins, proxies, captions, and delivery specs. Keeps multi-editor teams aligned.</p>
-    </div>
+        <div class="pane">
+          <h3>Editing Standards & Best Practices</h3>
+          <p>Living guide for naming, bins, proxies, captions, and delivery specs. Keeps multi-editor teams aligned.</p>
+        </div>
 
-    <div class="pane">
-      <h3>Curriculum & Training</h3>
-      <p>Starter curriculum for producing and editing: story, pacing, audio cleanup, and deliverables.</p>
-    </div>
+        <div class="pane">
+          <h3>Curriculum & Training</h3>
+          <p>Starter curriculum for producing and editing: story, pacing, audio cleanup, and deliverables.</p>
+        </div>
 
-    <div class="pane">
-      <h3>Shared Asset Library</h3>
-      <p>Central library of graphics, lower-thirds, presets, and LUTs for faster, consistent branding.</p>
-    </div>
-  </div>
-</section>
-
+        <div class="pane">
+          <h3>Shared Asset Library</h3>
+          <p>Central library of graphics, lower-thirds, presets, and LUTs for faster, consistent branding.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- OTHER WORK header + AUDIO -->
     <div class="other-head"><h3>Other work</h3></div>
@@ -341,29 +336,29 @@ max<!DOCTYPE html>
     </section>
   </main>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="narrow">
-    <div class="section-head">
-      <h2>Let’s work</h2>
-      <p>Tell me about the project, timeline, and deliverables.</p>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="narrow">
+      <div class="section-head">
+        <h2>Let’s work</h2>
+        <p>Tell me about the project, timeline, and deliverables.</p>
+      </div>
+
+      <!-- FormSubmit integration -->
+      <form action="https://formsubmit.co/kevinmaxeditor@gmail.com" method="POST">
+        <!-- Optional hidden settings -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://your-portfolio-site-url.com/thank-you.html">
+        <input type="hidden" name="_subject" value="New message from your portfolio site!">
+
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Project details" required></textarea>
+        
+        <button class="btn primary" type="submit">Send Message</button>
+      </form>
     </div>
-
-    <!-- FormSubmit integration -->
-    <form action="https://formsubmit.co/kevinmaxeditor@gmail.com" method="POST">
-      <!-- Optional hidden settings -->
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://your-portfolio-site-url.com/thank-you.html">
-      <input type="hidden" name="_subject" value="New message from your portfolio site!">
-
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="text" name="subject" placeholder="Subject" required>
-      <textarea name="message" placeholder="Project details" required></textarea>
-      
-      <button class="btn primary" type="submit">Send Message</button>
-    </form>
-  </div>
-</section>
+  </section>
 
   <footer>© <span id="y"></span> Kevin Max Cotter — Video Editor • Boston</footer>
 
@@ -484,7 +479,7 @@ max<!DOCTYPE html>
         document.body.style.overflow = '';
       }
 
-      // ===== NEW: text modal helpers =====
+      // ===== Text modal helpers =====
       function openTextModal(templateId){
         textMount.innerHTML = '';
         const tpl = document.getElementById(templateId);
@@ -507,23 +502,24 @@ max<!DOCTYPE html>
 
       // Click handling
       document.addEventListener('click', (e)=>{
-        // Learn-more link -> text modal
+        // Learn-more link -> open text modal (prevent card click)
         const lm = e.target.closest('a.learn-more');
         if(lm){
           e.preventDefault();
+          e.stopPropagation();
           const id = lm.getAttribute('data-project');
           openTextModal(id);
           return;
         }
 
-        // Video cards -> video modal
-        const card = e.target.closest('a.card');
+        // Any .card with data-video -> open video modal
+        const card = e.target.closest('.card');
         if(!card) return;
         const src = card.getAttribute('data-video');
         if(src){
-          e.preventDefault();
+          if(card.tagName.toLowerCase() === 'a') e.preventDefault();
           openVideoModal(src);
-        } // else: normal navigation
+        }
       });
 
       // Close handlers
