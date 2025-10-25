@@ -72,7 +72,7 @@
 
     footer{border-top:1px solid rgba(255,255,255,.08);padding:20px 0 50px;text-align:center;color:var(--muted)}
     form{display:grid;gap:12px}
-    input,textarea{background:#0e1016;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
+    input,textarea{background:#0e1016;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;color:#ink;font:inherit}
     textarea{min-height:120px;resize:vertical}
     button{cursor:pointer}
 
@@ -137,9 +137,9 @@
 
           <!-- Resume download button -->
           <div style="margin-top:20px; text-align:left;">
-            <a class="btn primary" 
-               href="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/KevinCotterResume.pdf?raw=true" 
-               target="_blank" 
+            <a class="btn primary"
+               href="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/KevinCotterResume.pdf?raw=true"
+               target="_blank"
                rel="noopener">
               📄 Download my résumé
             </a>
@@ -171,11 +171,10 @@
           </div>
         </a>
 
-        <!-- 2) YouTube (modal) -->
-        <a class="card"
-           href="https://www.youtube.com/watch?v=K4Z_OY9Yd8o"
-           data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o"
-           aria-label="Assault on Precinct 13 — Modern Trailer">
+        <!-- 2) YouTube (modal) + learn-more (text modal) -->
+        <div class="card"
+             data-video="https://www.youtube.com/watch?v=K4Z_OY9Yd8o"
+             aria-label="Assault on Precinct 13 — Modern Trailer">
           <div class="thumb"
                style="
                  background:
@@ -187,8 +186,14 @@
           <div class="card-body">
             <h3>“Assault on Precinct 13” — Modern Trailer</h3>
             <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
+            <a href="#"
+               class="learn-more"
+               data-project="project-precinct13"
+               style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">
+              Learn more about this project →
+            </a>
           </div>
-        </a>
+        </div>
 
         <!-- 3) YouTube (modal) -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
@@ -280,8 +285,8 @@
       <div class="pane" style="margin-bottom:28px;">
         <h3>Inspiration & Previsualization Tools</h3>
         <p>
-          Visual reference platforms like 
-          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;">Frame Set</a> and 
+          Visual reference platforms like
+          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;">Frame Set</a> and
           <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:#7c5cff;">ShotDeck</a> are part of my creative process.
           I use them to study composition, pacing, and tone—helping define the visual direction before cutting a frame.
         </p>
@@ -351,7 +356,7 @@
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="subject" placeholder="Subject" required>
         <textarea name="message" placeholder="Project details" required></textarea>
-        
+
         <button class="btn primary" type="submit">Send Message</button>
       </form>
     </div>
@@ -377,7 +382,7 @@
     </div>
   </div>
 
-  <!-- Hidden template with your case study content -->
+  <!-- Hidden templates with case study content -->
   <template id="project-movefast">
     <div>
       <h2 style="margin:0 0 8px 0;">Case Study — Software Release Video Series</h2>
@@ -409,6 +414,28 @@
       <p>
         A cohesive video series that explained new features clearly and supported the release campaign.
         The workflow became a repeatable system, improving speed and consistency across launches.
+      </p>
+    </div>
+  </template>
+
+  <template id="project-precinct13">
+    <div>
+      <h2 style="margin:0 0 8px 0;">“Assault on Precinct 13” — Modern Trailer</h2>
+      <p style="color:#9aa0aa;margin:0 0 16px 0;">Personal project — Editor</p>
+
+      <p>
+        A personal project inspired by one of my favorite films, <i>Assault on Precinct 13</i>. I set out to create a
+        modernized trailer that captured the film’s tension and pace through music-driven editing.
+      </p>
+      <p>
+        The concept started with the soundtrack — every beat suggested a cut, every swell a new sequence.
+        The music completely dictated the flow. As the track built in intensity, the cuts became faster,
+        mirroring the film’s rising tension.
+      </p>
+      <p>
+        Unintentionally, the trailer ended up following the movie’s events in order, creating a natural rhythm
+        between sound and story. The music and visuals worked together seamlessly — each elevating the other
+        to create a modern reimagining of Carpenter’s classic.
       </p>
     </div>
   </template>
