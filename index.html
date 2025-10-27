@@ -6,258 +6,316 @@
   <title>Video Editor Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {--bg:#0b0c10;--panel:#121318;--ink:#e8eaf0;--muted:#9aa0aa;--brand:#7c5cff;--radius:18px;}
-    body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-    a{text-decoration:none;color:inherit}
-    header{position:sticky;top:0;background:rgba(11,12,16,.6);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1100px;margin:auto}
-    .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#4f3ddb)}
-    .brand{display:flex;align-items:center;gap:10px}
-    .menu{display:flex;gap:20px}
-    .menu a{color:var(--muted);font-weight:600}
-    .menu a:hover{color:var(--ink)}
+    :root {
+      --bg:#0b0c10;
+      --panel:#121318;
+      --ink:#e8eaf0;
+      --muted:#9aa0aa;
+      --brand:#7c5cff;
+      --radius:18px;
+    }
+    body {
+      margin:0;
+      font-family:Inter,system-ui,sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    a { color:inherit; text-decoration:none; }
+
+    header {
+      position:sticky; top:0;
+      background:rgba(11,12,16,.7);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      padding:1rem 2rem;
+      z-index:10;
+    }
+    header h1 {
+      margin:0;
+      font-size:1.2rem;
+      font-weight:600;
+      color:var(--brand);
+    }
+
+    section { padding:4rem 1.5rem; max-width:1000px; margin:auto; }
+    .section-head { margin-bottom:2rem; }
+    .section-head h2 { font-size:1.8rem; margin:0 0 .5rem 0; }
+    .section-head p { color:var(--muted); margin:0; }
 
     /* HERO */
-    .hero{
-      height:78vh;display:flex;justify-content:center;align-items:center;position:relative;
-      background-image:url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/refs/heads/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg');
-      background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.1)),
+        url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/refs/heads/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg')
+        center/cover no-repeat;
+      text-align:center;
+      padding:7rem 2rem;
+      border-bottom:1px solid rgba(255,255,255,.05);
     }
-    .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
-    .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
-    .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px}
-    .hero-content p{color:var(--muted);font-size:18px;max-width:60ch;margin:auto}
-    .cta{display:flex;justify-content:center;gap:12px;margin-top:22px}
+    .hero h1 { font-size:2.5rem; margin:0 0 1rem; }
+    .hero p { color:var(--muted); font-size:1.1rem; margin:0 auto 2rem; max-width:600px; }
+    .btn {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.8rem 1.4rem;
+      border-radius:var(--radius);
+      font-weight:600;
+      transition:.3s ease;
+      cursor:pointer;
+    }
+    .btn.primary {
+      background:var(--brand);
+      color:white;
+      box-shadow:0 0 15px rgba(124,92,255,.5);
+    }
+    .btn.primary:hover { box-shadow:0 0 25px rgba(124,92,255,.8); }
 
-    /* Buttons */
-    .btn{
-      padding:8px 14px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:#1a1c24;
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      transition:all .2s ease;
+    /* ABOUT */
+    .about p { max-width:700px; margin-bottom:1rem; }
+
+    /* VIDEOS */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      gap:1.5rem;
     }
-    .btn.primary{
-      background:linear-gradient(135deg,var(--brand),#6347ff);
-      border:none;
-      box-shadow:0 6px 18px rgba(124,92,255,.45);
+    .card {
+      background:var(--panel);
+      border-radius:var(--radius);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition:.3s;
+    }
+    .card:hover { transform:translateY(-4px); }
+    .thumb {
+      position:relative;
+      height:180px;
+      background:#222 center/cover no-repeat;
+    }
+    .pill {
+      position:absolute;
+      top:12px; left:12px;
+      background:var(--brand);
       color:#fff;
-      font-size:14px;
-      padding:8px 14px;
+      padding:4px 10px;
+      border-radius:12px;
+      font-size:.75rem;
     }
-    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(124,92,255,.55)}
-    .btn.stick-bottom{font-size:13px;padding:6px 12px;}
-    button.btn.primary{padding:8px 14px;font-size:14px;}
+    .card-body { padding:1rem 1.25rem 1.5rem; }
+    .card-body h3 { margin:0 0 .5rem; font-size:1.1rem; }
+    .card-body p { color:var(--muted); margin:0; }
 
-    main{max-width:1100px;margin:auto;padding:0 20px}
-    section{padding:56px 0}
-    .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
-    .section-head h2{font-size:28px;margin:0}
-    .section-head p{color:var(--muted)}
+    /* WORKFLOW */
+    .case {
+      display:flex;
+      flex-direction:column;
+      gap:2rem;
+    }
+    .pane {
+      background:var(--panel);
+      padding:1.5rem;
+      border-radius:var(--radius);
+      box-shadow:0 0 15px rgba(124,92,255,.15);
+    }
+    .stick-bottom {
+      margin-top:1rem;
+      align-self:flex-start;
+    }
 
-    /* About (expanded full width) */
-    .about{display:block}
-    .pane{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px}
-
-    /* Cards / grid */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;cursor:pointer}
-    .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
-    .pill{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);border-radius:999px;padding:6px 10px;font-size:12px}
-    .card-body{padding:14px}
-
-    /* Workflow equal-height panes */
-    .case{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
-    @media(max-width:900px){.case{grid-template-columns:1fr}}
-    .pane.flex{display:flex;flex-direction:column;height:100%}
-    .pane .btn.stick-bottom{margin-top:auto}
-
-    /* Systems 2x2 */
-    #systems .grid{grid-template-columns:repeat(2,1fr)}
-    @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
-
-    /* Other Work header */
-    .other-head{text-align:center;padding-top:40px}
-    .other-head h3{font-weight:400;color:var(--muted);font-size:20px;margin:0}
-
-    /* Contact aligned */
-    #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
-    #contact .section-head{display:block;margin-bottom:18px}
-    #contact .section-head p{color:var(--muted);margin:6px 0 0}
-    footer{border-top:1px solid rgba(255,255,255,.08);padding:20px 0 50px;text-align:center;color:var(--muted)}
-    form{display:grid;gap:12px}
-    input,textarea{background:#0e1016;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
-    textarea{min-height:120px;resize:vertical}
-    input::placeholder, textarea::placeholder{color:rgba(255,255,255,.85)}
-    button{cursor:pointer;font-size:14px;padding:8px 14px;border-radius:10px;}
-
-    /* Modal base */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}
-    .modal.open{display:flex}
-    .modal .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.8)}
-    .modal .panel{position:relative;background:#0b0c10;border:1px solid rgba(255,255,255,.12);border-radius:16px;max-width:960px;width:92%;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-    .modal .panel iframe,.modal .panel video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px}
-    .modal .close{position:absolute;top:-44px;right:0;background:#1a1c24;border:1px solid rgba(255,255,255,.18);color:#e8eaf0;border-radius:12px;padding:8px 12px;cursor:pointer;font-weight:700}
-
-    .modal .panel.text-panel{max-width:840px;width:92%;max-height:80vh;overflow:auto;padding:20px;aspect-ratio:auto}
-    .text-content h2{font-size:22px;margin:0 0 10px 0}
-    .text-content h3{font-size:16px;margin:18px 0 8px 0;color:#C9B8FF}
-    .text-content p,.text-content li{color:#e8eaf0;line-height:1.6}
-    .text-content ul{margin:0 0 10px 18px}
+    /* CONTACT */
+    form {
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      max-width:600px;
+    }
+    input, textarea {
+      background:#1a1b20;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius);
+      padding:.8rem;
+      color:var(--ink);
+      font-size:1rem;
+      resize:vertical;
+    }
+    button { border:none; }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand"><div class="logo"></div><b>Kevin</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span></div>
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#case">Workflow</a>
-        <a href="#systems">Systems</a>
-        <a href="#audio">Audio</a>
-        <a href="#contact">Contact</a>
-      </nav>
+
+<header><h1>Video Editor Portfolio</h1></header>
+
+<section class="hero">
+  <h1>Video editor & producer shaping ideas into motion.</h1>
+  <p>From launch campaigns to narrative promos — I craft clean, impactful edits that move fast and feel cinematic.</p>
+  <a class="btn primary" href="#work">View My Work</a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-head">
+    <h2>About</h2>
+  </div>
+  <p>I’m a video editor and producer with over a decade of experience creating promotional, instructional, and long-form content. My work spans studio productions, virtual interviews, and cinematic trailers — always focused on pacing, clarity, and story flow.</p>
+  <p>I also develop lightweight tools that improve post-production workflows and have created enablement resources to help teams produce and edit their own videos more efficiently.</p>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-head"><h2>Selected Work</h2></div>
+  <div class="grid">
+
+    <!-- 1) Brightcove Hackathon -->
+    <a class="card" href="https://youtu.be/y132irOnDcU" data-video="https://youtu.be/y132irOnDcU" aria-label="Pega Community Hackathon">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Event</span>
+      </div>
+      <div class="card-body">
+        <h3>Pega Community Hackathon</h3>
+        <p>Promotional video encouraging participation in the annual hackathon challenge.</p>
+      </div>
+    </a>
+
+    <!-- 2) Modern Trailer -->
+    <a class="card" href="https://www.youtube.com/watch?v=k4z_OY9Yd8o" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Assault on Precinct 13 — Modern Trailer">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Trailer</span>
+      </div>
+      <div class="card-body">
+        <h3>“Assault on Precinct 13” — Modern Trailer</h3>
+        <p>A personal project reimagining one of my favorite films with modern pacing and tone.</p>
+      </div>
+    </a>
+
+    <!-- 3) Pega Academy Launch -->
+    <a class="card" href="https://youtu.be/JBV_dYfvuIY" data-video="https://youtu.be/JBV_dYfvuIY" aria-label="Pega Academy 2.0 Launch">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Commercial</span>
+      </div>
+      <div class="card-body">
+        <h3>Pega Academy 2.0 Launch</h3>
+        <p>Promo announcing the redesigned Pega Academy with bold pacing and brand tone.</p>
+      </div>
+    </a>
+
+    <!-- 4) Product Launch Series -->
+    <a class="card" href="assets/whats-new.mp4" data-video="assets/whats-new.mp4" aria-label="Product Launch Video Series">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Launch</span>
+      </div>
+      <div class="card-body">
+        <h3>Product Launch Video Series</h3>
+        <p>A 2-minute montage showcasing a mix of studio and virtual interview formats used to highlight new software features.</p>
+      </div>
+    </a>
+
+    <!-- 5) Podcast -->
+    <a class="card" href="assets/podcast-clip.mp4" data-video="assets/podcast-clip.mp4" aria-label="Podcast Highlights — S1">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/blueprint.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Podcast</span>
+      </div>
+      <div class="card-body">
+        <h3>Podcast Highlights</h3>
+        <p>A 90-second highlight reel from a longer episode, featuring conversational pacing and multi-camera flow.</p>
+      </div>
+    </a>
+
+    <!-- 6) Studio Multi-Cam -->
+    <a class="card" href="assets/studio-multicam.mp4" data-video="assets/studio-multicam.mp4" aria-label="Multi-Cam Studio Edit — Highlights">
+      <div class="thumb"
+        style="background:
+          linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+          url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh_preview.png?raw=true')
+          center / cover no-repeat;">
+        <span class="pill">Studio</span>
+      </div>
+      <div class="card-body">
+        <h3>Multi-Cam Studio Edit — Highlights</h3>
+        <p>Showcasing synchronized multi-camera editing, reaction cuts, and exposure balancing.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section id="case">
+  <div class="section-head">
+    <h2>Workflow — How I Edit</h2>
+    <p>From discovery to delivery — a clear, collaborative process built for efficiency and consistency.</p>
+  </div>
+
+  <div class="case">
+    <div class="pane">
+      <h3>1. Discovery</h3>
+      <p>Define the goal, audience, and expectations of the project. Establish key deliverables and timeline to set a strong foundation before production begins.</p>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h1>Hi. I'm Kevin.</h1>
-      <p>I blend creative storytelling with structure, process, and precision.</p>
-      <div class="cta">
-        <a class="btn primary" href="#work">▶ View My Work</a>
-        <a class="btn" href="#contact">Let’s Collaborate</a>
-      </div>
+    <div class="pane">
+      <h3>2. Asset Gathering</h3>
+      <p>All footage, slides, demos, bumpers, music, and brand guidelines are collected and organized for editing, ensuring a smooth and efficient workflow.</p>
     </div>
-  </section>
 
-  <main>
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-head">
-        <h2>About</h2>
-        <p>Boston-based video editor blending creative exploration with standards-driven delivery.</p>
-      </div>
-      <div class="about">
-        <div class="pane">
-          <p>I'm a video editor with a producer's mindset - combining creativity with strong planning, communication, transparency, and delivery.</p>
-          <p style="margin-top:10px">
-            My primary tool is Premiere Pro, but I'm fluent in Photoshop, Audition, Final Cut, Da Vinci Resolve, Descript, and Riverside.fm.
-            I’ve also built internal tools that automate parts of post-production reporting and have created enablement that helps teammates produce and edit their own videos confidently.
-          </p>
-          <div style="margin-top:20px; text-align:left;">
-            <a class="btn primary" href="KevinCotterResume.pdf" target="_blank" rel="noopener">📄 View my resume</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK -->
-    <section id="work">
-      <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
-      <div class="grid">
-        <a class="card" href="https://youtu.be/JBV_dYfvuIY" data-video="https://youtu.be/JBV_dYfvuIY">
-          <div class="thumb" style="background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15)),url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')center/cover no-repeat;">
-            <span class="pill">Promo</span>
-          </div>
-          <div class="card-body"><h3>Pega Academy 2.0 Launch</h3><p>A promo announcing the newly-redesigned Pega Academy.</p></div>
-        </a>
-
-        <div class="card" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o">
-          <div class="thumb" style="background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15)),url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')center/cover no-repeat;">
-            <span class="pill">Trailer</span>
-          </div>
-          <div class="card-body">
-            <h3>“Assault on Precinct 13” — Modern Trailer</h3>
-            <p>A reimagined trailer for John Carpenter’s 1976 cult classic.</p>
-          </div>
-        </div>
-
-        <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8" data-video="https://www.youtube.com/watch?v=018mzJBiXo8">
-          <div class="thumb" style="background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15)),url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')center/cover no-repeat;">
-            <span class="pill">Event</span>
-          </div>
-          <div class="card-body"><h3>Pega Community Hackathon</h3><p>Promo encouraging users to enter the annual Hackathon.</p></div>
-        </a>
-
-        <a class="card" href="assets/podcast-clip.mp4" data-video="assets/podcast-clip.mp4">
-          <div class="thumb" style="background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15)),url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/blueprint.png?raw=true')center/cover no-repeat;">
-            <span class="pill">Podcast</span>
-          </div>
-          <div class="card-body"><h3>Podcast Highlights — S1 (2019)</h3><p>A 90-second highlight cut showing conversational pacing and flow.</p></div>
-        </a>
-
-        <a class="card" href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112" data-video="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112">
-          <div class="thumb" style="background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15)),url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdhpreview.png?raw=true')center/cover no-repeat;">
-            <span class="pill">Studio</span>
-          </div>
-          <div class="card-body"><h3>Multi-Cam Studio Edit — Highlights</h3><p>Showcasing synchronization, reaction cuts, and visual consistency.</p></div>
-        </a>
-      </div>
-    </section>
-
-    <!-- WORKFLOW -->
-    <section id="case">
-      <div class="section-head"><h2>Workflow — How I Edit</h2><p>From creative exploration to brand-safe delivery, with documented feedback at every step.</p></div>
-      <div class="case">
-        <div class="pane flex"><h3>Exploration → Finding the Cut</h3><p>I move fast in the play phase—testing rhythms, alt music cues, and tone to find the emotional spine.</p></div>
-        <div class="pane flex">
-          <h3>Structure → Brand-Safe Delivery</h3>
-          <p>Precision mode: templates, captions, QC, and feedback tracking for consistent delivery.</p>
-          <a class="btn primary stick-bottom" href="workflow.pdf" download>View my workflow (PDF)</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYSTEMS -->
-    <section id="systems">
-      <div class="section-head"><h2>Creative Systems & Tools</h2><p>Workflows and tooling that help teams move faster and stay consistent.</p></div>
-      <div class="grid">
-        <div class="pane"><h3>JavaScript Metrics App</h3><p>Lightweight Brightcove metrics app for no-engineering analytics exports.</p></div>
-        <div class="pane"><h3>Editing Standards & Best Practices</h3><p>Living guide for proxies, naming, and delivery specs to align teams.</p></div>
-        <div class="pane"><h3>Curriculum & Training</h3><p>Starter curriculum for producing and editing content efficiently.</p></div>
-        <div class="pane"><h3>Shared Asset Library</h3><p>Central library for graphics, LUTs, and presets for consistent branding.</p></div>
-      </div>
-    </section>
-
-    <!-- AUDIO -->
-    <div class="other-head"><h3>Other work</h3></div>
-    <section id="audio">
-      <div class="section-head"><h2>Audio & Voice Work</h2><p>Voiceover artist and weekly podcast producer/host/editor.</p></div>
-      <div class="grid">
-        <div class="pane"><h3>Voiceover Demo</h3><p>Warm, confident delivery for commercials and narration.</p><audio controls src="assets/vo-demo.mp3" style="width:100%"></audio></div>
-        <div class="pane"><h3>Podcast Series — Weekly Host & Producer</h3><p>Produced, hosted, and edited weekly episodes; highlight below.</p><audio controls src="assets/podcast-highlight.mp3" style="width:100%"></audio></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="narrow">
-      <div class="section-head"><h2>Let’s work</h2><p>Tell me about the project, timeline, and deliverables.</p></div>
-      <form action="https://formsubmit.co/kevinmaxeditor@gmail.com" method="POST">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://your-portfolio-site-url.com/thank-you.html">
-        <input type="hidden" name="_subject" value="New message from your portfolio site!">
-        <input type="text" name="name" placeholder="Your name" required>
-        <input type="text" name="subject" placeholder="Subject" required>
-        <textarea name="message" placeholder="Project details" required></textarea>
-        <button class="btn primary" type="submit">Send Message</button>
-      </form>
+    <div class="pane">
+      <h3>3. Assembly</h3>
+      <p>The edit is constructed — pacing, flow, and structure are refined to reach the first full draft.</p>
     </div>
-  </section>
 
-  <footer>© <span id="y"></span> Kevin Max Cotter — Video Editor • Boston</footer>
+    <div class="pane">
+      <h3>4. Feedback & Refinement</h3>
+      <p>The draft is shared with stakeholders for review and feedback, leading to revisions that align with the creative and business goals.</p>
+    </div>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+    <div class="pane">
+      <h3>5. Delivery</h3>
+      <p>The final version is exported, reviewed, and delivered to the client. Additional assets such as captions or alternate formats are provided as needed.</p>
+      <a class="btn primary stick-bottom" href="workflow.pdf" download>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download My Workflow (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head">
+    <h2>Let’s Work</h2>
+    <p>Tell me about your project, timeline, and deliverables.</p>
+  </div>
+  <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
+    <input type="text" placeholder="Your name" required>
+    <input type="email" placeholder="Your email" required>
+    <textarea placeholder="Project details" required></textarea>
+    <button class="btn primary" type="submit">Send Message</button>
+  </form>
+</section>
+
 </body>
 </html>
