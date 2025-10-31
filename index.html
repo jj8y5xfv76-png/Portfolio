@@ -26,22 +26,23 @@
       --btn-surface-contrast:#fff;
       --pill-bg:rgba(0,0,0,.5);
     }
-/* Light theme overrides */
-body[data-theme="light"] {
-  --bg: #ffffff;                     /* Pure white background */
-  --panel: #f7f8fa;                  /* Soft neutral panels */
-  --ink: #111217;                    /* Near-black text for readability */
-  --muted: #606670;                  /* Muted gray for secondary text */
-  --brand: #6a4bff;                  /* Same purple brand accent */
-  --hair-dark: rgba(0, 0, 0, 0.08);  /* Light separators */
-  --hair-dark-strong: rgba(0, 0, 0, 0.15);
-  --backdrop: rgba(0, 0, 0, 0.6);
-  --input-bg: #f0f1f5;
-  --placeholder: rgba(0, 0, 0, 0.5);
-  --btn-surface: #ffffff;
-  --btn-surface-contrast: #111217;
-  --pill-bg: rgba(0, 0, 0, 0.55);
-}
+
+    /* Light theme overrides */
+    body[data-theme="light"] {
+      --bg:#ffffff;
+      --panel:#f7f8fa;
+      --ink:#111217;
+      --muted:#606670;
+      --brand:#6a4bff;
+      --hair-dark:rgba(0,0,0,.08);
+      --hair-dark-strong:rgba(0,0,0,.15);
+      --backdrop:rgba(0,0,0,.6);
+      --input-bg:#f0f1f5;
+      --placeholder:rgba(0,0,0,.5);
+      --btn-surface:#ffffff;
+      --btn-surface-contrast:#111217;
+      --pill-bg:rgba(0,0,0,.55);
+    }
 
     /* =========================
        BASE
@@ -71,17 +72,19 @@ body[data-theme="light"] {
       line-height:1;
     }
 
-    /* HERO */
+    /* =========================
+       HERO (always dark/unchanged)
+       ========================= */
     .hero{
       height:78vh;display:flex;justify-content:center;align-items:center;position:relative;
       background-image:url('https://raw.githubusercontent.com/jj8y5xfv76-png/Portfolio/refs/heads/main/peter-stumpf-yk9VXp4W5-Q-unsplash.jpg');
       background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
     }
     .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
-    body[data-theme="light"] .hero::after{background:linear-gradient(to bottom,rgba(255,255,255,.2),rgba(246,248,252,.95))}
+    /* Fixed hero text colors so theme toggle doesn't affect them */
     .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
-    .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px}
-    .hero-content p{color:var(--muted);font-size:18px;max-width:60ch;margin:auto}
+    .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px;color:#e8eaf0}
+    .hero-content p{color:rgba(232,234,240,.85);font-size:18px;max-width:60ch;margin:auto}
     .cta{display:flex;justify-content:center;gap:12px;margin-top:22px}
 
     /* Buttons */
@@ -95,7 +98,7 @@ body[data-theme="light"] {
     .section-head h2{font-size:28px;margin:0}
     .section-head p{color:var(--muted)}
 
-    /* About (expanded full width) */
+    /* About */
     .about{display:block}
     .pane{background:var(--panel);border:1px solid var(--hair-dark);border-radius:16px;padding:18px}
 
@@ -103,7 +106,7 @@ body[data-theme="light"] {
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
     .card{background:var(--panel);border:1px solid var(--hair-dark);border-radius:16px;overflow:hidden;cursor:pointer}
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
-    .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px}
+    .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px;color:#fff} /* always white text */
     .card-body{padding:14px}
 
     /* Workflow equal-height panes */
@@ -165,7 +168,7 @@ body[data-theme="light"] {
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (unchanged by theme) -->
   <section class="hero" id="home">
     <div class="hero-content">
       <h1>Hi. I'm Kevin.</h1>
@@ -510,11 +513,8 @@ body[data-theme="light"] {
     (function(){
       const videoModal = document.getElementById('videoModal');
       const videoMount = document.getElementById('videoMount');
-      const closeElsVideo = videoModal.querySelectorAll('[data-close]');
-
       const textModal = document.getElementById('textModal');
       const textMount = document.getElementById('textMount');
-      const closeElsText = textModal.querySelectorAll('[data-close]');
 
       function ytToEmbed(url){
         try{
@@ -552,16 +552,17 @@ body[data-theme="light"] {
           node.style.width = '100%';
           node.style.height = '100%';
         }
-        videoMount.appendChild(node);
         videoModal.classList.add('open');
         videoModal.setAttribute('aria-hidden','false');
         document.body.style.overflow = 'hidden';
+        videoMount.appendChild(node);
       }
+
       function closeVideoModal(){
         videoModal.classList.remove('open');
         videoModal.setAttribute('aria-hidden','true');
-        videoMount.innerHTML = '';
         document.body.style.overflow = '';
+        videoMount.innerHTML = '';
       }
 
       function openTextModal(templateId){
@@ -576,15 +577,14 @@ body[data-theme="light"] {
       function closeTextModal(){
         textModal.classList.remove('open');
         textModal.setAttribute('aria-hidden','true');
-        textMount.innerHTML = '';
         document.body.style.overflow = '';
+        textMount.innerHTML = '';
       }
 
       document.addEventListener('click', (e)=>{
         const lm = e.target.closest('a.learn-more');
         if(lm){
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault(); e.stopPropagation();
           openTextModal(lm.getAttribute('data-project'));
           return;
         }
