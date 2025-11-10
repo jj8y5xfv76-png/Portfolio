@@ -485,122 +485,131 @@
     </div>
   </template>
 
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+<script>
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-    // ===== THEME TOGGLE =====
-    (function(){
-      const key = 'pref-theme';
-      const root = document.body;
-      const btn = document.getElementById('themeToggle');
+  // ===== THEME TOGGLE =====
+  (function(){
+    const key = 'pref-theme';
+    const root = document.body;
+    const btn = document.getElementById('themeToggle');
 
-      // Set initial theme: localStorage -> prefers-color-scheme -> dark
-      const stored = localStorage.getItem(key);
-      let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    function applyButtonUI(theme){
+      const next = theme === 'light' ? 'dark' : 'light';  // action
+      btn.textContent = next === 'light' ? '☀️' : '🌙';   // show what you'll switch TO
+      const label = `Switch to ${next} mode`;
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+    }
+
+    // Set initial theme: localStorage -> prefers-color-scheme -> dark
+    const stored = localStorage.getItem(key);
+    let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    root.setAttribute('data-theme', theme);
+    applyButtonUI(theme);
+
+    btn.addEventListener('click', () => {
+      theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
       root.setAttribute('data-theme', theme);
-      btn.textContent = theme === 'light' ? '☀️' : '🌙';
+      localStorage.setItem(key, theme);
+      applyButtonUI(theme);
+    });
+  })();
 
-      btn.addEventListener('click', () => {
-        theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-        root.setAttribute('data-theme', theme);
-        localStorage.setItem(key, theme);
-        btn.textContent = theme === 'light' ? '☀️' : '🌙';
-      });
-    })();
+  // ===== VIDEO & TEXT MODALS =====
+  (function(){
+    const videoModal = document.getElementById('videoModal');
+    const videoMount = document.getElementById('videoMount');
+    const textModal = document.getElementById('textModal');
+    const textMount = document.getElementById('textMount');
 
-    // ===== VIDEO & TEXT MODALS =====
-    (function(){
-      const videoModal = document.getElementById('videoModal');
-      const videoMount = document.getElementById('videoMount');
-      const textModal = document.getElementById('textModal');
-      const textMount = document.getElementById('textMount');
-
-      function ytToEmbed(url){
-        try{
-          const u = new URL(url);
-          if(u.hostname.includes('youtu.be')){
-            const id = u.pathname.replace('/','');
-            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-          if(u.hostname.includes('youtube.com')){
-            const id = u.searchParams.get('v');
-            if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-        }catch(e){}
-        return null;
-      }
-
-      function openVideoModal(src){
-        videoMount.innerHTML = '';
-        let node;
-        if(/\.mp4($|\?)/i.test(src)){
-          node = document.createElement('video');
-          node.setAttribute('controls','');
-          node.setAttribute('autoplay','');
-          node.src = src;
-          node.style.width = '100%';
-          node.style.height = '100%';
-        } else {
-          const yt = ytToEmbed(src);
-          const iframeSrc = yt || (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
-          node = document.createElement('iframe');
-          node.src = iframeSrc;
-          node.allow = 'autoplay; fullscreen; picture-in-picture';
-          node.loading = 'lazy';
-          node.referrerPolicy = 'no-referrer-when-downgrade';
-          node.style.width = '100%';
-          node.style.height = '100%';
+    function ytToEmbed(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes('youtu.be')){
+          const id = u.pathname.replace('/','');
+          return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
         }
-        videoModal.classList.add('open');
-        videoModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-        videoMount.appendChild(node);
-      }
-
-      function closeVideoModal(){
-        videoModal.classList.remove('open');
-        videoModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        videoMount.innerHTML = '';
-      }
-
-      function openTextModal(templateId){
-        textMount.innerHTML = '';
-        const tpl = document.getElementById(templateId);
-        if(tpl && 'content' in tpl){ textMount.appendChild(tpl.content.cloneNode(true)); }
-        else { textMount.innerHTML = '<p>Details coming soon.</p>'; }
-        textModal.classList.add('open');
-        textModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeTextModal(){
-        textModal.classList.remove('open');
-        textModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        textMount.innerHTML = '';
-      }
-
-      document.addEventListener('click', (e)=>{
-        const lm = e.target.closest('a.learn-more');
-        if(lm){
-          e.preventDefault(); e.stopPropagation();
-          openTextModal(lm.getAttribute('data-project'));
-          return;
+        if(u.hostname.includes('youtube.com')){
+          const id = u.searchParams.get('v');
+          if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
         }
-        const card = e.target.closest('.card');
-        if(!card) return;
-        const src = card.getAttribute('data-video');
-        if(src){
-          if(card.tagName.toLowerCase() === 'a') e.preventDefault();
-          openVideoModal(src);
-        }
-      });
+      }catch(e){}
+      return null;
+    }
 
-      videoModal.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
-      textModal.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
-    })();
-  </script>
+    function openVideoModal(src){
+      videoMount.innerHTML = '';
+      let node;
+      if(/\.mp4($|\?)/i.test(src)){
+        node = document.createElement('video');
+        node.setAttribute('controls','');
+        node.setAttribute('autoplay','');
+        node.src = src;
+        node.style.width = '100%';
+        node.style.height = '100%';
+      } else {
+        const yt = ytToEmbed(src);
+        const iframeSrc = yt || (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
+        node = document.createElement('iframe');
+        node.src = iframeSrc;
+        node.allow = 'autoplay; fullscreen; picture-in-picture';
+        node.loading = 'lazy';
+        node.referrerPolicy = 'no-referrer-when-downgrade';
+        node.style.width = '100%';
+        node.style.height = '100%';
+      }
+      videoModal.classList.add('open');
+      videoModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      videoMount.appendChild(node);
+    }
+
+    function closeVideoModal(){
+      videoModal.classList.remove('open');
+      videoModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      videoMount.innerHTML = '';
+    }
+
+    function openTextModal(templateId){
+      textMount.innerHTML = '';
+      const tpl = document.getElementById(templateId);
+      if(tpl && 'content' in tpl){ textMount.appendChild(tpl.content.cloneNode(true)); }
+      else { textMount.innerHTML = '<p>Details coming soon.</p>'; }
+      textModal.classList.add('open');
+      textModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTextModal(){
+      textModal.classList.remove('open');
+      textModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      textMount.innerHTML = '';
+    }
+
+    document.addEventListener('click', (e)=>{
+      const lm = e.target.closest('a.learn-more');
+      if(lm){
+        e.preventDefault(); e.stopPropagation();
+        openTextModal(lm.getAttribute('data-project'));
+        return;
+      }
+      const card = e.target.closest('.card');
+      if(!card) return;
+      const src = card.getAttribute('data-video');
+      if(src){
+        if(card.tagName.toLowerCase() === 'a') e.preventDefault();
+        openVideoModal(src);
+      }
+    });
+
+    videoModal.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
+    textModal.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
+  })();
+</script>
+
 </body>
 </html>
