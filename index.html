@@ -54,8 +54,26 @@
     body[data-theme="light"] header{background:rgba(255,255,255,.7)}
 
     .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1100px;margin:auto}
-    .brand{display:flex;align-items:center;gap:10px}
+
+    /* Brand block with two lines: name/role, then tools strip */
+    .brand{display:flex;align-items:center;gap:12px}
     .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#4f3ddb)}
+
+    .brand-meta{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .brand-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+    .brand-line b{white-space:nowrap}
+    .brand-line span{color:var(--muted);font-weight:600}
+
+    /* Tiny tools strip */
+    .tools-strip{display:flex;gap:8px;flex-wrap:wrap}
+    .tool-pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:22px;padding:0 8px;border-radius:8px;
+      border:1px solid var(--brand);color:var(--brand);background:transparent;
+      font-weight:800;font-size:12px;letter-spacing:.3px;line-height:1;
+      user-select:none;
+    }
+
     .menu{display:flex;gap:20px;align-items:center}
     .menu a{color:var(--muted);font-weight:600}
     .menu a:hover{color:var(--ink)}
@@ -155,7 +173,22 @@
 <body>
   <header>
     <div class="nav">
-      <div class="brand"><div class="logo"></div><b>Kevin</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span></div>
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brand-meta">
+          <div class="brand-line">
+            <b>Kevin</b>
+            <span>/ Video Editor • Workflow Architect</span>
+          </div>
+          <div class="tools-strip" aria-label="Tools used">
+            <span class="tool-pill" title="Adobe Premiere Pro">Pr</span>
+            <span class="tool-pill" title="Adobe After Effects">Ae</span>
+            <span class="tool-pill" title="Adobe Photoshop">Ps</span>
+            <span class="tool-pill" title="Adobe Audition">Au</span>
+          </div>
+        </div>
+      </div>
+
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#work">Work</a>
@@ -163,7 +196,7 @@
         <a href="#systems">Systems</a>
         <a href="#audio">Audio</a>
         <a href="#contact">Contact</a>
-        <button id="themeToggle" class="toggle" aria-label="Toggle light/dark mode" title="Toggle theme">🌙</button>
+        <button id="themeToggle" class="toggle" aria-label="Switch to light mode" title="Switch to light mode">☀️</button>
       </nav>
     </div>
   </header>
@@ -213,11 +246,11 @@
     <section id="work">
       <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
       <div class="grid">
-
-        <!-- 1) YouTube (modal) + learn-more (text modal) -->
-        <div class="card"
-             data-video="https://youtu.be/JBV_dYfvuIY"
-             aria-label="Pega Academy 2.0 — Launch Promo">
+        <!-- 1) YouTube (modal) -->
+        <a class="card"
+           href="https://youtu.be/JBV_dYfvuIY"
+           data-video="https://youtu.be/JBV_dYfvuIY"
+           aria-label="Pega Academy 2.0 Launch">
           <div class="thumb"
                style="background:
                  linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
@@ -227,15 +260,9 @@
           </div>
           <div class="card-body">
             <h3>Pega Academy 2.0 — Launch Promo</h3>
-            <p>A teaser promo to raise awareness for the then-upcoming Pega Academy redesign and modular learning experience.</p>
-            <a href="#"
-               class="learn-more"
-               data-project="project-academy"
-               style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">
-              Learn more about this project →
-            </a>
+            <p>A teaser promo video to raise awareness for the newly-designed Pega Academy website and its new modular learning experience. </p>
           </div>
-        </div>
+        </a>
 
         <!-- 2) YouTube (modal) -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
@@ -333,7 +360,6 @@
             </a>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -492,34 +518,11 @@
     </div>
   </template>
 
-  <!-- NEW: Academy case template -->
-  <template id="project-academy">
-    <div>
-      <h2 style="margin:0 0 8px 0;">Case Study — Pega Academy 2.0 Launch Promo</h2>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Role: Editor, script collaborator, voiceover</p>
-      <p>
-        This short teaser was turned around quickly to raise awareness for the then-upcoming redesign of Pega Academy and its new modular learning experience.
-        Working under a tight timeline, I helped write the script, recorded the VO, and combined existing b-roll with newly created product screenshots to deliver a crisp, on-message cut.
-      </p>
-      <h3>Approach</h3>
-      <ul>
-        <li>Script collaboration focused on clarity and momentum</li>
-        <li>Rapid VO record for a confident, consistent tone</li>
-        <li>Mix of existing b-roll + fresh UI screenshots for visual proof</li>
-        <li>On-brand graphics and pacing tailored for a marketing blast</li>
-      </ul>
-      <h3>Outcome</h3>
-      <p>
-        An awareness-driven promo that pointed audiences toward the upcoming platform launch in a company marketing email.
-      </p>
-    </div>
-  </template>
-
 <script>
   // Year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // ===== THEME TOGGLE =====
+  // ===== THEME TOGGLE (button shows the mode you will switch TO) =====
   (function(){
     const key = 'pref-theme';
     const root = document.body;
