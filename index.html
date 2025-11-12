@@ -81,7 +81,6 @@
       background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
     }
     .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
-    /* Fixed hero text colors so theme toggle doesn't affect them */
     .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
     .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px;color:#e8eaf0}
     .hero-content p{color:rgba(232,234,240,.85);font-size:18px;max-width:60ch;margin:auto}
@@ -106,7 +105,7 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
     .card{background:var(--panel);border:1px solid var(--hair-dark);border-radius:16px;overflow:hidden;cursor:pointer}
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
-    .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px;color:#fff} /* always white text */
+    .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px;color:#fff}
     .card-body{padding:14px}
 
     /* Workflow equal-height panes */
@@ -150,6 +149,27 @@
     .text-content h3{font-size:16px;margin:18px 0 8px 0;color:#C9B8FF}
     .text-content p,.text-content li{color:var(--ink);line-height:1.6}
     .text-content ul{margin:0 0 10px 18px}
+
+    /* Quick stats pills inside modals */
+    .stat-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin:4px 0 14px 0;
+    }
+    .stat-pill{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--hair-dark-strong);
+      color:var(--muted);
+      background:rgba(0,0,0,.15);
+    }
+    body[data-theme="light"] .stat-pill{
+      background:rgba(0,0,0,.03);
+    }
   </style>
 </head>
 <body>
@@ -168,7 +188,7 @@
     </div>
   </header>
 
-  <!-- HERO (unchanged by theme) -->
+  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-content">
       <h1>Hi. I'm Kevin.</h1>
@@ -189,63 +209,40 @@
       </div>
       <div class="about">
         <div class="pane">
-          <p>
-            I'm a video editor with a producer's mindset - combining creativity with strong planning, communication, transparency, and delivery.
-          </p>
-          <p style="margin-top:10px">
-            My primary tool is Premiere Pro, but I'm fluent in Photoshop, Audition, Final Cut, Da Vinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools that automate parts of post-production reporting and have created enablement that helps teammates produce and edit their own videos confidently.
-          </p>
-
-          <!-- Resume download button -->
-          <div style="margin-top:20px; text-align:left;">
-            <a class="btn primary"
-               href="KevinCotterResume.pdf"
-               target="_blank"
-               rel="noopener">
-              📄 View my resume
-            </a>
+          <p>I'm a video editor with a producer's mindset—combining creativity with strong planning, communication, transparency, and delivery.</p>
+          <p style="margin-top:10px">My primary tool is Premiere Pro, but I'm fluent in Photoshop, Audition, Final Cut, Da Vinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools that automate parts of post-production reporting and have created enablement that helps teammates produce and edit their own videos confidently.</p>
+          <div style="margin-top:20px;text-align:left;">
+            <a class="btn primary" href="KevinCotterResume.pdf" target="_blank" rel="noopener">📄 View my resume</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SELECTED WORK (6 cards) -->
+    <!-- SELECTED WORK -->
     <section id="work">
       <div class="section-head"><h2>Selected Work</h2><p>Hand-picked cuts across commercial, social, podcast, and studio.</p></div>
       <div class="grid">
-
-        <!-- 1) YouTube (modal) + learn-more (text modal) -->
-        <div class="card"
-             data-video="https://youtu.be/JBV_dYfvuIY"
-             aria-label="Pega Academy 2.0 — Launch Promo">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')
-                 center / cover no-repeat;">
+        <!-- 1 -->
+        <div class="card" data-video="https://youtu.be/JBV_dYfvuIY" aria-label="Pega Academy 2.0 — Launch Promo">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/academy.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Promo</span>
           </div>
           <div class="card-body">
             <h3>Pega Academy 2.0 — Launch Promo</h3>
             <p>A teaser promo to raise awareness for the then-upcoming Pega Academy redesign and modular learning experience.</p>
-            <a href="#"
-               class="learn-more"
-               data-project="project-academy"
-               style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">
-              Learn more about this project →
-            </a>
+            <a href="#" class="learn-more" data-project="project-academy" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
-        <!-- 2) YouTube (modal) -->
+        <!-- 2 -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
-           data-video="https://www.youtube.com/watch?v=018mzJBiXo8"
-           aria-label="Promo">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')
-                 center / cover no-repeat;">
+           data-video="https://www.youtube.com/watch?v=018mzJBiXo8" aria-label="Promo">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/hackathon.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Event</span>
           </div>
           <div class="card-body">
@@ -253,38 +250,27 @@
             <p>This was created as part of a promotional strategy for users to enter the annual Pega Community Hackathon.</p>
           </div>
         </a>
-
-        <!-- 3) External player (video modal) + project story (text modal) -->
+        <!-- 3 -->
         <div class="card" data-video="https://youtu.be/hOhzBA2Ii-E" aria-label="Move Fast, Tell Stories">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh.png?raw=true')
-                 center / cover no-repeat;">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdh.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Campaign</span>
           </div>
           <div class="card-body">
             <h3>Product Release Series — Campaign Montage</h3>
             <p>A 2-minute montage highlighting the range of styles used across the software release video series; blending interview-style segments with supporting slide and demo visuals.</p>
-            <a href="https://youtu.be/hOhzBA2Ii-E"
-               class="learn-more"
-               data-project="project-movefast"
-               style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">
-              Learn more about this project →
-            </a>
+            <a href="https://youtu.be/hOhzBA2Ii-E" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
-        <!-- 4) YouTube (modal) -->
-        <a class="card"
-           href="https://youtu.be/rwjUystpQAw"
-           data-video="https://youtu.be/rwjUystpQAw"
-           aria-label="Podcast Highlights — S1 (2019)">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/accessibility_podcast.png?raw=true')
-                 center / cover no-repeat;">
+        <!-- 4 -->
+        <a class="card" href="https://youtu.be/rwjUystpQAw"
+           data-video="https://youtu.be/rwjUystpQAw" aria-label="Podcast Highlights — S1 (2019)">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/accessibility_podcast.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Podcast</span>
           </div>
           <div class="card-body">
@@ -292,17 +278,14 @@
             <p>A 5-minute highlight cut from a 20-minute podcast episode, showcasing conversational pacing and multi-camera flow. This is a recurring podcast series that I edit regularly.</p>
           </div>
         </a>
-
-        <!-- 5) Brightcove (modal) -->
-        <a class="card"
-           href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
+        <!-- 5 -->
+        <a class="card" href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            data-video="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            aria-label="Multi-Cam Studio Edit — Highlights">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdhpreview.png?raw=true')
-                 center / cover no-repeat;">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/cdhpreview.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Studio</span>
           </div>
           <div class="card-body">
@@ -310,30 +293,20 @@
             <p>Product owner conversation showcasing multi-camera synchronization, reaction cuts, and exposure matching for consistent visual tone.</p>
           </div>
         </a>
-
-        <!-- 6) YouTube (modal) + learn-more (text modal) -->
-        <div class="card"
-             data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o"
-             aria-label="Assault on Precinct 13 — Modern Trailer">
-          <div class="thumb"
-               style="background:
-                 linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-                 url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
-                 center / cover no-repeat;">
+        <!-- 6 -->
+        <div class="card" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Assault on Precinct 13 — Modern Trailer">
+          <div class="thumb" style="background:
+            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
+            center / cover no-repeat;">
             <span class="pill">Trailer</span>
           </div>
           <div class="card-body">
             <h3>“Assault on Precinct 13” — Modern Trailer</h3>
             <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
-            <a href="#"
-               class="learn-more"
-               data-project="project-precinct13"
-               style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">
-              Learn more about this project →
-            </a>
+            <a href="#" class="learn-more" data-project="project-precinct13" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -343,7 +316,7 @@
       <div class="case">
         <div class="pane flex">
           <h3>Planning & Assembly</h3>
-          <p>I’m highly process-oriented and deadline-driven, approaching each project with clear goals and a structured plan. I experiment with pacing, tone, and rhythm early on to find the right flow, while maintaining a clean, organized project that anyone could easily pick up. I treat every edit as if it might be handed off — using consistent naming, clear markers, and logical folder structures to keep the workflow transparent and efficient from start to finish.</p>
+          <p>I’m highly process-oriented and deadline-driven, approaching each project with clear goals and a structured plan. I experiment with pacing, tone, and rhythm early on to find the right flow, while maintaining a clean, organized project that anyone could easily pick up.</p>
         </div>
         <div class="pane flex">
           <h3>Structure → Brand-Safe Delivery</h3>
@@ -356,7 +329,7 @@
       </div>
     </section>
 
-    <!-- SYSTEMS (with your 4 case studies) -->
+    <!-- SYSTEMS -->
     <section id="systems">
       <div class="section-head">
         <h2>Creative Systems & Tools</h2>
@@ -374,34 +347,30 @@
       </div>
 
       <div class="grid">
-        <!-- CS #1 -->
         <div class="pane">
           <h3>How-To Video System</h3>
-          <p>Templatized 60–90s product “how-to” videos using a simple intake form + demo capture → Final Cut / Premiere template for rapid turnarounds.</p>
+          <p>Templatized 60–90s demos via simple intake + screen capture → FCP/Premiere template. Built for scale and speed.</p>
           <a href="#" class="learn-more" data-project="cs-howto" style="color:var(--brand);font-weight:700;">Read case study →</a>
         </div>
-        <!-- CS #2 -->
         <div class="pane">
           <h3>Internal Enablement Program</h3>
-          <p>Self-paced training and branded assets that empowered 100+ internal creators to produce quality videos without the bottleneck.</p>
+          <p>Self-paced course + branded assets that turned 100+ stakeholders into capable part-time creators.</p>
           <a href="#" class="learn-more" data-project="cs-enablement" style="color:var(--brand);font-weight:700;">Read case study →</a>
         </div>
-        <!-- CS #3 -->
         <div class="pane">
           <h3>Video Metrics Dashboard</h3>
-          <p>Self-service analytics app pulling views, engagement, play rate & AVD—exportable to Excel—for data-driven content decisions.</p>
+          <p>Self-service analytics app (views, play rate, AVD) with Excel export to drive content choices.</p>
           <a href="#" class="learn-more" data-project="cs-metrics" style="color:var(--brand);font-weight:700;">Read case study →</a>
         </div>
-        <!-- CS #4 -->
         <div class="pane">
           <h3>Self-Service Upload API</h3>
-          <p>Upload tool that removed me as the publishing bottleneck—auth, tagging, and metadata handled automatically.</p>
+          <p>Authenticated pipeline that eliminated a publishing bottleneck and standardized metadata.</p>
           <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Read case study →</a>
         </div>
       </div>
     </section>
 
-    <!-- OTHER WORK header + AUDIO -->
+    <!-- OTHER WORK + AUDIO -->
     <div class="other-head"><h3>Other work</h3></div>
     <section id="audio">
       <div class="section-head">
@@ -430,16 +399,13 @@
         <h2>Let’s work</h2>
         <p>Tell me about the project, timeline, and deliverables.</p>
       </div>
-
       <form action="https://formsubmit.co/kevinmaxeditor@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://your-portfolio-site-url.com/thank-you.html">
         <input type="hidden" name="_subject" value="New message from your portfolio site!">
-
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="subject" placeholder="Subject" required>
         <textarea name="message" placeholder="Project details" required></textarea>
-
         <button class="btn primary" type="submit">Send Message</button>
       </form>
     </div>
@@ -465,10 +431,15 @@
     </div>
   </div>
 
-  <!-- Hidden templates -->
+  <!-- Hidden templates: existing -->
   <template id="project-movefast">
     <div>
       <h2 style="margin:0 0 8px 0;">Case Study — Software Release Video Series</h2>
+      <div class="stat-row">
+        <span class="stat-pill">10+ releases</span>
+        <span class="stat-pill">Multi-format</span>
+        <span class="stat-pill">End-to-end ownership</span>
+      </div>
       <p style="color:var(--muted);margin:0 0 16px 0;">Role: Video lead, editor, and project manager</p>
       <p>I led the video production strategy and execution for nearly a dozen major software releases. Each cycle required coordinating with multiple product teams, navigating tight deadlines, and managing external dependencies. I scheduled product owners, shaped what content to present, guided presenters through recording, and ensured each segment aligned with the release plan.</p>
       <h3>Scope & Formats</h3>
@@ -493,110 +464,199 @@
   <template id="project-precinct13">
     <div>
       <h2 style="margin:0 0 8px 0;">“Assault on Precinct 13” — Modern Trailer</h2>
-    <p style="color:var(--muted);margin:0 0 16px 0;">Personal project — Editor</p>
+      <div class="stat-row">
+        <span class="stat-pill">Personal project</span>
+        <span class="stat-pill">Music-driven</span>
+        <span class="stat-pill">Rhythm-first edit</span>
+      </div>
+      <p style="color:var(--muted);margin:0 0 16px 0;">Personal project — Editor</p>
       <p>A personal project inspired by one of my favorite films, <i>Assault on Precinct 13</i>. I set out to create a modernized trailer that captured the film’s tension and pace through music-driven editing.</p>
-      <p>The concept started with the soundtrack — every beat suggested a cut, every swell a new sequence. As the track built in intensity, the cuts accelerated, mirroring the film’s rising tension and creating a modern reimagining of Carpenter’s classic.</p>
+      <p>The concept started with the soundtrack—every beat suggested a cut, every swell a new sequence. As the track built in intensity, the cuts accelerated, mirroring the film’s rising tension and creating a modern reimagining of Carpenter’s classic.</p>
     </div>
   </template>
 
-  <!-- NEW: Academy case template -->
+  <!-- Academy case template -->
   <template id="project-academy">
     <div>
       <h2 style="margin:0 0 8px 0;">Case Study — Pega Academy 2.0 Launch Promo</h2>
+      <div class="stat-row">
+        <span class="stat-pill">Fast turnaround</span>
+        <span class="stat-pill">Script + VO</span>
+        <span class="stat-pill">Awareness teaser</span>
+      </div>
       <p style="color:var(--muted);margin:0 0 16px 0;">Role: Editor, script collaborator, voiceover</p>
-      <p>
-        This short teaser was turned around quickly to raise awareness for the then-upcoming redesign of Pega Academy and its new modular learning experience.
-        Working under a tight timeline, I helped write the script, recorded the VO, and combined existing b-roll with newly created product screenshots to deliver a crisp, on-message cut for a larger marketing blast.
-      </p>
+      <h3>Context</h3>
+      <p>Pega Academy was being redesigned with a modular learning model. Marketing needed a short, attention-grabbing teaser to seed awareness ahead of launch.</p>
+      <h3>Constraints</h3>
+      <ul>
+        <li><b>Timeline:</b> Last-minute request; delivery required fast turnaround.</li>
+        <li><b>Assets:</b> Limited net-new visuals; rely on existing b-roll + fresh UI screenshots.</li>
+        <li><b>Distribution:</b> Primarily an email/social awareness blast.</li>
+      </ul>
+      <h3>My Role</h3>
+      <ul>
+        <li>Shaped the script for clarity and pace</li>
+        <li>Recorded voiceover for consistent tone</li>
+        <li>Cut the piece, matched exposure, and finished graphics</li>
+      </ul>
       <h3>Approach</h3>
       <ul>
-        <li>Script collaboration focused on clarity and momentum</li>
-        <li>Rapid VO record for a confident, consistent tone</li>
-        <li>Mix of existing b-roll + fresh UI screenshots for visual proof</li>
-        <li>On-brand graphics and pacing tailored for email/social awareness</li>
+        <li>Hook in first 3 seconds; concise value props</li>
+        <li>VO cadence that “pulls” through beats; minimal copy per screen</li>
+        <li>UI screenshots as proof points; motion accents for momentum</li>
       </ul>
       <h3>Outcome</h3>
-      <p>
-        An awareness-driven promo that pointed audiences toward the upcoming platform launch and primed adoption for the new experience.
-      </p>
+      <p>Delivered an awareness teaser that primed audiences for the new Academy experience and aligned cross-team messaging for the launch sequence.</p>
     </div>
   </template>
 
-  <!-- ======= NEW: Four Creative Systems case studies ======= -->
+  <!-- Creative Systems case studies with stats -->
   <template id="cs-howto">
     <div>
-      <h2 style="margin:0 0 8px 0;">How-To Video System (Templatized, Rapid Production)</h2>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Role: Creator of system & templates</p>
+      <h2 style="margin:0 0 8px 0;">How-To Video System — “Template → Intake → 45-min Edit”</h2>
+      <div class="stat-row">
+        <span class="stat-pill">100+ videos</span>
+        <span class="stat-pill">½ day hackathon</span>
+        <span class="stat-pill">Award-winning</span>
+      </div>
+      <p style="color:var(--muted);margin:0 0 16px 0;">Role: System designer, template author, editor</p>
       <h3>Problem</h3>
-      <p>Video demand was high and budgets were tight. We needed a way to produce short, instructional demos quickly and consistently.</p>
-      <h3>Solution</h3>
+      <p>Stakeholders needed many short instructional videos, but budgets and editor bandwidth were limited. Traditional production cycles were too slow and costly for 60–90s demos.</p>
+      <h3>Context & Constraints</h3>
       <ul>
-        <li>Built a templated workflow in Final Cut Pro (later Premiere Pro) for 60–90s “how-to” demos.</li>
-        <li>Created a simple intake form: requesters outlined steps and recorded the raw demo.</li>
-        <li>My team used the template to cut from intake → finished video in ~30–45 minutes.</li>
+        <li><b>Scale:</b> Dozens to hundreds of similar videos per quarter</li>
+        <li><b>Quality bar:</b> Clear, accurate, branded—no VO required</li>
+        <li><b>Time per asset:</b> Target 30–45 minutes editor time</li>
       </ul>
-      <h3>Result</h3>
+      <h3>My Role</h3>
       <ul>
-        <li>At a hackathon, my team produced <b>100+ videos in half a day</b> and won an award.</li>
-        <li>The system proved we could scale essential content rapidly without sacrificing clarity.</li>
+        <li>Designed the end-to-end system and success criteria</li>
+        <li>Built Final Cut Pro (later Premiere Pro) templates: titles, transitions, pacing, safe areas</li>
+        <li>Created the <b>intake form</b> for requesters to outline steps and attach raw demo captures</li>
+      </ul>
+      <h3>System Design</h3>
+      <ul>
+        <li><b>Intake → Editorial:</b> Form with step list, on-screen text, links, and expected outcome</li>
+        <li><b>Template:</b> Pre-timed text blocks, lower-third styles, and transitions matching brand</li>
+        <li><b>Assembly flow:</b> Drop-in screen capture → razor edits on beats → timed captions → QC</li>
+      </ul>
+      <h3>Results & Proof</h3>
+      <ul>
+        <li><b>100+ videos in a half-day</b> during a company hackathon; the team <b>won an award</b></li>
+        <li>Average production time per asset fell to ~30–45 minutes without sacrificing clarity</li>
+        <li>Stakeholders adopted the format company-wide for repeatable “micro-learning”</li>
+      </ul>
+      <h3>What I’d Improve Next</h3>
+      <ul>
+        <li>Add a lightweight <b>“good/better/best”</b> visual QA checklist to raise consistency further</li>
+        <li>Expose an internal <b>self-request portal</b> with status and SLAs</li>
       </ul>
     </div>
   </template>
 
   <template id="cs-enablement">
     <div>
-      <h2 style="margin:0 0 8px 0;">Internal Video Enablement Program</h2>
+      <h2 style="margin:0 0 8px 0;">Internal Enablement — Turning 100+ Stakeholders into Part-Time Creators</h2>
+      <div class="stat-row">
+        <span class="stat-pill">100+ learners</span>
+        <span class="stat-pill">Self-paced</span>
+        <span class="stat-pill">Branded asset pack</span>
+      </div>
       <p style="color:var(--muted);margin:0 0 16px 0;">Role: Author, producer, asset designer</p>
       <h3>Problem</h3>
-      <p>As the only editor, I became the bottleneck. Stakeholders needed a way to create basic videos independently.</p>
-      <h3>Solution</h3>
+      <p>As the sole editor, I became the bottleneck. Teams still needed basic videos, often on short timelines.</p>
+      <h3>Program Design</h3>
       <ul>
-        <li>Developed a self-paced course covering planning, virtual recording, editing, export, and delivery.</li>
-        <li>Provided a library of branded assets: bumpers, lower thirds, overlays, and end cards.</li>
+        <li><b>Self-paced curriculum:</b> planning → virtual recording → basic editing → export → delivery</li>
+        <li><b>On-camera guide:</b> framing, lighting, audio hygiene, remote etiquette</li>
+        <li><b>Starter asset pack:</b> branded open/close bumpers, lower-thirds, overlays, captions presets</li>
       </ul>
-      <h3>Result</h3>
+      <h3>My Role</h3>
       <ul>
-        <li>Empowered <b>100+ internal creators</b> to produce quality videos on their own.</li>
-        <li>Freed up the core video function to focus on higher-impact projects.</li>
+        <li>Wrote the course, recorded examples, built the downloadable asset kit</li>
+        <li>Standardized output specs (resolution, bitrates, captioning, naming)</li>
+      </ul>
+      <h3>Impact</h3>
+      <ul>
+        <li><b>100+ internal users</b> producing occasional videos without 1:1 editor support</li>
+        <li>Requests to the core video team shifted toward higher-impact projects</li>
+        <li>Brand consistency improved due to shared templates and export profiles</li>
+      </ul>
+      <h3>What I’d Improve Next</h3>
+      <ul>
+        <li>Introduce a <b>15-minute office-hours</b> model for quick QA</li>
+        <li>Publish a <b>one-page spec</b> per common output (web, social, internal comms)</li>
       </ul>
     </div>
   </template>
 
   <template id="cs-metrics">
     <div>
-      <h2 style="margin:0 0 8px 0;">Video Metrics Dashboard (Self-Service Analytics)</h2>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Role: Builder (self-taught API integration)</p>
+      <h2 style="margin:0 0 8px 0;">Video Metrics Dashboard — Self-Service Analytics</h2>
+      <div class="stat-row">
+        <span class="stat-pill">Self-service</span>
+        <span class="stat-pill">No eng team</span>
+        <span class="stat-pill">Excel export</span>
+      </div>
+      <p style="color:var(--muted);margin:0 0 16px 0;">Role: Builder (self-taught API integration), product owner</p>
       <h3>Problem</h3>
-      <p>Analytics access was limited; I became the point person for every metrics request, slowing teams and decisions.</p>
+      <p>Only a few platform seats existed for analytics access. I became the manual “metrics desk,” slowing teams and decisions.</p>
       <h3>Solution</h3>
       <ul>
-        <li>Built a web app that pulled platform analytics (views, engagement, play rate, AVD).</li>
-        <li>Enabled Excel exports for reporting and trend analysis.</li>
-        <li>Used insights to guide format choices (e.g., removing a low-performing Q&amp;A segment from a podcast series).</li>
+        <li>Vibe-coded a lightweight internal app to pull key metrics via API</li>
+        <li><b>Metrics:</b> views, minutes viewed, play rate, engagement score, average view duration</li>
+        <li>One-click <b>Excel export</b> for reporting and analysis</li>
       </ul>
-      <h3>Result</h3>
+      <h3>My Role</h3>
       <ul>
-        <li>Teams accessed their own performance data on demand.</li>
-        <li>Content decisions became measurably more data-driven.</li>
+        <li>Defined data schema and UX; implemented OAuth, queries, and export</li>
+        <li>Partnered with stakeholders to prioritize common slices (date range, video IDs, destination domains)</li>
+      </ul>
+      <h3>Impact & Example Decisions</h3>
+      <ul>
+        <li>Teams independently pulled performance data—<b>no more ticket queue</b></li>
+        <li>Data led to removing a <b>low-performing Q&amp;A</b> segment from a video podcast; completion improved</li>
+        <li>Helped guide format choices (shorter intros, earlier hooks, tighter CTAs)</li>
+      </ul>
+      <h3>What I’d Improve Next</h3>
+      <ul>
+        <li>Add <b>saved reports</b> and scheduled email exports</li>
+        <li>Introduce <b>benchmarks</b> (channel median play rate, AVD) for quick context</li>
       </ul>
     </div>
   </template>
 
   <template id="cs-upload">
     <div>
-      <h2 style="margin:0 0 8px 0;">Self-Service Upload API</h2>
+      <h2 style="margin:0 0 8px 0;">Self-Service Upload API — Removing the Publishing Bottleneck</h2>
+      <div class="stat-row">
+        <span class="stat-pill">Self-service uploads</span>
+        <span class="stat-pill">Standardized metadata</span>
+        <span class="stat-pill">Editor unblocked</span>
+      </div>
       <p style="color:var(--muted);margin:0 0 16px 0;">Role: Designer & builder</p>
       <h3>Problem</h3>
-      <p>All video uploads flowed through me, creating an avoidable publishing bottleneck.</p>
+      <p>Every upload flowed through me. Turnaround depended on my availability; metadata quality varied.</p>
       <h3>Solution</h3>
       <ul>
-        <li>Built an authenticated upload API for non-technical users.</li>
-        <li>Automated tagging and metadata to keep catalog quality high.</li>
+        <li>Built an authenticated upload endpoint with a simple UI</li>
+        <li><b>Metadata defaults:</b> title, description, tags, product taxonomy, access flags</li>
+        <li>Applied <b>validation & safe-guards</b> for naming, duration, aspect ratio</li>
       </ul>
-      <h3>Result</h3>
+      <h3>My Role</h3>
       <ul>
-        <li>Publishing timelines accelerated; the bottleneck was eliminated.</li>
-        <li>Video operations became more scalable and resilient.</li>
+        <li>Specified required fields and guardrails; implemented API calls and error handling</li>
+        <li>Documented a short <b>“how to publish”</b> guide to onboard users</li>
+      </ul>
+      <h3>Impact</h3>
+      <ul>
+        <li>Publishing moved from a single-lane to <b>parallel self-service</b></li>
+        <li>Catalog quality increased via consistent metadata and tagging</li>
+      </ul>
+      <h3>What I’d Improve Next</h3>
+      <ul>
+        <li>Bulk uploads with CSV mapping</li>
+        <li>Automated <b>post-publish checks</b> (captions, thumbnail variance, broken links)</li>
       </ul>
     </div>
   </template>
@@ -605,21 +665,20 @@
   // Year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // ===== THEME TOGGLE =====
+  // THEME TOGGLE
   (function(){
     const key = 'pref-theme';
     const root = document.body;
     const btn = document.getElementById('themeToggle');
 
     function applyButtonUI(theme){
-      const next = theme === 'light' ? 'dark' : 'light';  // action
-      btn.textContent = next === 'light' ? '☀️' : '🌙';   // show what you'll switch TO
+      const next = theme === 'light' ? 'dark' : 'light';
+      btn.textContent = next === 'light' ? '☀️' : '🌙';
       const label = `Switch to ${next} mode`;
       btn.setAttribute('aria-label', label);
       btn.setAttribute('title', label);
     }
 
-    // Set initial theme: localStorage -> prefers-color-scheme -> dark
     const stored = localStorage.getItem(key);
     let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
     root.setAttribute('data-theme', theme);
@@ -633,7 +692,7 @@
     });
   })();
 
-  // ===== VIDEO & TEXT MODALS =====
+  // VIDEO & TEXT MODALS
   (function(){
     const videoModal = document.getElementById('videoModal');
     const videoMount = document.getElementById('videoMount');
@@ -721,19 +780,9 @@
       }
     });
 
-    // Close handlers
     document.querySelectorAll('#videoModal [data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
     document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
-
-    // Delegate "Read case study" links to text modal
-    document.addEventListener('click', (e)=>{
-      const cs = e.target.closest('a.learn-more');
-      if(cs && cs.dataset.project){
-        e.preventDefault();
-        openTextModal(cs.dataset.project);
-      }
-    });
   })();
 </script>
 
