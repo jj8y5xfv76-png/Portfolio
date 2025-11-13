@@ -118,10 +118,6 @@
     #systems .grid{grid-template-columns:repeat(2,1fr)}
     @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
 
-    /* Other Work header */
-    .other-head{text-align:center;padding-top:40px}
-    .other-head h3{font-weight:400;color:var(--muted);font-size:20px;margin:0}
-
     /* Contact aligned */
     #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
     #contact .section-head{display:block;margin-bottom:18px}
@@ -181,7 +177,6 @@
         <a href="#work">Work</a>
         <a href="#case">Workflow</a>
         <a href="#systems">Systems</a>
-        <a href="#audio">Audio</a>
         <a href="#contact">Contact</a>
         <button id="themeToggle" class="toggle" aria-label="Toggle light/dark mode" title="Toggle theme">🌙</button>
       </nav>
@@ -308,6 +303,16 @@
           </div>
         </div>
       </div>
+
+      <!-- Behance link -->
+      <div style="margin-top:26px;text-align:center;">
+        <a href="https://www.behance.net/kevinmaxcotter"
+           target="_blank"
+           rel="noopener"
+           style="color:var(--brand);font-weight:700;">
+          View more of my work on Behance →
+        </a>
+      </div>
     </section>
 
     <!-- WORKFLOW -->
@@ -369,27 +374,6 @@
         </div>
       </div>
     </section>
-
-    <!-- OTHER WORK + AUDIO -->
-    <div class="other-head"><h3>Other work</h3></div>
-    <section id="audio">
-      <div class="section-head">
-        <h2>Audio & Voice Work</h2>
-        <p>Voiceover artist and weekly podcast producer/host/editor.</p>
-      </div>
-      <div class="grid">
-        <div class="pane">
-          <h3>Voiceover Demo</h3>
-          <p>Warm, confident delivery suited for commercials, narration, and trailers.</p>
-          <audio controls src="assets/vo-demo.mp3" style="width:100%"></audio>
-        </div>
-        <div class="pane">
-          <h3>Podcast Series — Weekly Host & Producer</h3>
-          <p>Produced, hosted, and edited a weekly podcast series. Highlight reel below (45–90s excerpt).</p>
-          <audio controls src="assets/podcast-highlight.mp3" style="width:100%"></audio>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- CONTACT -->
@@ -431,7 +415,7 @@
     </div>
   </div>
 
-  <!-- Hidden templates: existing -->
+  <!-- Hidden templates -->
   <template id="project-movefast">
     <div>
       <h2 style="margin:0 0 8px 0;">Case Study — Software Release Video Series</h2>
