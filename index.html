@@ -138,8 +138,9 @@
     .modal .panel{position:relative;background:var(--bg);border:1px solid var(--hair-dark-strong);border-radius:16px;max-width:960px;width:92%;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.6)}
     .modal .panel iframe,.modal .panel video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px}
 
-    /* Updated close button placement (visible inside modal) */
-    .modal .close{
+    /* Close buttons */
+    #videoModal .close,
+    #textModal .close{
       position:absolute;
       top:12px;
       right:12px;
@@ -151,6 +152,11 @@
       cursor:pointer;
       font-weight:700;
       font-size:13px;
+    }
+
+    /* Ensure video modal close button sits above the player */
+    #videoModal .close{
+      z-index:2;
     }
 
     /* Text modal overrides */
@@ -451,7 +457,7 @@
   <!-- Hidden templates -->
   <template id="project-movefast">
     <div>
-      <h2 style="margin:0 0 8px 0;">Case Study — Software Release Video Series</h2>
+      <h2 style="margin:0 0 8px 0;">Software Release Video Series</h2>
       <div class="stat-row">
         <span class="stat-pill">10+ releases</span>
         <span class="stat-pill">Multi-format</span>
@@ -495,7 +501,7 @@
   <!-- Academy case template -->
   <template id="project-academy">
     <div>
-      <h2 style="margin:0 0 8px 0;">Case Study — Pega Academy 2.0 Launch Promo</h2>
+      <h2 style="margin:0 0 8px 0;">Pega Academy 2.0 Launch Promo</h2>
       <div class="stat-row">
         <span class="stat-pill">Fast turnaround</span>
         <span class="stat-pill">Script + VO</span>
@@ -530,7 +536,7 @@
   <!-- Creative Systems case studies with stats -->
   <template id="cs-howto">
     <div>
-      <h2 style="margin:0 0 8px 0;">How-To Video System — “Template → Intake → 45-min Edit”</h2>
+      <h2 style="margin:0 0 8px 0;">How-To Video System</h2>
       <div class="stat-row">
         <span class="stat-pill">100+ videos</span>
         <span class="stat-pill">½ day hackathon</span>
@@ -559,7 +565,7 @@
 
   <template id="cs-enablement">
     <div>
-      <h2 style="margin:0 0 8px 0;">Internal Enablement — Turning 100+ Stakeholders into Part-Time Creators</h2>
+      <h2 style="margin:0 0 8px 0;">Internal Enablement</h2>
       <div class="stat-row">
         <span class="stat-pill">100+ learners</span>
         <span class="stat-pill">Self-paced</span>
@@ -579,7 +585,7 @@
 
   <template id="cs-metrics">
     <div>
-      <h2 style="margin:0 0 8px 0;">Video Metrics Dashboard — Self-Service Analytics</h2>
+      <h2 style="margin:0 0 8px 0;">Video Metrics Dashboard</h2>
       <div class="stat-row">
         <span class="stat-pill">Self-service</span>
         <span class="stat-pill">No eng team</span>
@@ -601,7 +607,7 @@
 
   <template id="cs-upload">
     <div>
-      <h2 style="margin:0 0 8px 0;">Self-Service Video Upload System — Removing the Publishing Bottleneck</h2>
+      <h2 style="margin:0 0 8px 0;">Self-Service Video Upload System</h2>
       <div class="stat-row">
         <span class="stat-pill">Self-service uploads</span>
         <span class="stat-pill">Standardized metadata</span>
