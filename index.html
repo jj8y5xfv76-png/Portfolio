@@ -115,7 +115,7 @@
     .pane .btn.stick-bottom{margin-top:auto}
 
     /* Systems 2x2 */
-    #systems .grid{grid-template-columns:repeat(2,1fr)}
+    #systems .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
 
     /* Contact aligned */
@@ -390,18 +390,6 @@
         </p>
       </div>
 
-      <!-- NEW PODCAST SYSTEM FULL-WIDTH PANE -->
-      <div class="pane" style="margin-bottom:28px;">
-        <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
-        <p>
-          Long-running Star Trek podcast (2017–2024) where I owned production, editing, and hosting—building a repeatable
-          workflow for planning, recording, cutting, and publishing episodes.
-        </p>
-        <a href="#" class="learn-more" data-project="cs-podcast" style="color:var(--brand);font-weight:700;">
-          Learn more about this project →
-        </a>
-      </div>
-
       <div class="grid">
         <div class="pane">
           <h3>How-To Video System</h3>
@@ -423,6 +411,18 @@
           <p>Authenticated pipeline that eliminated a publishing bottleneck and standardized metadata.</p>
           <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
         </div>
+      </div>
+
+      <!-- PODCAST SYSTEM FULL-WIDTH PANE MOVED BELOW GRID -->
+      <div class="pane" style="margin-top:28px;">
+        <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
+        <p>
+          Long-running Star Trek podcast (2017–2024) where I owned production, editing, and hosting—building a repeatable
+          workflow for planning, recording, cutting, and publishing episodes.
+        </p>
+        <a href="#" class="learn-more" data-project="cs-podcast" style="color:var(--brand);font-weight:700;">
+          Learn more about this project →
+        </a>
       </div>
     </section>
   </main>
