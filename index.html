@@ -11,7 +11,7 @@
        ========================= */
     :root{
       /* Dark (default) */
-      --bg:#0b0c10;
+      --bg:#0b0c10;flinke
       --panel:#121318;
       --ink:#e8eaf0;
       --muted:#9aa0aa;
@@ -123,7 +123,7 @@
     #contact .section-head{display:block;margin-bottom:18px}
     #contact .section-head p{color:var(--muted);margin:6px 0 0}
 
-    footer{border-top:1px solid var(--hair-dark);padding:20px 0 50px;text-align:center;color:var(--muted)}
+    footer{border-top:1px solid var(--hair-dark);padding:20px 0 50px;text-align:center;color:var(--muted);font-size:14px}
 
     form{display:grid;gap:12px}
     input,textarea{background:var(--input-bg);border:1px solid var(--hair-dark-strong);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
@@ -415,7 +415,7 @@
 
       <!-- PODCAST SYSTEM FULL-WIDTH PANE BELOW GRID -->
       <div class="pane" style="margin-top:28px;">
-        <h3>Podcast: <em>In Star Trek We Trust</em></h3>
+        <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
         <p>
           Long-running Star Trek podcast (2017–2024) where I owned production, editing, and hosting—building a repeatable
           workflow for planning, recording, cutting, and publishing episodes.
@@ -446,7 +446,17 @@
     </div>
   </section>
 
-  <footer>© <span id="y"></span> Kevin Max Cotter — Video Editor • Boston</footer>
+  <footer>
+    © <span id="y"></span> Kevin Max Cotter — Video Editor • Boston
+    <div style="margin-top:12px; display:flex; justify-content:center; gap:18px; font-weight:600;">
+      <a href="https://www.linkedin.com/in/kevinmaxcotter/" target="_blank" rel="noopener" style="color:var(--brand);">
+        LinkedIn →
+      </a>
+      <a href="https://www.behance.net/kevinmaxcotter" target="_blank" rel="noopener" style="color:var(--brand);">
+        Behance →
+      </a>
+    </div>
+  </footer>
 
   <!-- Video Modal -->
   <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-label="Video player">
@@ -642,7 +652,7 @@
   <!-- NEW PODCAST CASE TEMPLATE WITH EMBED -->
   <template id="cs-podcast">
     <div>
-      <h2 style="margin:0 0 8px 0;">Podcast: <em>In Star Trek We Trust</em></h2>
+      <h2 style="margin:0 0 8px 0;">Podcast Production System — <em>In Star Trek We Trust</em></h2>
       <div class="stat-row">
         <span class="stat-pill">2017–2024</span>
         <span class="stat-pill">Long-form</span>
