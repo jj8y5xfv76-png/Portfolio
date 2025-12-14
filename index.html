@@ -203,29 +203,36 @@
       border:0;
     }
 
-    /* BIO image pane (matches existing pane/case styling) */
-    .bio-image{
-      padding:0;
+    /* PERSONAL PANE (this is the “first version” style: one pane, photo + text) */
+    .personal-pane{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .personal-photo{
+      width:220px;
+      min-width:220px;
+      aspect-ratio:1/1;
+      border-radius:14px;
+      border:1px solid var(--hair-dark-strong);
       overflow:hidden;
-      min-height:320px;
-      position:relative;
       background:
         linear-gradient(to bottom, rgba(11,12,16,.10), rgba(11,12,16,.55)),
         url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/IMG_1324.jpg?raw=true')
         center / cover no-repeat;
     }
-    body[data-theme="light"] .bio-image{
+    body[data-theme="light"] .personal-photo{
       background:
         linear-gradient(to bottom, rgba(255,255,255,.10), rgba(0,0,0,.25)),
         url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/IMG_1324.jpg?raw=true')
         center / cover no-repeat;
     }
-    .bio-image::after{
-      content:'';
-      position:absolute;
-      inset:0;
-      border-radius:16px;
-      pointer-events:none;
+    .personal-text h3{margin:0 0 8px 0}
+    .personal-text p{margin:0;color:var(--ink);line-height:1.6}
+    .personal-text p + p{margin-top:10px;color:var(--muted)}
+    @media(max-width:700px){
+      .personal-pane{flex-direction:column;align-items:flex-start}
+      .personal-photo{width:100%;min-width:0;aspect-ratio:16/10}
     }
   </style>
 </head>
@@ -479,24 +486,23 @@
       </div>
     </section>
 
-    <!-- PERSONAL TOUCH (MATCHES EXISTING STYLE) -->
-    <section id="bio">
+    <!-- PERSONAL (RIGHT BEFORE CONTACT) -->
+    <section id="personal">
       <div class="section-head">
         <h2>Personal</h2>
         <p>A little context beyond the timeline.</p>
       </div>
 
-      <div class="case">
-        <div class="pane bio-image" aria-label="Photo of Kevin"></div>
-
-        <div class="pane flex">
-          <h3 style="margin-top:0;">Film nerd energy, with systems brain.</h3>
-          <p style="margin-top:0;">
+      <div class="pane personal-pane">
+        <div class="personal-photo" aria-label="Photo of Kevin"></div>
+        <div class="personal-text">
+          <h3>Film nerd energy, with a systems brain.</h3>
+          <p>
             I’m a film nerd at heart and currently re-acquainting myself with bass—always paying attention to what makes a moment land.
             That instinct shows up in my edits: pacing, intention, and the tiny choices that make something feel effortless.
           </p>
-          <p style="color:var(--muted);margin-top:10px;">
-            I also value clarity and organization: clean timelines, repeatable workflows, and feedback loops that keep projects moving without friction.
+          <p>
+            I also care a lot about clarity and organization: clean timelines, repeatable workflows, and feedback loops that keep projects moving without friction.
           </p>
         </div>
       </div>
