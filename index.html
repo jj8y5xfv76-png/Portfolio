@@ -54,9 +54,9 @@
     body[data-theme="light"] header{background:rgba(255,255,255,.7)}
 
     .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1100px;margin:auto}
-    .brand{display:flex;align-items:center;gap:10px}
+    .brand{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#4f3ddb)}
-    .menu{display:flex;gap:20px;align-items:center}
+    .menu{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
     .menu a{color:var(--muted);font-weight:600}
     .menu a:hover{color:var(--ink)}
 
@@ -81,10 +81,10 @@
       background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
     }
     .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
-    .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
+    .hero-content{position:relative;text-align:center;max-width:760px;z-index:1;padding:0 14px}
     .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px;color:#e8eaf0}
     .hero-content p{color:rgba(232,234,240,.85);font-size:18px;max-width:60ch;margin:auto}
-    .cta{display:flex;justify-content:center;gap:12px;margin-top:22px}
+    .cta{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
 
     /* Buttons */
     .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid var(--hair-dark-strong);background:var(--btn-surface);display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;width:max-content}
@@ -93,9 +93,9 @@
 
     main{max-width:1100px;margin:auto;padding:0 20px}
     section{padding:56px 0}
-    .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+    .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;gap:14px;flex-wrap:wrap}
     .section-head h2{font-size:28px;margin:0}
-    .section-head p{color:var(--muted)}
+    .section-head p{color:var(--muted);margin:0}
 
     /* About */
     .about{display:block}
@@ -107,6 +107,8 @@
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
     .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px;color:#fff}
     .card-body{padding:14px}
+    .card-body h3{margin:0 0 6px 0}
+    .card-body p{margin:0;color:var(--muted);line-height:1.5}
 
     /* Workflow equal-height panes */
     .case{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
@@ -117,6 +119,57 @@
     /* Systems 2x2 */
     #systems .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
+
+    /* NEW: personal section (photo + blurb) */
+    .personal{
+      display:flex;
+      gap:18px;
+      align-items:stretch;
+    }
+    .personal .photo{
+      flex:0 0 260px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--hair-dark-strong);
+      background:#000;
+    }
+    .personal .photo img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .personal .copy{
+      flex:1;
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .personal .kicker{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:0 0 10px 0;
+    }
+    .personal h3{
+      margin:0 0 10px 0;
+      font-size:20px;
+    }
+    .personal p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      max-width:72ch;
+    }
+
+    @media(max-width:700px){
+      section{padding:46px 0}
+      .grid{grid-template-columns:1fr}
+      .personal{flex-direction:column}
+      .personal .photo{flex:0 0 auto;max-height:320px}
+    }
 
     /* Contact aligned */
     #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
@@ -160,6 +213,7 @@
     .text-content h2{font-size:22px;margin:0 0 10px 0}
     .text-content h3{font-size:16px;margin:18px 0 8px 0;color:#C9B8FF}
     .text-content p,.text-content li{color:var(--ink);line-height:1.6}
+    .text-content p{margin:0 0 12px 0}
     .text-content ul{margin:0 0 10px 18px}
 
     /* Quick stats pills inside modals */
@@ -201,181 +255,16 @@
       height:100%;
       border:0;
     }
-
-    /* =========================
-       MOBILE OPTIMIZATIONS
-       ========================= */
-
-    @media (max-width: 768px) {
-
-      /* Header / Nav */
-      header {
-        position: sticky;
-      }
-
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px 16px;
-      }
-
-      .brand {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .menu {
-        flex-wrap: wrap;
-        gap: 14px;
-        font-size: 14px;
-      }
-
-      .menu a {
-        padding: 6px 0;
-      }
-
-      /* Hero */
-      .hero {
-        height: auto;
-        min-height: 70vh;
-        padding: 40px 16px;
-      }
-
-      .hero-content h1 {
-        font-size: 36px;
-        line-height: 1.2;
-      }
-
-      .hero-content p {
-        font-size: 16px;
-        line-height: 1.6;
-      }
-
-      .cta {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .cta .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      /* Sections */
-      section {
-        padding: 44px 0;
-      }
-
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-
-      .section-head h2 {
-        font-size: 24px;
-      }
-
-      .section-head p {
-        font-size: 14px;
-      }
-
-      /* Grids */
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Cards */
-      .card {
-        border-radius: 18px;
-      }
-
-      .card-body h3 {
-        font-size: 18px;
-      }
-
-      .card-body p {
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .learn-more {
-        display: inline-block;
-        margin-top: 10px;
-      }
-
-      /* Workflow split → stacked already, just tighten spacing */
-      .case {
-        gap: 18px;
-      }
-
-      /* Systems grid override (force single column earlier) */
-      #systems .grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Contact */
-      #contact .narrow {
-        padding: 0 16px;
-      }
-
-      input,
-      textarea {
-        font-size: 16px; /* prevents iOS zoom */
-      }
-
-      /* Footer */
-      footer {
-        padding: 20px 16px 40px;
-      }
-
-      footer div {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      /* Modals */
-      .modal .panel {
-        width: 94%;
-        max-height: 90vh;
-      }
-
-      .modal .panel.text-panel {
-        padding: 18px 16px 16px;
-      }
-
-      #videoModal .close,
-      #textModal .close {
-        top: 10px;
-        right: 10px;
-        padding: 8px 12px;
-        font-size: 14px;
-      }
-    }
-
-    /* Extra-small phones */
-    @media (max-width: 420px) {
-
-      .hero-content h1 {
-        font-size: 32px;
-      }
-
-      .hero-content p {
-        font-size: 15px;
-      }
-
-      .section-head h2 {
-        font-size: 22px;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
     <div class="nav">
-      <div class="brand"><div class="logo"></div><b>Kevin</b><span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span></div>
+      <div class="brand">
+        <div class="logo"></div>
+        <b>Kevin</b>
+        <span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span>
+      </div>
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#work">Work</a>
@@ -412,7 +301,7 @@
           <p>I'm a video editor with a producer's mindset—combining creativity with strong planning, communication, transparency, and delivery.</p>
           <p style="margin-top:10px">My primary tool is Premiere Pro, but I'm fluent in Photoshop, Audition, Final Cut, Da Vinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools that automate parts of post-production reporting and have created enablement that helps teammates produce and edit their own videos confidently.</p>
           <p style="margin-top:10px">
-            Outside of work, I’ve spent years co-running a Star Trek podcast, playing bass, and pulling inspiration from film, games, and long-form storytelling. All of that feeds back into how I think about rhythm, tone, and audience experience in the edit.
+            Outside of work, I’m a film nerd, a bass player, and someone who’s always studying rhythm, pacing, and story across movies, games, and long-form content. That curiosity shows up in my editing—especially in how I think about tone, structure, and audience experience.
           </p>
           <div style="margin-top:20px;text-align:left;">
             <a class="btn primary" href="KevinMaxCotterResume.pdf" target="_blank" rel="noopener">📄 View my resume</a>
@@ -464,7 +353,7 @@
           <div class="card-body">
             <h3>Product Release Series — Campaign Montage</h3>
             <p>A 2-minute montage highlighting the range of styles used across the software release video series; blending interview-style segments with supporting slide and demo visuals.</p>
-            <a href="https://youtu.be/hOhzBA2Ii-E" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
+            <a href="#" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
         <!-- 4 -->
@@ -507,7 +396,7 @@
           <div class="card-body">
             <h3>“Assault on Precinct 13” — Modern Trailer</h3>
             <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
-            <a href="#" class="learn-more" data-project="project-precinct13" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
+            <a href="#" class="learn-more" data-project="project-precinct13" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
       </div>
@@ -575,8 +464,8 @@
         <h3>Inspiration & Previsualization Tools</h3>
         <p>
           Visual reference platforms like
-          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;"><b>frameset</b></a> and
-          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:#7c5cff;"><b>ShotDeck</b></a> are part of my creative process.
+          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:var(--brand);"><b>frameset</b></a> and
+          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:var(--brand);"><b>ShotDeck</b></a> are part of my creative process.
           I use them to study composition, pacing, and tone—helping define the visual direction before cutting a frame.
         </p>
       </div>
@@ -616,6 +505,34 @@
         </a>
       </div>
     </section>
+
+    <!-- NEW: PERSONAL TOUCH SECTION (RIGHT BEFORE CONTACT) -->
+    <section id="beyond">
+      <div class="section-head">
+        <h2>Beyond the timeline</h2>
+        <p>A little context on what fuels my creative instincts.</p>
+      </div>
+
+      <div class="pane personal">
+        <div class="photo" aria-hidden="true">
+          <img
+            src="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/IMG_1324.jpg?raw=true"
+            alt="Close-up photo of hands playing bass guitar"
+            loading="lazy"
+          />
+        </div>
+        <div class="copy">
+          <p class="kicker">Outside the edit</p>
+          <h3>Rhythm, pacing, and story — even off the clock</h3>
+          <p>
+            I’m a film nerd at heart and a bass player—always paying attention to what makes a moment land.
+            Whether it’s a scene’s tension, a comedic beat, or a music cue that changes the feel of everything,
+            I’m constantly studying timing and structure. That curiosity feeds directly into how I edit: clean pacing,
+            strong flow, and a viewer-first sense of momentum.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- CONTACT -->
@@ -639,8 +556,8 @@
 
   <footer>
     © <span id="y"></span> Kevin Max Cotter — Video Editor • Boston
-    <div style="margin-top:12px; display:flex; justify-content:center; gap:18px; font-weight:600;">
-      <a href="https://www.linkedin.com/in/kevinmaxcotter/" target="_blank" rel="noopener" style="color:var(--brand);">
+    <div style="margin-top:12px; display:flex; justify-content:center; gap:18px; font-weight:600; flex-wrap:wrap;">
+      <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-URL/" target="_blank" rel="noopener" style="color:var(--brand);">
         LinkedIn →
       </a>
       <a href="https://www.behance.net/kevinmaxcotter" target="_blank" rel="noopener" style="color:var(--brand);">
@@ -711,7 +628,6 @@
     </div>
   </template>
 
-  <!-- Academy case template -->
   <template id="project-academy">
     <div>
       <h2 style="margin:0 0 8px 0;">Pega Academy 2.0 Launch Promo</h2>
@@ -746,7 +662,6 @@
     </div>
   </template>
 
-  <!-- Creative Systems case studies with stats -->
   <template id="cs-howto">
     <div>
       <h2 style="margin:0 0 8px 0;">How-To Video System — “Template → Intake → 45-min Edit”</h2>
@@ -812,7 +727,7 @@
 
       <p>Users could search for their videos, select a date range, and instantly receive their performance metrics. The dashboard returned the full analytic dataset—views, play rate, engagement score, average watch time—and exported it automatically to a clean Excel file with the data displayed. This new workflow only took seconds and gave stakeholders full control over retrieving their videos’ performance data.</p>
 
-      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior. I even used the data myself to advise teams—for example, identifying when viewers consistently dropped off during podcast Q&A sections, which eventually led us to remove that segment entirely.</p>
+      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior. I even used the data myself to advise teams—for example, identifying when viewers consistently dropped off during podcast Q&amp;A sections, which eventually led us to remove that segment entirely.</p>
 
       <p>The dashboard democratized data, eliminated a major bottleneck, and gave the organization a way to understand video performance at scale—without requiring extra tools, budget, or engineering resources.</p>
     </div>
@@ -840,7 +755,6 @@
     </div>
   </template>
 
-  <!-- NEW PODCAST CASE TEMPLATE WITH EMBED -->
   <template id="cs-podcast">
     <div>
       <h2 style="margin:0 0 8px 0;">Podcast Production System — <em>In Star Trek We Trust</em></h2>
