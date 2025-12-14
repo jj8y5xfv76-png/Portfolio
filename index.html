@@ -118,6 +118,46 @@
     #systems .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
 
+    /* Personal bio section (photo + text) */
+    .bio-wrap{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media(max-width:900px){
+      .bio-wrap{grid-template-columns:1fr}
+    }
+    .bio-photo{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--hair-dark);
+      background:rgba(0,0,0,.15);
+      min-height:240px;
+      position:relative;
+    }
+    .bio-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .bio-text h3{margin:0 0 8px 0}
+    .bio-text p{margin:0;color:var(--ink);line-height:1.7}
+    .bio-text p + p{margin-top:10px;color:var(--muted)}
+    .bio-pill-row{
+      display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;
+    }
+    .bio-chip{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--hair-dark-strong);
+      color:var(--muted);
+      background:rgba(0,0,0,.15);
+    }
+    body[data-theme="light"] .bio-chip{background:rgba(0,0,0,.03);}
+
     /* Contact aligned */
     #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
     #contact .section-head{display:block;margin-bottom:18px}
@@ -453,6 +493,45 @@
         </a>
       </div>
     </section>
+
+    <!-- PERSONAL TOUCH (RESTORED) -->
+    <section id="bio">
+      <div class="section-head">
+        <h2>Outside the edit</h2>
+        <p>A little context on what I’m like to work with.</p>
+      </div>
+
+      <div class="pane">
+        <div class="bio-wrap">
+          <div class="bio-photo" aria-hidden="true">
+            <img
+              src="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/IMG_1324.jpg?raw=true"
+              alt="Photo of Kevin"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="bio-text">
+            <h3>Film nerd energy, with systems brain.</h3>
+            <p>
+              I’m a film nerd at heart and currently re-acquainting myself with bass—always paying attention to what makes a moment land.
+              That same instinct shows up in my edits: pacing, intention, and the tiny choices that make something feel effortless.
+            </p>
+            <p>
+              I’m also big on clarity and organization—clean timelines, repeatable workflows, and feedback loops that keep projects moving without friction.
+            </p>
+
+            <div class="bio-pill-row" aria-label="Interests">
+              <span class="bio-chip">Film + storytelling</span>
+              <span class="bio-chip">Music / bass</span>
+              <span class="bio-chip">Pacing + rhythm</span>
+              <span class="bio-chip">Process + polish</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- CONTACT -->
@@ -548,6 +627,7 @@
     </div>
   </template>
 
+  <!-- Academy case template -->
   <template id="project-academy">
     <div>
       <h2 style="margin:0 0 8px 0;">Pega Academy 2.0 Launch Promo</h2>
@@ -582,6 +662,7 @@
     </div>
   </template>
 
+  <!-- Creative Systems case studies with stats -->
   <template id="cs-howto">
     <div>
       <h2 style="margin:0 0 8px 0;">How-To Video System — “Template → Intake → 45-min Edit”</h2>
