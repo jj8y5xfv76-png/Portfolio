@@ -13,14 +13,14 @@
       /* Dark (default) */
       --bg:#0b0c10;
       --panel:#121318;
-      --ink:#e8eaf0;
+      --ink:#e8eaf0;f
       --muted:#9aa0aa;
       --brand:#7c5cff;
       --radius:18px;
       --hair-dark:rgba(255,255,255,.08);
       --hair-dark-strong:rgba(255,255,255,.12);
       --backdrop:rgba(0,0,0,.8);
-      --input-bg:#0e1016;
+      --input-bg:#0e1016;b
       --placeholder:rgba(255,255,255,.85);
       --btn-surface:#1a1c24;
       --btn-surface-contrast:#fff;
@@ -54,9 +54,9 @@
     body[data-theme="light"] header{background:rgba(255,255,255,.7)}
 
     .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;max-width:1100px;margin:auto}
-    .brand{display:flex;align-items:center;gap:10px}
+    .brand{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#4f3ddb)}
-    .menu{display:flex;gap:20px;align-items:center}
+    .menu{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
     .menu a{color:var(--muted);font-weight:600}
     .menu a:hover{color:var(--ink)}
 
@@ -81,10 +81,10 @@
       background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b0c10;
     }
     .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,12,16,.30),rgba(11,12,16,.90))}
-    .hero-content{position:relative;text-align:center;max-width:760px;z-index:1}
+    .hero-content{position:relative;text-align:center;max-width:760px;z-index:1;padding:0 14px}
     .hero-content h1{font-size:clamp(30px,6vw,48px);margin-bottom:10px;color:#e8eaf0}
     .hero-content p{color:rgba(232,234,240,.85);font-size:18px;max-width:60ch;margin:auto}
-    .cta{display:flex;justify-content:center;gap:12px;margin-top:22px}
+    .cta{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
 
     /* Buttons */
     .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:1px solid var(--hair-dark-strong);background:var(--btn-surface);display:inline-flex;align-items:center;gap:8px;transition:all .2s ease;width:max-content}
@@ -93,9 +93,9 @@
 
     main{max-width:1100px;margin:auto;padding:0 20px}
     section{padding:56px 0}
-    .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+    .section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;gap:14px;flex-wrap:wrap}
     .section-head h2{font-size:28px;margin:0}
-    .section-head p{color:var(--muted)}
+    .section-head p{color:var(--muted);margin:0}
 
     /* About */
     .about{display:block}
@@ -107,6 +107,8 @@
     .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(0,255,225,.15));position:relative}
     .pill{position:absolute;top:10px;left:10px;background:var(--pill-bg);border-radius:999px;padding:6px 10px;font-size:12px;color:#fff}
     .card-body{padding:14px}
+    .card-body h3{margin:0 0 6px 0}
+    .card-body p{margin:0;color:var(--muted);line-height:1.5}
 
     /* Workflow equal-height panes */
     .case{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
@@ -115,15 +117,66 @@
     .pane .btn.stick-bottom{margin-top:auto}
 
     /* Systems 2x2 */
-    #systems .grid{grid-template-columns:repeat(2,1fr)}
+    #systems .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(max-width:900px){#systems .grid{grid-template-columns:1fr}}
+
+    /* NEW: personal section (photo + blurb) */
+    .personal{
+      display:flex;
+      gap:18px;
+      align-items:stretch;
+    }
+    .personal .photo{
+      flex:0 0 260px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--hair-dark-strong);
+      background:#000;
+    }
+    .personal .photo img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .personal .copy{
+      flex:1;
+      min-width:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .personal .kicker{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:0 0 10px 0;
+    }
+    .personal h3{
+      margin:0 0 10px 0;
+      font-size:20px;
+    }
+    .personal p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      max-width:72ch;
+    }
+
+    @media(max-width:700px){
+      section{padding:46px 0}
+      .grid{grid-template-columns:1fr}
+      .personal{flex-direction:column}
+      .personal .photo{flex:0 0 auto;max-height:320px}
+    }
 
     /* Contact aligned */
     #contact .narrow{max-width:600px;margin:0 auto;padding:0 20px}
     #contact .section-head{display:block;margin-bottom:18px}
     #contact .section-head p{color:var(--muted);margin:6px 0 0}
 
-    footer{border-top:1px solid var(--hair-dark);padding:20px 0 50px;text-align:center;color:var(--muted)}
+    footer{border-top:1px solid var(--hair-dark);padding:20px 0 50px;text-align:center;color:var(--muted);font-size:14px}
 
     form{display:grid;gap:12px}
     input,textarea{background:var(--input-bg);border:1px solid var(--hair-dark-strong);border-radius:12px;padding:12px 14px;color:var(--ink);font:inherit}
@@ -152,16 +205,15 @@
       cursor:pointer;
       font-weight:700;
       font-size:13px;
+      z-index:2;
     }
-
-    /* Ensure video modal close button sits above the player */
-    #videoModal .close{z-index:2;}
 
     /* Text modal overrides */
     .modal .panel.text-panel{max-width:840px;width:92%;max-height:80vh;overflow:auto;padding:24px 20px 20px 20px;aspect-ratio:auto}
     .text-content h2{font-size:22px;margin:0 0 10px 0}
     .text-content h3{font-size:16px;margin:18px 0 8px 0;color:#C9B8FF}
     .text-content p,.text-content li{color:var(--ink);line-height:1.6}
+    .text-content p{margin:0 0 12px 0}
     .text-content ul{margin:0 0 10px 18px}
 
     /* Quick stats pills inside modals */
@@ -205,7 +257,6 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="nav">
@@ -214,12 +265,11 @@
         <b>Kevin</b>
         <span style="color:var(--muted);font-weight:600">/ Video Editor • Workflow Architect</span>
       </div>
-
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#case">Workflow</a>
-        <a href="#best-for">Best For</a>
+        <a href="#services">Services</a>
         <a href="#systems">Systems</a>
         <a href="#contact">Contact</a>
         <button id="themeToggle" class="toggle" aria-label="Toggle light/dark mode" title="Toggle theme">🌙</button>
@@ -249,7 +299,9 @@
       <div class="about">
         <div class="pane">
           <p>I'm a video editor with a producer's mindset—combining creativity with strong planning, communication, transparency, and delivery.</p>
-          <p style="margin-top:10px">My primary tool is Premiere Pro, but I'm fluent in Photoshop, Audition, Final Cut, Da Vinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools that automate parts of post-production reporting and have created enablement that helps teammates produce and edit their own videos confidently.</p>
+          <p style="margin-top:10px">My primary tool is Premiere Pro, with fluency across Photoshop, Audition, Final Cut, DaVinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools to automate post-production reporting and created enablement that helps teams produce and edit their own videos confidently.</p>
+           <p>Video editing is my core discipline — but I extend into production support, project management, enablement, and process design when a project needs it. </p>
+
           <div style="margin-top:20px;text-align:left;">
             <a class="btn primary" href="KevinMaxCotterResume.pdf" target="_blank" rel="noopener">📄 View my resume</a>
           </div>
@@ -259,11 +311,7 @@
 
     <!-- SELECTED WORK -->
     <section id="work">
-      <div class="section-head">
-        <h2>Selected Work</h2>
-        <p>Hand-picked cuts across promotional, social, podcast, and studio.</p>
-      </div>
-
+      <div class="section-head"><h2>Video Work</h2><p>Hand-picked cuts across promotional, social, podcast, and studio.</p></div>
       <div class="grid">
         <!-- 1 -->
         <div class="card" data-video="https://youtu.be/JBV_dYfvuIY" aria-label="Pega Academy 2.0 — Launch Promo">
@@ -279,7 +327,6 @@
             <a href="#" class="learn-more" data-project="project-academy" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
         <!-- 2 -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
            data-video="https://www.youtube.com/watch?v=018mzJBiXo8" aria-label="Promo">
@@ -296,6 +343,21 @@
         </a>
 
         <!-- 3 -->
+<div class="card" data-video="https://www.youtube.com/watch?v=5seuc5OGvkQ" aria-label="PegaWorld iNspire Kiosk">
+  <div class="thumb" style="background:
+    linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+    url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/kiosk_thumb.jpg?raw=true')
+    center / cover no-repeat;">
+    <span class="pill">Kiosk</span>
+  </div>
+  <div class="card-body">
+    <h3>PegaWorld iNspire Kiosk</h3>
+    <p>A trade show booth kiosk video designed to attract attendees and encourage engagement with the team.</p>
+    <a href="#" class="learn-more" data-project="project-kiosk" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
+  </div>
+</div>
+
+        <!-- 4 -->
         <div class="card" data-video="https://youtu.be/hOhzBA2Ii-E" aria-label="Move Fast, Tell Stories">
           <div class="thumb" style="background:
             linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
@@ -306,11 +368,10 @@
           <div class="card-body">
             <h3>Product Release Series — Campaign Montage</h3>
             <p>A 2-minute montage highlighting the range of styles used across the software release video series; blending interview-style segments with supporting slide and demo visuals.</p>
-            <a href="https://youtu.be/hOhzBA2Ii-E" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
+            <a href="#" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
-        <!-- 4 -->
+        <!-- 5 -->
         <a class="card" href="https://youtu.be/rwjUystpQAw"
            data-video="https://youtu.be/rwjUystpQAw" aria-label="Podcast Highlights — S1 (2019)">
           <div class="thumb" style="background:
@@ -324,8 +385,7 @@
             <p>A 5-minute highlight reel cut from a 20-minute podcast episode, showcasing conversational pacing and multi-camera flow. This is a recurring podcast series that I edit regularly.</p>
           </div>
         </a>
-
-        <!-- 5 -->
+        <!-- 6 -->
         <a class="card" href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            data-video="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            aria-label="Multi-Cam Studio Edit — Highlights">
@@ -341,25 +401,9 @@
           </div>
         </a>
 
-        <!-- 6 -->
-        <div class="card" data-video="https://www.youtube.com/watch?v=k4z_OY9Yd8o" aria-label="Assault on Precinct 13 — Modern Trailer">
-          <div class="thumb" style="background:
-            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/precinct13.png?raw=true')
-            center / cover no-repeat;">
-            <span class="pill">Trailer</span>
-          </div>
-          <div class="card-body">
-            <h3>“Assault on Precinct 13” — Modern Trailer</h3>
-            <p>This is a modernized trailer I cut together for the 1976 cult classic John Carpenter film.</p>
-            <a href="#" class="learn-more" data-project="project-precinct13" style="display:inline-block;margin-top:6px;color:#7c5cff;font-weight:700;">Learn more about this project →</a>
-          </div>
-        </div>
-      </div>
-
       <!-- Behance link -->
       <div style="margin-top:26px;text-align:center;">
-        <a href="https://www.behance.net/kevinmaxcotter"
+        <a href="https://www.behance.net/gallery/60849735/Video"
            target="_blank"
            rel="noopener"
            style="color:var(--brand);font-weight:700;">
@@ -367,20 +411,41 @@
         </a>
       </div>
     </section>
+    
+        <!-- VOICEOVER -->
+    <section id="voiceover">
+      <div class="section-head">
+        <h2>Voiceover Work</h2>
+        <p>Voice work that supports promos, explainers, and polished internal content.</p>
+      </div>
+
+      <div class="pane">
+        <h3>Clean, confident delivery</h3>
+        <p style="color:var(--muted);line-height:1.65;margin:0;">
+          In addition to editing, I've been a voiceover artist for over ten years. I've done a variety of voiceover including educational narration, promotions, and announcing.
+        </p>
+
+        <div style="margin-top:16px;">
+          <a
+            class="btn primary"
+            href="https://www.behance.net/gallery/60848953/Voiceover"
+            target="_blank"
+            rel="noopener"
+          >
+            🎙️ Listen to my work
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- WORKFLOW -->
     <section id="case">
-      <div class="section-head">
-        <h2>Workflow — How I Edit</h2>
-        <p>From creative exploration to brand-safe delivery, with documented feedback at every step.</p>
-      </div>
-
+      <div class="section-head"><h2>Workflow — How I Edit</h2><p>From creative exploration to brand-safe delivery, with documented feedback at every step.</p></div>
       <div class="case">
         <div class="pane flex">
           <h3>Planning & Assembly</h3>
           <p>I’m highly process-oriented and deadline-driven, approaching each project with clear goals and a structured plan. I experiment with pacing, tone, and rhythm early on to find the right flow, while maintaining a clean, organized project that anyone could easily pick up.</p>
         </div>
-
         <div class="pane flex">
           <h3>Structure → Brand-Safe Delivery</h3>
           <p>When precision matters, I switch into standards mode: templates, captions, QC, and repeatable exports. Feedback is collected with <b>timestamped comments</b> for accountability and a clean paper trail.</p>
@@ -389,34 +454,6 @@
             View my workflow (PDF)
           </a>
         </div>
-      </div>
-    </section>
-
-    <!-- WHO I'M BEST FOR (FIXED: uses your existing styles; no extra CSS needed) -->
-    <section id="best-for">
-      <div class="section-head">
-        <h2>Who I’m Best For</h2>
-        <p>Where my workflow tends to shine.</p>
-      </div>
-
-      <div class="pane">
-        <p>I do my best work with teams that want video to be clear, scalable, and dependable—not just creative for creativity’s sake.</p>
-
-        <p style="color:var(--muted);margin-top:10px;margin-bottom:10px;">
-          I’m especially effective in environments where:
-        </p>
-
-        <ul style="margin:0 0 14px 18px; line-height:1.7;">
-          <li>Video needs to support real business or organizational goals, not just one-off requests</li>
-          <li>There’s a desire for structure, standards, and repeatability, rather than starting from scratch every time</li>
-          <li>Teams are building or evolving their in-house video capabilities</li>
-          <li>Internal content, training, or enablement needs to be high-quality and easy to maintain over time</li>
-          <li>Ownership matters—someone needs to run the video pipeline, not just execute individual edits</li>
-        </ul>
-
-        <p style="margin:0;">
-          I work well with teams that value clear communication, thoughtful planning, and collaboration. I’m comfortable partnering closely with stakeholders and contributors, and I’m equally effective owning projects end-to-end—from early planning through final delivery.
-        </p>
       </div>
     </section>
 
@@ -431,22 +468,10 @@
         <h3>Inspiration & Previsualization Tools</h3>
         <p>
           Visual reference platforms like
-          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:#7c5cff;"><b>frameset</b></a> and
-          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:#7c5cff;"><b>ShotDeck</b></a> are part of my creative process.
+          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:var(--brand);"><b>frameset</b></a> and
+          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:var(--brand);"><b>ShotDeck</b></a> are part of my creative process.
           I use them to study composition, pacing, and tone—helping define the visual direction before cutting a frame.
         </p>
-      </div>
-
-      <!-- NEW PODCAST SYSTEM FULL-WIDTH PANE -->
-      <div class="pane" style="margin-bottom:28px;">
-        <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
-        <p>
-          Long-running Star Trek podcast (2017–2024) where I owned production, editing, and hosting—building a repeatable
-          workflow for planning, recording, cutting, and publishing episodes.
-        </p>
-        <a href="#" class="learn-more" data-project="cs-podcast" style="color:var(--brand);font-weight:700;">
-          Learn more about this project →
-        </a>
       </div>
 
       <div class="grid">
@@ -471,6 +496,66 @@
           <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
         </div>
       </div>
+
+      <!-- PODCAST SYSTEM FULL-WIDTH PANE BELOW GRID -->
+      <div class="pane" style="margin-top:28px;">
+        <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
+        <p>
+          Long-running Star Trek podcast (2017–2024) where I owned production, editing, and hosting—building a repeatable
+          workflow for planning, recording, cutting, and publishing episodes.
+        </p>
+        <a href="#" class="learn-more" data-project="cs-podcast" style="color:var(--brand);font-weight:700;">
+          Learn more about this project →
+        </a>
+      </div>
+    </section>
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-head">
+        <h2>What I can do for you and your team</h2>
+        <p>Where I plug in and how I help teams ship better video, faster.</p>
+      </div>
+      <div class="grid">
+        <div class="pane">
+          <h3>Editing & finishing</h3>
+          <p>I cut promos, trailers, explainers, podcasts, and studio conversations with a focus on pacing, clarity, and story. I’m comfortable stepping in at any stage—from rough assembly to final polish.</p>
+        </div>
+        <div class="pane">
+          <h3>Systems & tooling</h3>
+          <p>I design lightweight systems that remove friction from video production: templates, upload flows, metrics dashboards, and processes that make repeatable work fast, consistent, and measurable.</p>
+        </div>
+        <div class="pane">
+          <h3>Training & enablement</h3>
+          <p>I build simple, practical enablement that helps non-video teammates create their own content—covering capture, editing basics, and best practices—so the video bottleneck doesn’t always land on one person.</p>
+        </div>
+      </div>
+    </section>
+    <!-- NEW: PERSONAL TOUCH SECTION (RIGHT BEFORE CONTACT) -->
+    <section id="beyond">
+      <div class="section-head">
+        <h2>Beyond the timeline</h2>
+        <p>A little context on what fuels my creative instincts.</p>
+      </div>
+
+      <div class="pane personal">
+        <div class="photo" aria-hidden="true">
+          <img
+            src="https://github.com/jj8y5xfv76-png/Portfolio/blob/main/IMG_1324.jpg?raw=true"
+            alt="Close-up photo of hands playing bass guitar"
+            loading="lazy"
+          />
+        </div>
+        <div class="copy">
+          <p class="kicker">Outside the edit</p>
+          <h3>Rhythm, pacing, and story — even off the clock</h3>
+          <p>
+            I’m a film nerd at heart, gamer, 2d artist, and currently rediscovering my love for bass guitar; paying attention to what makes a moment land.
+            Whether it’s a scene’s tension, a comedic beat, or a music cue that changes the feel of everything,
+            I’m constantly studying timing and structure. That curiosity feeds directly into how I edit: clean pacing,
+            strong flow, and a viewer-first sense of momentum.
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -493,7 +578,17 @@
     </div>
   </section>
 
-  <footer>© <span id="y"></span> Kevin Max Cotter — Video Editor • Boston</footer>
+  <footer>
+    © <span id="y"></span> Kevin Max Cotter — Video Editor • Boston
+    <div style="margin-top:12px; display:flex; justify-content:center; gap:18px; font-weight:600; flex-wrap:wrap;">
+      <a href="https://www.linkedin.com/in/kevinmaxcotter/" target="_blank" rel="noopener" style="color:var(--brand);">
+        LinkedIn →
+      </a>
+      <a href="https://www.behance.net/kevinmaxcotter" target="_blank" rel="noopener" style="color:var(--brand);">
+        Behance →
+      </a>
+    </div>
+  </footer>
 
   <!-- Video Modal -->
   <div class="modal" id="videoModal" aria-hidden="true" role="dialog" aria-label="Video player">
@@ -516,7 +611,7 @@
   <!-- Hidden templates -->
   <template id="project-movefast">
     <div>
-      <h2 style="margin:0 0 8px 0;">Case Study — Software Release Video Series</h2>
+      <h2 style="margin:0 0 8px 0;">Software Release Video Series</h2>
       <div class="stat-row">
         <span class="stat-pill">10+ releases</span>
         <span class="stat-pill">Multi-format</span>
@@ -543,24 +638,53 @@
     </div>
   </template>
 
-  <template id="project-precinct13">
-    <div>
-      <h2 style="margin:0 0 8px 0;">“Assault on Precinct 13” — Modern Trailer</h2>
-      <div class="stat-row">
-        <span class="stat-pill">Personal project</span>
-        <span class="stat-pill">Music-driven</span>
-        <span class="stat-pill">Rhythm-first edit</span>
-      </div>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Personal project — Editor</p>
-      <p>A personal project inspired by one of my favorite films, <i>Assault on Precinct 13</i>. I set out to create a modernized trailer that captured the film’s tension and pace through music-driven editing.</p>
-      <p>The concept started with the soundtrack—every beat suggested a cut, every swell a new sequence. As the track built in intensity, the cuts accelerated, mirroring the film’s rising tension and creating a modern reimagining of Carpenter’s classic.</p>
-    </div>
-  </template>
+<template id="project-kiosk">
+  <div>
+    <h2 style="margin:0 0 8px 0;">Pega Community — Trade Show Kiosk Loop</h2>
 
-  <!-- Academy case template -->
+    <div class="stat-row">
+      <span class="stat-pill">Trade show</span>
+      <span class="stat-pill">Silent-friendly</span>
+      <span class="stat-pill">Looped display</span>
+      <span class="stat-pill">Multi-stakeholder</span>
+    </div>
+
+    <p style="color:var(--muted);margin:0 0 16px 0;">
+      Role: Editor / Producer • Partnered with team animator
+    </p>
+
+    <h3>Context</h3>
+    <p>
+      This video was created for a company trade show kiosk booth display. It was designed to run on a loop and
+      function like a visual “billboard” — drawing attendees over to learn more about Pega Community and engage with the team.
+    </p>
+
+    <h3>Stakeholder collaboration</h3>
+    <p>
+      I coordinated with multiple stakeholders who each submitted content they wanted represented in the kiosk loop.
+      My job was to take a mix of inputs (slides, talking points, visuals, and event priorities), shape them into a cohesive flow,
+      and ensure the final piece stayed brand-safe and readable in a noisy event environment.
+    </p>
+
+    <h3>Process</h3>
+    <ul>
+      <li>Collected and organized stakeholder submissions and priorities</li>
+      <li>Built a clear sequence and pacing plan for a loop-friendly structure</li>
+      <li>Partnered with my team’s animator to integrate motion design and polish</li>
+      <li>Reviewed iterations with stakeholders and incorporated feedback efficiently</li>
+    </ul>
+
+    <h3>Portfolio note</h3>
+    <p>
+      The full kiosk loop was ~7 minutes and designed for continuous playback. The portfolio version is a condensed excerpt
+      to show the range of content types (video + slide-style segments) and the overall pacing.
+    </p>
+  </div>
+</template>
+
   <template id="project-academy">
     <div>
-      <h2 style="margin:0 0 8px 0;">Case Study — Pega Academy 2.0 Launch Promo</h2>
+      <h2 style="margin:0 0 8px 0;">Pega Academy 2.0 Launch Promo</h2>
       <div class="stat-row">
         <span class="stat-pill">Fast turnaround</span>
         <span class="stat-pill">Script + VO</span>
@@ -592,7 +716,6 @@
     </div>
   </template>
 
-  <!-- Creative Systems case studies with stats -->
   <template id="cs-howto">
     <div>
       <h2 style="margin:0 0 8px 0;">How-To Video System — “Template → Intake → 45-min Edit”</h2>
@@ -658,7 +781,7 @@
 
       <p>Users could search for their videos, select a date range, and instantly receive their performance metrics. The dashboard returned the full analytic dataset—views, play rate, engagement score, average watch time—and exported it automatically to a clean Excel file with the data displayed. This new workflow only took seconds and gave stakeholders full control over retrieving their videos’ performance data.</p>
 
-      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior. I even used the data myself to advise teams—for example, identifying when viewers consistently dropped off during podcast Q&A sections, which eventually led us to remove that segment entirely.</p>
+      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior. I even used the data myself to advise teams—for example, identifying when viewers consistently dropped off during podcast Q&amp;A sections, which eventually led us to remove that segment entirely.</p>
 
       <p>The dashboard democratized data, eliminated a major bottleneck, and gave the organization a way to understand video performance at scale—without requiring extra tools, budget, or engineering resources.</p>
     </div>
@@ -686,7 +809,6 @@
     </div>
   </template>
 
-  <!-- NEW PODCAST CASE TEMPLATE -->
   <template id="cs-podcast">
     <div>
       <h2 style="margin:0 0 8px 0;">Podcast Production System — <em>In Star Trek We Trust</em></h2>
@@ -722,133 +844,171 @@
         making structural edits that improve flow, and building workflows that make long-running creative projects
         realistically maintainable.
       </p>
+      <h3>Sample episode</h3>
+      <div class="embed-16x9">
+        <iframe
+          src="https://www.youtube.com/embed/29BM6tLtZDM"
+          title="In Star Trek We Trust episode"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+        <div style="margin-top:26px;text-align:center;">
+        <a href="https://app.playary.com/podcasts/242273/in-star-trek-we-trust-a-star-trek-podcast"
+           target="_blank"
+           rel="noopener"
+           style="color:var(--brand);font-weight:700;">
+          Lilsten to more episodes →
+        </a>
+      </div>
     </div>
   </template>
 
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+<script>
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-    // THEME TOGGLE
-    (function(){
-      const key = 'pref-theme';
-      const root = document.body;
-      const btn = document.getElementById('themeToggle');
+  // THEME TOGGLE
+  (function(){
+    const key = 'pref-theme';
+    const root = document.body;
+    const btn = document.getElementById('themeToggle');
 
-      function applyButtonUI(theme){
-        const next = theme === 'light' ? 'dark' : 'light';
-        btn.textContent = next === 'light' ? '☀️' : '🌙';
-        const label = `Switch to ${next} mode`;
-        btn.setAttribute('aria-label', label);
-        btn.setAttribute('title', label);
-      }
+    function applyButtonUI(theme){
+      const next = theme === 'light' ? 'dark' : 'light';
+      btn.textContent = next === 'light' ? '☀️' : '🌙';
+      const label = `Switch to ${next} mode`;
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+    }
 
-      const stored = localStorage.getItem(key);
-      let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const stored = localStorage.getItem(key);
+    let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    root.setAttribute('data-theme', theme);
+    applyButtonUI(theme);
+
+    btn.addEventListener('click', () => {
+      theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
       root.setAttribute('data-theme', theme);
+      localStorage.setItem(key, theme);
       applyButtonUI(theme);
+    });
+  })();
 
-      btn.addEventListener('click', () => {
-        theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-        root.setAttribute('data-theme', theme);
-        localStorage.setItem(key, theme);
-        applyButtonUI(theme);
-      });
-    })();
+  // VIDEO & TEXT MODALS
+  (function(){
+    const videoModal = document.getElementById('videoModal');
+    const videoMount = document.getElementById('videoMount');
+    const textModal = document.getElementById('textModal');
+    const textMount = document.getElementById('textMount');
 
-    // VIDEO & TEXT MODALS
-    (function(){
-      const videoModal = document.getElementById('videoModal');
-      const videoMount = document.getElementById('videoMount');
-      const textModal = document.getElementById('textModal');
-      const textMount = document.getElementById('textMount');
-
-      function ytToEmbed(url){
-        try{
-          const u = new URL(url);
-          if(u.hostname.includes('youtu.be')){
-            const id = u.pathname.replace('/','');
-            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-          if(u.hostname.includes('youtube.com')){
-            const id = u.searchParams.get('v');
-            if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-        }catch(e){}
-        return null;
-      }
-
-      function openVideoModal(src){
-        videoMount.innerHTML = '';
-        let node;
-        if(/\.mp4($|\?)/i.test(src)){
-          node = document.createElement('video');
-          node.setAttribute('controls','');
-          node.setAttribute('autoplay','');
-          node.src = src;
-          node.style.width = '100%';
-          node.style.height = '100%';
-        } else {
-          const yt = ytToEmbed(src);
-          const iframeSrc = yt || (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
-          node = document.createElement('iframe');
-          node.src = iframeSrc;
-          node.allow = 'autoplay; fullscreen; picture-in-picture';
-          node.loading = 'lazy';
-          node.referrerPolicy = 'no-referrer-when-downgrade';
-          node.style.width = '100%';
-          node.style.height = '100%';
+    function ytToEmbed(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes('youtu.be')){
+          const id = u.pathname.replace('/','');
+          return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
         }
-        videoModal.classList.add('open');
-        videoModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-        videoMount.appendChild(node);
-      }
-
-      function closeVideoModal(){
-        videoModal.classList.remove('open');
-        videoModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        videoMount.innerHTML = '';
-      }
-
-      function openTextModal(templateId){
-        textMount.innerHTML = '';
-        const tpl = document.getElementById(templateId);
-        if(tpl && 'content' in tpl){ textMount.appendChild(tpl.content.cloneNode(true)); }
-        else { textMount.innerHTML = '<p>Details coming soon.</p>'; }
-        textModal.classList.add('open');
-        textModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeTextModal(){
-        textModal.classList.remove('open');
-        textModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        textMount.innerHTML = '';
-      }
-
-      document.addEventListener('click', (e)=>{
-        const lm = e.target.closest('a.learn-more');
-        if(lm){
-          e.preventDefault(); e.stopPropagation();
-          openTextModal(lm.getAttribute('data-project'));
-          return;
+        if(u.hostname.includes('youtube.com')){
+          const id = u.searchParams.get('v');
+          if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
         }
-        const card = e.target.closest('.card');
-        if(!card) return;
-        const src = card.getAttribute('data-video');
-        if(src){
-          if(card.tagName.toLowerCase() === 'a') e.preventDefault();
-          openVideoModal(src);
-        }
-      });
+      }catch(e){}
+      return null;
+    }
 
-      document.querySelectorAll('#videoModal [data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
-      document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
-    })();
-  </script>
+    // ✅ FIXED: reliable autoplay for ALL embeds + always prevent navigation
+    function openVideoModal(src){
+      videoMount.innerHTML = '';
+      let node;
+
+      // MP4 files
+      if(/\.mp4($|\?)/i.test(src)){
+        node = document.createElement('video');
+        node.src = src;
+        node.controls = true;
+        node.autoplay = true;
+        node.playsInline = true;
+        node.style.width = '100%';
+        node.style.height = '100%';
+      } else {
+        const yt = ytToEmbed(src);
+        let iframeSrc = yt || src;
+
+        // force autoplay param if not already present
+        if(!iframeSrc.includes('autoplay=')){
+          iframeSrc += (iframeSrc.includes('?') ? '&' : '?') + 'autoplay=1';
+        }
+
+        node = document.createElement('iframe');
+        node.src = iframeSrc;
+        node.allow = 'autoplay; fullscreen; picture-in-picture';
+        node.allowFullscreen = true;
+        node.loading = 'lazy';
+        node.referrerPolicy = 'no-referrer-when-downgrade';
+        node.style.width = '100%';
+        node.style.height = '100%';
+      }
+
+      videoModal.classList.add('open');
+      videoModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      videoMount.appendChild(node);
+    }
+
+    function closeVideoModal(){
+      videoModal.classList.remove('open');
+      videoModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      videoMount.innerHTML = '';
+    }
+
+    function openTextModal(templateId){
+      textMount.innerHTML = '';
+      const tpl = document.getElementById(templateId);
+      if(tpl && 'content' in tpl){
+        textMount.appendChild(tpl.content.cloneNode(true));
+      } else {
+        textMount.innerHTML = '<p>Details coming soon.</p>';
+      }
+      textModal.classList.add('open');
+      textModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTextModal(){
+      textModal.classList.remove('open');
+      textModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      textMount.innerHTML = '';
+    }
+
+    document.addEventListener('click', (e)=>{
+      const lm = e.target.closest('a.learn-more');
+      if(lm){
+        e.preventDefault();
+        e.stopPropagation();
+        const tplId = lm.getAttribute('data-project');
+        openTextModal(tplId);
+        return;
+      }
+
+      const card = e.target.closest('.card');
+      if(!card) return;
+
+      const src = card.getAttribute('data-video');
+      if(src){
+        e.preventDefault(); // ✅ always prevent anchor navigation
+        openVideoModal(src);
+      }
+    });
+
+    document.querySelectorAll('#videoModal [data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
+    document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
+  })();
+</script>
 
 </body>
 </html>
