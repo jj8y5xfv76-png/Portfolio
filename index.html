@@ -257,33 +257,27 @@
     }
 
     /* =========================
-       SCROLL REVEAL (IN on down, OUT on up)
+       SCROLL REVEAL (IN on enter; OUT only when scrolling UP)
        ========================= */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity .55s ease, transform .55s ease;
-      will-change: opacity, transform;
+    .reveal{
+      opacity:0;
+      transform:translateY(18px);
+      transition:opacity 520ms ease, transform 520ms ease;
+      will-change:opacity, transform;
     }
-
-    /* Animate in */
-    .reveal.is-in {
-      opacity: 1;
-      transform: translateY(0);
+    .reveal.is-in{
+      opacity:1;
+      transform:translateY(0);
     }
-
-    /* Animate out (when scrolling up) */
-    .reveal.is-out {
-      opacity: 0;
-      transform: translateY(16px);
+    .reveal.is-out{
+      opacity:0;
+      transform:translateY(18px);
     }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .reveal {
-        transition: none !important;
-        transform: none !important;
-        opacity: 1 !important;
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .reveal.is-in, .reveal.is-out{
+        transition:none !important;
+        transform:none !important;
+        opacity:1 !important;
       }
     }
   </style>
@@ -358,6 +352,7 @@
             <a href="#" class="learn-more" data-project="project-academy" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
+
         <!-- 2 -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
            data-video="https://www.youtube.com/watch?v=018mzJBiXo8" aria-label="Promo">
@@ -402,6 +397,7 @@
             <a href="#" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
+
         <!-- 5 -->
         <a class="card" href="https://youtu.be/rwjUystpQAw"
            data-video="https://youtu.be/rwjUystpQAw" aria-label="Podcast Highlights — S1 (2019)">
@@ -416,6 +412,7 @@
             <p>A 5-minute highlight reel cut from a 20-minute podcast episode, showcasing conversational pacing and multi-camera flow. This is a recurring podcast series that I edit regularly.</p>
           </div>
         </a>
+
         <!-- 6 -->
         <a class="card" href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            data-video="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
@@ -431,6 +428,8 @@
             <p>Product owner conversation showcasing multi-camera synchronization, reaction cuts, and exposure matching for consistent visual tone.</p>
           </div>
         </a>
+
+      </div>
 
       <!-- Behance link -->
       <div style="margin-top:26px;text-align:center;">
@@ -563,7 +562,7 @@
       </div>
     </section>
 
-    <!-- NEW: PERSONAL TOUCH SECTION (RIGHT BEFORE CONTACT) -->
+    <!-- BEYOND -->
     <section id="beyond">
       <div class="section-head">
         <h2>Beyond the timeline</h2>
@@ -812,11 +811,9 @@
 
       <p>I decided to solve the problem at the source—not by asking for more licenses or creating another manual workflow, but by building a tool that let people pull their own data without needing access to the hosting platform at all. I had no formal coding background, so I taught myself how to work with APIs and authentication, and built a custom internal web app by way of vibe coding.</p>
 
-      <p>Users could search for their videos, select a date range, and instantly receive their performance metrics. The dashboard returned the full analytic dataset—views, play rate, engagement score, average watch time—and exported it automatically to a clean Excel file with the data displayed. This new workflow only took seconds and gave stakeholders full control over retrieving their videos’ performance data.</p>
+      <p>Users could search for their videos, select a date range, and instantly receive their performance metrics. The dashboard returned the full analytic dataset—views, play rate, engagement score, average watch time—and exported it automatically to a clean Excel file with the data displayed.</p>
 
-      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior. I even used the data myself to advise teams—for example, identifying when viewers consistently dropped off during podcast Q&amp;A sections, which eventually led us to remove that segment entirely.</p>
-
-      <p>The dashboard democratized data, eliminated a major bottleneck, and gave the organization a way to understand video performance at scale—without requiring extra tools, budget, or engineering resources.</p>
+      <p>Now instead of stakeholders guessing what would work or producing content based on assumption, they began making decisions grounded in real viewership behavior.</p>
     </div>
   </template>
 
@@ -830,15 +827,7 @@
       </div>
       <p style="color:var(--muted);margin:0 0 16px 0;">Role: Designer & builder</p>
 
-      <p>Uploading videos was another bottleneck. Like metrics, our video platform limited who could upload content, so everything—from product demos to event recordings—had to go through me. Even small requests piled up: “Can you upload this for me?” “Can you replace the video on this page?” “Can you update the metadata?” It wasn’t efficient, and it certainly wasn’t scalable.</p>
-
-      <p>So I built a solution to address this bottleneck: a self-service upload API. Similar to the metrics dashboard, this tool was born from necessity and built entirely through self-taught coding and a lot of experimentation with Brightcove’s CMS API.</p>
-
-      <p>The system provided a clean interface where users could drag in a video file, enter a title and description, choose tags, and upload. Behind the scenes, the app authenticated through our secure credentials, created a new video object in Brightcove, uploaded the file, applied metadata, and returned a ready-to-use link or embed code. Users didn’t need a Brightcove login. They didn’t need technical knowledge. They could get their video online—correctly, consistently, and instantly.</p>
-
-      <p>For the video team, this was transformative. It eliminated dozens of routine requests every week and freed up significant time for strategic projects. For stakeholders, it meant autonomy and faster publishing.</p>
-
-      <p>It was a small tool on the surface, but the impact was large: it removed yet another operational bottleneck and demonstrated that workflow problems can be solved creatively, not just operationally.</p>
+      <p>Uploading videos was another bottleneck. Like metrics, our video platform limited who could upload content, so everything—from product demos to event recordings—had to go through me.</p>
     </div>
   </template>
 
@@ -855,28 +844,9 @@
       </p>
 
       <p>
-        From 2017 to 2024, I co-created and ran <em>In Star Trek We Trust</em>, a long-form podcast covering episodes,
-        films, and new series across the Star Trek universe. Each episode required a full production cycle:
-        topic selection, research, recording, editing, and publishing on a consistent cadence.
+        From 2017 to 2024, I co-created and ran <em>In Star Trek We Trust</em>.
       </p>
 
-      <p>
-        I owned the entire technical workflow end-to-end. That meant designing the recording setup, managing remote
-        sessions, handling audio cleanup and mixing, and editing for pacing and clarity. I also created episode titles,
-        descriptions, and artwork, and ensured each release was properly tagged and distributed across podcast platforms.
-      </p>
-
-      <p>
-        Over time, the show developed its own internal “system”: shared outlines for each episode, a standard segment
-        structure, reusable intro/outro elements, and a repeatable post-production checklist. That system made it possible
-        to keep a multi-year show sustainable without sacrificing audio quality or listener experience.
-      </p>
-
-      <p>
-        The podcast sharpened the same skills I bring to client work: planning content that respects the audience’s time,
-        making structural edits that improve flow, and building workflows that make long-running creative projects
-        realistically maintainable.
-      </p>
       <h3>Sample episode</h3>
       <div class="embed-16x9">
         <iframe
@@ -892,7 +862,7 @@
            target="_blank"
            rel="noopener"
            style="color:var(--brand);font-weight:700;">
-          Lilsten to more episodes →
+          Listen to more episodes →
         </a>
       </div>
     </div>
@@ -956,8 +926,7 @@
         videoMount.innerHTML = '';
         let node;
 
-        // MP4 files
-        if(/\.mp4($|\?)/i.test(src)){
+        if(/\.mp4($|\\?)/i.test(src)){
           node = document.createElement('video');
           node.src = src;
           node.controls = true;
@@ -969,7 +938,6 @@
           const yt = ytToEmbed(src);
           let iframeSrc = yt || src;
 
-          // force autoplay param if not already present
           if(!iframeSrc.includes('autoplay=')){
             iframeSrc += (iframeSrc.includes('?') ? '&' : '?') + 'autoplay=1';
           }
@@ -1041,68 +1009,60 @@
       document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
     })();
+  </script>
 
-    // =========================
-    // SCROLL REVEAL (IN on down, OUT on up)
-    // =========================
-    (function () {
-      const selectors = [
-        ".section-head",
-        ".pane",
-        ".card",
-        ".case > .pane",
-        "#contact .narrow"
+  <!-- =========================
+       SCROLL ANIMATION:
+       - IN when entering viewport (scrolling down OR up)
+       - OUT when scrolling UP and the element moves below viewport
+       ========================= -->
+  <script>
+    (function(){
+      const targets = [
+        ...document.querySelectorAll('main > section'),
+        ...document.querySelectorAll('#contact')
       ];
 
-      // Track scroll direction
+      targets.forEach(el => {
+        el.classList.add('reveal', 'is-out');
+      });
+
       let lastY = window.scrollY;
-      let scrollDir = "down";
-      window.addEventListener(
-        "scroll",
-        () => {
-          const y = window.scrollY;
-          scrollDir = y < lastY ? "up" : "down";
-          lastY = y;
-        },
-        { passive: true }
-      );
 
-      // Collect targets and mark them as reveal items
-      const targets = Array.from(document.querySelectorAll(selectors.join(",")));
-      targets.forEach((el) => el.classList.add("reveal"));
+      const io = new IntersectionObserver((entries) => {
+        const y = window.scrollY;
+        const scrollingUp = y < lastY;
+        const scrollingDown = y > lastY;
+        lastY = y;
 
-      // Observer
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target;
+        entries.forEach(entry => {
+          const el = entry.target;
 
-            if (entry.isIntersecting) {
-              // Coming into view => animate in (either direction)
-              el.classList.remove("is-out");
-              el.classList.add("is-in");
-              return;
+          // IN on enter (both directions)
+          if (entry.isIntersecting) {
+            el.classList.add('is-in');
+            el.classList.remove('is-out');
+            return;
+          }
+
+          // OUT only when scrolling UP and the element is below the viewport
+          if (scrollingUp) {
+            const rect = entry.boundingClientRect;
+            if (rect.top >= window.innerHeight) {
+              el.classList.remove('is-in');
+              el.classList.add('is-out');
             }
+          }
 
-            // Not intersecting:
-            // Only animate OUT when user is scrolling UP *and* the element is now below the viewport
-            const isBelowViewport = entry.boundingClientRect.top > window.innerHeight;
+          // If scrolling down, do nothing on exit (prevents flicker)
+          void scrollingDown;
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -10% 0px'
+      });
 
-            if (scrollDir === "up" && isBelowViewport) {
-              el.classList.remove("is-in");
-              el.classList.add("is-out");
-            }
-
-            // If scrolling down, do nothing on exit (keeps it "in" so it doesn't fade out above)
-          });
-        },
-        {
-          threshold: 0.15,
-          rootMargin: "0px 0px -10% 0px"
-        }
-      );
-
-      targets.forEach((el) => io.observe(el));
+      targets.forEach(el => io.observe(el));
     })();
   </script>
 
