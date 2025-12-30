@@ -257,25 +257,31 @@
     }
 
     /* =========================
-       SCROLL ANIMATIONS
+       SCROLL REVEAL ANIMATIONS
        ========================= */
-    @media (prefers-reduced-motion: reduce){
-      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-    }
-
     .reveal{
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity .55s ease, transform .55s ease;
-      will-change: opacity, transform;
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .45s ease, transform .45s ease;
+      will-change:opacity, transform;
     }
     .reveal.in-view{
-      opacity: 1;
-      transform: translateY(0);
+      opacity:1;
+      transform:none;
+    }
+
+    /* ✅ FIX: About should always render (never risk “blank” on load) */
+    #about.reveal{
+      opacity:1;
+      transform:none;
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{opacity:1 !important;transform:none !important;transition:none !important}
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="nav">
@@ -425,6 +431,7 @@
         </a>
       </div>
 
+      <!-- Behance link -->
       <div style="margin-top:26px;text-align:center;">
         <a href="https://www.behance.net/gallery/60849735/Video"
            target="_blank"
@@ -449,7 +456,12 @@
         </p>
 
         <div style="margin-top:16px;">
-          <a class="btn primary" href="https://www.behance.net/gallery/60848953/Voiceover" target="_blank" rel="noopener">
+          <a
+            class="btn primary"
+            href="https://www.behance.net/gallery/60848953/Voiceover"
+            target="_blank"
+            rel="noopener"
+          >
             🎙️ Listen to my work
           </a>
         </div>
@@ -515,6 +527,7 @@
         </div>
       </div>
 
+      <!-- PODCAST SYSTEM FULL-WIDTH PANE BELOW GRID -->
       <div class="pane" style="margin-top:28px;">
         <h3>Podcast Production System — <em>In Star Trek We Trust</em></h3>
         <p>
@@ -549,7 +562,7 @@
       </div>
     </section>
 
-    <!-- PERSONAL -->
+    <!-- PERSONAL TOUCH -->
     <section id="beyond">
       <div class="section-head">
         <h2>Beyond the timeline</h2>
@@ -627,10 +640,7 @@
     </div>
   </div>
 
-  <!-- =========================
-       HIDDEN TEMPLATES (RESTORED)
-       ========================= -->
-
+  <!-- Hidden templates -->
   <template id="project-movefast">
     <div>
       <h2 style="margin:0 0 8px 0;">Software Release Video Series</h2>
@@ -941,7 +951,6 @@
         return null;
       }
 
-      // reliable autoplay for ALL embeds + always prevent navigation
       function openVideoModal(src){
         videoMount.innerHTML = '';
         let node;
@@ -1010,7 +1019,8 @@
         if(lm){
           e.preventDefault();
           e.stopPropagation();
-          openTextModal(lm.getAttribute('data-project'));
+          const tplId = lm.getAttribute('data-project');
+          openTextModal(tplId);
           return;
         }
 
@@ -1019,7 +1029,7 @@
 
         const src = card.getAttribute('data-video');
         if(src){
-          e.preventDefault(); // always prevent anchor navigation
+          e.preventDefault();
           openVideoModal(src);
         }
       });
@@ -1029,16 +1039,16 @@
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
     })();
 
-    // SCROLL REVEAL (IN on enter, OUT on exit, reset at top)
+    // SCROLL REVEAL (in on scroll down, out on scroll up)
     (function(){
       const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(prefersReduced) return;
 
-      // Choose what animates
+      // ✅ Targets: animate main sections + contact, but SKIP #about so it never blanks
       const targets = [
-        ...document.querySelectorAll('main > section'),
-        ...document.querySelectorAll('#contact'),
-      ];
+        ...document.querySelectorAll('main > section:not(#about)'),
+        document.querySelector('#contact')
+      ].filter(Boolean);
 
       targets.forEach(el => el.classList.add('reveal'));
 
@@ -1047,23 +1057,14 @@
           if(entry.isIntersecting){
             entry.target.classList.add('in-view');
           } else {
-            // animate OUT when leaving viewport
-            entry.target.classList.remove('in-view');
+            entry.target.classList.remove('in-view'); // animate OUT
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.18 });
 
-      targets.forEach(el=> observer.observe(el));
-
-      // Reset when user returns to top
-      function resetAtTop(){
-        if(window.scrollY <= 12){
-          targets.forEach(el => el.classList.remove('in-view'));
-        }
-      }
-      window.addEventListener('scroll', resetAtTop, { passive: true });
-      resetAtTop();
+      targets.forEach(el => observer.observe(el));
     })();
   </script>
+
 </body>
 </html>
