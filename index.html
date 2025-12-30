@@ -257,7 +257,8 @@
     }
 
     /* =========================
-       SCROLL REVEAL (STAGGERED IN/OUT)
+       SCROLL REVEAL (BLOCK-LEVEL)
+       - cards/panes/major blocks animate as one unit
        ========================= */
     .reveal-item{
       opacity:0;
@@ -1038,51 +1039,64 @@
   })();
 
   // =========================
-  // STAGGERED SCROLL REVEALS (IN + OUT)
-  // - items animate in as they enter
-  // - items animate out as they leave (so scrolling back up "resets" them)
-  // - DOES NOT touch <template> content
+  // BLOCK-LEVEL SCROLL REVEALS (IN + OUT)
+  // - Cards/panes/major blocks animate as one unit
+  // - Children animate with parent (no individual h3/p/etc)
+  // - Does not touch <template> content
   // =========================
   (function(){
-    // Sections to apply staggered reveal to
-    // (We intentionally skip #about to avoid any "about sometimes not loading" edge cases.)
-    const animatedSections = Array.from(document.querySelectorAll('main section, body > section'))
-      .filter(sec => sec.id !== 'about');
-
-    // Elements inside each section to animate individually
-    const itemSelector = [
-      '.section-head',
-      '.pane',
-      '.grid > .card',
-      '.grid > .pane',
-      '.case > .pane',
-      '.cta a',
-      '.personal .photo',
-      '.personal .copy',
-      'h3',
-      'p',
-      'ul',
-      'form',
-      'footer'
-    ].join(',');
-
-    // Respect reduced motion
     const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) return;
 
-    // Tag items + stagger delays
-    animatedSections.forEach(section => {
-      const items = Array.from(section.querySelectorAll(itemSelector))
-        .filter(el => !el.closest('.modal') && el !== section);
+    // We apply to main sections + the top-level contact/footer sections outside main.
+    const animatedSections = Array.from(document.querySelectorAll('main section, body > section'))
+      .filter(sec => sec.id !== 'about'); // keep About always visible / stable
 
-      let i = 0;
-      items.forEach(el => {
-        // Don't animate template contents (modal case studies)
-        if (el.closest('template')) return;
+    // Only "block" elements animate (NOT their children)
+    const blockSelector = [
+      '.section-head',
+      '.pane',
+      '.card',
+      '.about',      // wrapper
+      '.case',       // wrapper
+      '.grid',       // wrapper (will only matter if it contains no cards/panes)
+      '.personal',   // wrapper
+      '#contact .narrow',
+      'footer'
+    ].join(',');
+
+    animatedSections.forEach(section => {
+      // Collect candidate blocks inside this section
+      let blocks = Array.from(section.querySelectorAll(blockSelector))
+        .filter(el => !el.closest('.modal') && !el.closest('template'));
+
+      // IMPORTANT: If a block is inside another animated block, we only animate the outermost one.
+      // Example: .pane inside .personal — we animate .pane personal (already a .pane), but avoid animating nested pieces.
+      blocks = blocks.filter(el => {
+        const parent = el.parentElement;
+        if (!parent) return true;
+        return !parent.closest('.reveal-item'); // parent already animated
+      });
+
+      // Now remove any blocks that are descendants of another block in the same list.
+      // This prevents: .pane AND its inner .pane or nested wrappers both animating separately.
+      const blockSet = new Set(blocks);
+      blocks = blocks.filter(el => {
+        let p = el.parentElement;
+        while (p) {
+          if (blockSet.has(p)) return false;
+          p = p.parentElement;
+        }
+        return true;
+      });
+
+      // Add reveal class + stagger
+      blocks.forEach((el, i) => {
+        // Don't animate the section itself
+        if (el === section) return;
 
         el.classList.add('reveal-item');
-        el.style.setProperty('--reveal-delay', `${Math.min(i * 70, 520)}ms`);
-        i++;
+        el.style.setProperty('--reveal-delay', `${Math.min(i * 90, 540)}ms`);
       });
     });
 
@@ -1091,7 +1105,6 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const el = entry.target;
-
         if (entry.isIntersecting){
           el.classList.add('is-visible');
         } else {
