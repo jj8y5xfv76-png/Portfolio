@@ -898,30 +898,63 @@
   // Year
   document.getElementById('y').textContent = new Date().getFullYear();
 
-  // THEME TOGGLE
+  // THEME TOGGLE (UPDATED: follows system unless user overrides)
   (function(){
-    const key = 'pref-theme';
+    const key = 'pref-theme'; // stores only explicit user choice: 'light' or 'dark'
     const root = document.body;
     const btn = document.getElementById('themeToggle');
 
-    function applyButtonUI(theme){
-      const next = theme === 'light' ? 'dark' : 'light';
+    const mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+
+    function systemTheme(){
+      return (mql && mql.matches) ? 'light' : 'dark';
+    }
+
+    function getSavedTheme(){
+      const v = localStorage.getItem(key);
+      return (v === 'light' || v === 'dark') ? v : null;
+    }
+
+    function applyButtonUI(effectiveTheme){
+      const next = effectiveTheme === 'light' ? 'dark' : 'light';
       btn.textContent = next === 'light' ? '☀️' : '🌙';
       const label = `Switch to ${next} mode`;
       btn.setAttribute('aria-label', label);
       btn.setAttribute('title', label);
     }
 
-    const stored = localStorage.getItem(key);
-    let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    root.setAttribute('data-theme', theme);
-    applyButtonUI(theme);
+    function applyTheme(){
+      const saved = getSavedTheme();         // null = follow system
+      const effective = saved || systemTheme();
+      root.setAttribute('data-theme', effective);
+      applyButtonUI(effective);
+    }
 
+    // Initial apply (saved override if present, otherwise system)
+    applyTheme();
+
+    // If user has NOT overridden, react live to OS theme changes
+    if (mql){
+      const onChange = () => {
+        if (!getSavedTheme()) applyTheme();
+      };
+      if (typeof mql.addEventListener === 'function') mql.addEventListener('change', onChange);
+      else if (typeof mql.addListener === 'function') mql.addListener(onChange);
+    }
+
+    // Click = set explicit override by toggling from the current effective theme
     btn.addEventListener('click', () => {
-      theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-      root.setAttribute('data-theme', theme);
-      localStorage.setItem(key, theme);
-      applyButtonUI(theme);
+      const current = root.getAttribute('data-theme') || systemTheme();
+      const next = (current === 'light') ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(key, next); // explicit override
+      applyButtonUI(next);
+    });
+
+    // Optional UX: double-click to clear override and return to system-following mode
+    btn.addEventListener('dblclick', () => {
+      localStorage.removeItem(key);
+      applyTheme();
     });
   })();
 
