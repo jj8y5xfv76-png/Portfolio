@@ -13,14 +13,14 @@
       /* Dark (default) */
       --bg:#0b0c10;
       --panel:#121318;
-      --ink:#e8eaf0;
+      --ink:#e8eaf0;f
       --muted:#9aa0aa;
       --brand:#7c5cff;
       --radius:18px;
       --hair-dark:rgba(255,255,255,.08);
       --hair-dark-strong:rgba(255,255,255,.12);
       --backdrop:rgba(0,0,0,.8);
-      --input-bg:#0e1016;
+      --input-bg:#0e1016;b
       --placeholder:rgba(255,255,255,.85);
       --btn-surface:#1a1c24;
       --btn-surface-contrast:#fff;
@@ -257,28 +257,31 @@
     }
 
     /* =========================
-       SCROLL REVEAL ANIMATIONS
+       SCROLL REVEAL (STAGGERED IN/OUT)
        ========================= */
-    .reveal{
+    .reveal-item{
       opacity:0;
       transform:translateY(14px);
-      transition:opacity .45s ease, transform .45s ease;
-      will-change:opacity, transform;
+      filter:blur(2px);
+      transition:
+        opacity 520ms ease,
+        transform 520ms ease,
+        filter 520ms ease;
+      transition-delay:var(--reveal-delay, 0ms);
+      will-change:opacity, transform, filter;
     }
-    .reveal.in-view{
+    .reveal-item.is-visible{
       opacity:1;
-      transform:none;
+      transform:translateY(0);
+      filter:blur(0);
     }
-
-    /* ✅ FIX: About should always render (never risk “blank” on load) */
-    #about.reveal{
-      opacity:1;
-      transform:none;
-    }
-
-    /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .reveal{opacity:1 !important;transform:none !important;transition:none !important}
+      .reveal-item{
+        transition:none !important;
+        transform:none !important;
+        filter:none !important;
+        opacity:1 !important;
+      }
     }
   </style>
 </head>
@@ -325,7 +328,7 @@
         <div class="pane">
           <p>I'm a video editor with a producer's mindset—combining creativity with strong planning, communication, transparency, and delivery.</p>
           <p style="margin-top:10px">My primary tool is Premiere Pro, with fluency across Photoshop, Audition, Final Cut, DaVinci Resolve, Descript, and Riverside.fm. I’ve also built internal tools to automate post-production reporting and created enablement that helps teams produce and edit their own videos confidently.</p>
-          <p>Video editing is my core discipline — but I extend into production support, project management, enablement, and process design when a project needs it.</p>
+           <p>Video editing is my core discipline — but I extend into production support, project management, enablement, and process design when a project needs it. </p>
 
           <div style="margin-top:20px;text-align:left;">
             <a class="btn primary" href="KevinMaxCotterResume.pdf" target="_blank" rel="noopener">📄 View my resume</a>
@@ -337,7 +340,6 @@
     <!-- SELECTED WORK -->
     <section id="work">
       <div class="section-head"><h2>Video Work</h2><p>Hand-picked cuts across promotional, social, podcast, and studio.</p></div>
-
       <div class="grid">
         <!-- 1 -->
         <div class="card" data-video="https://youtu.be/JBV_dYfvuIY" aria-label="Pega Academy 2.0 — Launch Promo">
@@ -353,7 +355,6 @@
             <a href="#" class="learn-more" data-project="project-academy" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
         <!-- 2 -->
         <a class="card" href="https://www.youtube.com/watch?v=018mzJBiXo8"
            data-video="https://www.youtube.com/watch?v=018mzJBiXo8" aria-label="Promo">
@@ -370,19 +371,19 @@
         </a>
 
         <!-- 3 -->
-        <div class="card" data-video="https://www.youtube.com/watch?v=5seuc5OGvkQ" aria-label="PegaWorld iNspire Kiosk">
-          <div class="thumb" style="background:
-            linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
-            url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/kiosk_thumb.jpg?raw=true')
-            center / cover no-repeat;">
-            <span class="pill">Kiosk</span>
-          </div>
-          <div class="card-body">
-            <h3>PegaWorld iNspire Kiosk</h3>
-            <p>A trade show booth kiosk video designed to attract attendees and encourage engagement with the team.</p>
-            <a href="#" class="learn-more" data-project="project-kiosk" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
-          </div>
-        </div>
+<div class="card" data-video="https://www.youtube.com/watch?v=5seuc5OGvkQ" aria-label="PegaWorld iNspire Kiosk">
+  <div class="thumb" style="background:
+    linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,255,225,.15)),
+    url('https://github.com/jj8y5xfv76-png/Portfolio/blob/main/kiosk_thumb.jpg?raw=true')
+    center / cover no-repeat;">
+    <span class="pill">Kiosk</span>
+  </div>
+  <div class="card-body">
+    <h3>PegaWorld iNspire Kiosk</h3>
+    <p>A trade show booth kiosk video designed to attract attendees and encourage engagement with the team.</p>
+    <a href="#" class="learn-more" data-project="project-kiosk" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
+  </div>
+</div>
 
         <!-- 4 -->
         <div class="card" data-video="https://youtu.be/hOhzBA2Ii-E" aria-label="Move Fast, Tell Stories">
@@ -398,7 +399,6 @@
             <a href="#" class="learn-more" data-project="project-movefast" style="display:inline-block;margin-top:6px;color:var(--brand);font-weight:700;">Learn more about this project →</a>
           </div>
         </div>
-
         <!-- 5 -->
         <a class="card" href="https://youtu.be/rwjUystpQAw"
            data-video="https://youtu.be/rwjUystpQAw" aria-label="Podcast Highlights — S1 (2019)">
@@ -413,7 +413,6 @@
             <p>A 5-minute highlight reel cut from a 20-minute podcast episode, showcasing conversational pacing and multi-camera flow. This is a recurring podcast series that I edit regularly.</p>
           </div>
         </a>
-
         <!-- 6 -->
         <a class="card" href="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
            data-video="https://players.brightcove.net/1519050010001/obdhcLv77W_default/index.html?videoId=6376795414112"
@@ -429,7 +428,6 @@
             <p>Product owner conversation showcasing multi-camera synchronization, reaction cuts, and exposure matching for consistent visual tone.</p>
           </div>
         </a>
-      </div>
 
       <!-- Behance link -->
       <div style="margin-top:26px;text-align:center;">
@@ -441,8 +439,8 @@
         </a>
       </div>
     </section>
-
-    <!-- VOICEOVER -->
+    
+        <!-- VOICEOVER -->
     <section id="voiceover">
       <div class="section-head">
         <h2>Voiceover Work</h2>
@@ -539,7 +537,6 @@
         </a>
       </div>
     </section>
-
     <!-- SERVICES -->
     <section id="services">
       <div class="section-head">
@@ -561,8 +558,7 @@
         </div>
       </div>
     </section>
-
-    <!-- PERSONAL TOUCH -->
+    <!-- NEW: PERSONAL TOUCH SECTION (RIGHT BEFORE CONTACT) -->
     <section id="beyond">
       <div class="section-head">
         <h2>Beyond the timeline</h2>
@@ -670,49 +666,49 @@
     </div>
   </template>
 
-  <template id="project-kiosk">
-    <div>
-      <h2 style="margin:0 0 8px 0;">Pega Community — Trade Show Kiosk Loop</h2>
+<template id="project-kiosk">
+  <div>
+    <h2 style="margin:0 0 8px 0;">Pega Community — Trade Show Kiosk Loop</h2>
 
-      <div class="stat-row">
-        <span class="stat-pill">Trade show</span>
-        <span class="stat-pill">Silent-friendly</span>
-        <span class="stat-pill">Looped display</span>
-        <span class="stat-pill">Multi-stakeholder</span>
-      </div>
-
-      <p style="color:var(--muted);margin:0 0 16px 0;">
-        Role: Editor / Producer • Partnered with team animator
-      </p>
-
-      <h3>Context</h3>
-      <p>
-        This video was created for a company trade show kiosk booth display. It was designed to run on a loop and
-        function like a visual “billboard” — drawing attendees over to learn more about Pega Community and engage with the team.
-      </p>
-
-      <h3>Stakeholder collaboration</h3>
-      <p>
-        I coordinated with multiple stakeholders who each submitted content they wanted represented in the kiosk loop.
-        My job was to take a mix of inputs (slides, talking points, visuals, and event priorities), shape them into a cohesive flow,
-        and ensure the final piece stayed brand-safe and readable in a noisy event environment.
-      </p>
-
-      <h3>Process</h3>
-      <ul>
-        <li>Collected and organized stakeholder submissions and priorities</li>
-        <li>Built a clear sequence and pacing plan for a loop-friendly structure</li>
-        <li>Partnered with my team’s animator to integrate motion design and polish</li>
-        <li>Reviewed iterations with stakeholders and incorporated feedback efficiently</li>
-      </ul>
-
-      <h3>Portfolio note</h3>
-      <p>
-        The full kiosk loop was ~7 minutes and designed for continuous playback. The portfolio version is a condensed excerpt
-        to show the range of content types (video + slide-style segments) and the overall pacing.
-      </p>
+    <div class="stat-row">
+      <span class="stat-pill">Trade show</span>
+      <span class="stat-pill">Silent-friendly</span>
+      <span class="stat-pill">Looped display</span>
+      <span class="stat-pill">Multi-stakeholder</span>
     </div>
-  </template>
+
+    <p style="color:var(--muted);margin:0 0 16px 0;">
+      Role: Editor / Producer • Partnered with team animator
+    </p>
+
+    <h3>Context</h3>
+    <p>
+      This video was created for a company trade show kiosk booth display. It was designed to run on a loop and
+      function like a visual “billboard” — drawing attendees over to learn more about Pega Community and engage with the team.
+    </p>
+
+    <h3>Stakeholder collaboration</h3>
+    <p>
+      I coordinated with multiple stakeholders who each submitted content they wanted represented in the kiosk loop.
+      My job was to take a mix of inputs (slides, talking points, visuals, and event priorities), shape them into a cohesive flow,
+      and ensure the final piece stayed brand-safe and readable in a noisy event environment.
+    </p>
+
+    <h3>Process</h3>
+    <ul>
+      <li>Collected and organized stakeholder submissions and priorities</li>
+      <li>Built a clear sequence and pacing plan for a loop-friendly structure</li>
+      <li>Partnered with my team’s animator to integrate motion design and polish</li>
+      <li>Reviewed iterations with stakeholders and incorporated feedback efficiently</li>
+    </ul>
+
+    <h3>Portfolio note</h3>
+    <p>
+      The full kiosk loop was ~7 minutes and designed for continuous playback. The portfolio version is a condensed excerpt
+      to show the range of content types (video + slide-style segments) and the overall pacing.
+    </p>
+  </div>
+</template>
 
   <template id="project-academy">
     <div>
@@ -876,7 +872,6 @@
         making structural edits that improve flow, and building workflows that make long-running creative projects
         realistically maintainable.
       </p>
-
       <h3>Sample episode</h3>
       <div class="embed-16x9">
         <iframe
@@ -887,184 +882,231 @@
         ></iframe>
       </div>
 
-      <div style="margin-top:26px;text-align:center;">
+        <div style="margin-top:26px;text-align:center;">
         <a href="https://app.playary.com/podcasts/242273/in-star-trek-we-trust-a-star-trek-podcast"
            target="_blank"
            rel="noopener"
            style="color:var(--brand);font-weight:700;">
-          Listen to more episodes →
+          Lilsten to more episodes →
         </a>
       </div>
     </div>
   </template>
 
-  <script>
-    // Year
-    document.getElementById('y').textContent = new Date().getFullYear();
+<script>
+  // Year
+  document.getElementById('y').textContent = new Date().getFullYear();
 
-    // THEME TOGGLE
-    (function(){
-      const key = 'pref-theme';
-      const root = document.body;
-      const btn = document.getElementById('themeToggle');
+  // THEME TOGGLE
+  (function(){
+    const key = 'pref-theme';
+    const root = document.body;
+    const btn = document.getElementById('themeToggle');
 
-      function applyButtonUI(theme){
-        const next = theme === 'light' ? 'dark' : 'light';
-        btn.textContent = next === 'light' ? '☀️' : '🌙';
-        const label = `Switch to ${next} mode`;
-        btn.setAttribute('aria-label', label);
-        btn.setAttribute('title', label);
-      }
+    function applyButtonUI(theme){
+      const next = theme === 'light' ? 'dark' : 'light';
+      btn.textContent = next === 'light' ? '☀️' : '🌙';
+      const label = `Switch to ${next} mode`;
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+    }
 
-      const stored = localStorage.getItem(key);
-      let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    const stored = localStorage.getItem(key);
+    let theme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    root.setAttribute('data-theme', theme);
+    applyButtonUI(theme);
+
+    btn.addEventListener('click', () => {
+      theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
       root.setAttribute('data-theme', theme);
+      localStorage.setItem(key, theme);
       applyButtonUI(theme);
+    });
+  })();
 
-      btn.addEventListener('click', () => {
-        theme = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-        root.setAttribute('data-theme', theme);
-        localStorage.setItem(key, theme);
-        applyButtonUI(theme);
+  // VIDEO & TEXT MODALS
+  (function(){
+    const videoModal = document.getElementById('videoModal');
+    const videoMount = document.getElementById('videoMount');
+    const textModal = document.getElementById('textModal');
+    const textMount = document.getElementById('textMount');
+
+    function ytToEmbed(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes('youtu.be')){
+          const id = u.pathname.replace('/','');
+          return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        }
+        if(u.hostname.includes('youtube.com')){
+          const id = u.searchParams.get('v');
+          if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+        }
+      }catch(e){}
+      return null;
+    }
+
+    // ✅ FIXED: reliable autoplay for ALL embeds + always prevent navigation
+    function openVideoModal(src){
+      videoMount.innerHTML = '';
+      let node;
+
+      // MP4 files
+      if(/\.mp4($|\?)/i.test(src)){
+        node = document.createElement('video');
+        node.src = src;
+        node.controls = true;
+        node.autoplay = true;
+        node.playsInline = true;
+        node.style.width = '100%';
+        node.style.height = '100%';
+      } else {
+        const yt = ytToEmbed(src);
+        let iframeSrc = yt || src;
+
+        // force autoplay param if not already present
+        if(!iframeSrc.includes('autoplay=')){
+          iframeSrc += (iframeSrc.includes('?') ? '&' : '?') + 'autoplay=1';
+        }
+
+        node = document.createElement('iframe');
+        node.src = iframeSrc;
+        node.allow = 'autoplay; fullscreen; picture-in-picture';
+        node.allowFullscreen = true;
+        node.loading = 'lazy';
+        node.referrerPolicy = 'no-referrer-when-downgrade';
+        node.style.width = '100%';
+        node.style.height = '100%';
+      }
+
+      videoModal.classList.add('open');
+      videoModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      videoMount.appendChild(node);
+    }
+
+    function closeVideoModal(){
+      videoModal.classList.remove('open');
+      videoModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      videoMount.innerHTML = '';
+    }
+
+    function openTextModal(templateId){
+      textMount.innerHTML = '';
+      const tpl = document.getElementById(templateId);
+      if(tpl && 'content' in tpl){
+        textMount.appendChild(tpl.content.cloneNode(true));
+      } else {
+        textMount.innerHTML = '<p>Details coming soon.</p>';
+      }
+      textModal.classList.add('open');
+      textModal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTextModal(){
+      textModal.classList.remove('open');
+      textModal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      textMount.innerHTML = '';
+    }
+
+    document.addEventListener('click', (e)=>{
+      const lm = e.target.closest('a.learn-more');
+      if(lm){
+        e.preventDefault();
+        e.stopPropagation();
+        const tplId = lm.getAttribute('data-project');
+        openTextModal(tplId);
+        return;
+      }
+
+      const card = e.target.closest('.card');
+      if(!card) return;
+
+      const src = card.getAttribute('data-video');
+      if(src){
+        e.preventDefault(); // ✅ always prevent anchor navigation
+        openVideoModal(src);
+      }
+    });
+
+    document.querySelectorAll('#videoModal [data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
+    document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
+  })();
+
+  // =========================
+  // STAGGERED SCROLL REVEALS (IN + OUT)
+  // - items animate in as they enter
+  // - items animate out as they leave (so scrolling back up "resets" them)
+  // - DOES NOT touch <template> content
+  // =========================
+  (function(){
+    // Sections to apply staggered reveal to
+    // (We intentionally skip #about to avoid any "about sometimes not loading" edge cases.)
+    const animatedSections = Array.from(document.querySelectorAll('main section, body > section'))
+      .filter(sec => sec.id !== 'about');
+
+    // Elements inside each section to animate individually
+    const itemSelector = [
+      '.section-head',
+      '.pane',
+      '.grid > .card',
+      '.grid > .pane',
+      '.case > .pane',
+      '.cta a',
+      '.personal .photo',
+      '.personal .copy',
+      'h3',
+      'p',
+      'ul',
+      'form',
+      'footer'
+    ].join(',');
+
+    // Respect reduced motion
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
+
+    // Tag items + stagger delays
+    animatedSections.forEach(section => {
+      const items = Array.from(section.querySelectorAll(itemSelector))
+        .filter(el => !el.closest('.modal') && el !== section);
+
+      let i = 0;
+      items.forEach(el => {
+        // Don't animate template contents (modal case studies)
+        if (el.closest('template')) return;
+
+        el.classList.add('reveal-item');
+        el.style.setProperty('--reveal-delay', `${Math.min(i * 70, 520)}ms`);
+        i++;
       });
-    })();
+    });
 
-    // VIDEO & TEXT MODALS
-    (function(){
-      const videoModal = document.getElementById('videoModal');
-      const videoMount = document.getElementById('videoMount');
-      const textModal = document.getElementById('textModal');
-      const textMount = document.getElementById('textMount');
+    const revealItems = Array.from(document.querySelectorAll('.reveal-item'));
 
-      function ytToEmbed(url){
-        try{
-          const u = new URL(url);
-          if(u.hostname.includes('youtu.be')){
-            const id = u.pathname.replace('/','');
-            return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-          if(u.hostname.includes('youtube.com')){
-            const id = u.searchParams.get('v');
-            if(id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-          }
-        }catch(e){}
-        return null;
-      }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
 
-      function openVideoModal(src){
-        videoMount.innerHTML = '';
-        let node;
-
-        if(/\.mp4($|\?)/i.test(src)){
-          node = document.createElement('video');
-          node.src = src;
-          node.controls = true;
-          node.autoplay = true;
-          node.playsInline = true;
-          node.style.width = '100%';
-          node.style.height = '100%';
+        if (entry.isIntersecting){
+          el.classList.add('is-visible');
         } else {
-          const yt = ytToEmbed(src);
-          let iframeSrc = yt || src;
-
-          if(!iframeSrc.includes('autoplay=')){
-            iframeSrc += (iframeSrc.includes('?') ? '&' : '?') + 'autoplay=1';
-          }
-
-          node = document.createElement('iframe');
-          node.src = iframeSrc;
-          node.allow = 'autoplay; fullscreen; picture-in-picture';
-          node.allowFullscreen = true;
-          node.loading = 'lazy';
-          node.referrerPolicy = 'no-referrer-when-downgrade';
-          node.style.width = '100%';
-          node.style.height = '100%';
-        }
-
-        videoModal.classList.add('open');
-        videoModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-        videoMount.appendChild(node);
-      }
-
-      function closeVideoModal(){
-        videoModal.classList.remove('open');
-        videoModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        videoMount.innerHTML = '';
-      }
-
-      function openTextModal(templateId){
-        textMount.innerHTML = '';
-        const tpl = document.getElementById(templateId);
-        if(tpl && 'content' in tpl){
-          textMount.appendChild(tpl.content.cloneNode(true));
-        } else {
-          textMount.innerHTML = '<p>Details coming soon.</p>';
-        }
-        textModal.classList.add('open');
-        textModal.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeTextModal(){
-        textModal.classList.remove('open');
-        textModal.setAttribute('aria-hidden','true');
-        document.body.style.overflow = '';
-        textMount.innerHTML = '';
-      }
-
-      document.addEventListener('click', (e)=>{
-        const lm = e.target.closest('a.learn-more');
-        if(lm){
-          e.preventDefault();
-          e.stopPropagation();
-          const tplId = lm.getAttribute('data-project');
-          openTextModal(tplId);
-          return;
-        }
-
-        const card = e.target.closest('.card');
-        if(!card) return;
-
-        const src = card.getAttribute('data-video');
-        if(src){
-          e.preventDefault();
-          openVideoModal(src);
+          el.classList.remove('is-visible');
         }
       });
+    }, {
+      root: null,
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.08
+    });
 
-      document.querySelectorAll('#videoModal [data-close]').forEach(el=> el.addEventListener('click', closeVideoModal));
-      document.querySelectorAll('#textModal [data-close]').forEach(el=> el.addEventListener('click', closeTextModal));
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeVideoModal(); closeTextModal(); }});
-    })();
-
-    // SCROLL REVEAL (in on scroll down, out on scroll up)
-    (function(){
-      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(prefersReduced) return;
-
-      // ✅ Targets: animate main sections + contact, but SKIP #about so it never blanks
-      const targets = [
-        ...document.querySelectorAll('main > section:not(#about)'),
-        document.querySelector('#contact')
-      ].filter(Boolean);
-
-      targets.forEach(el => el.classList.add('reveal'));
-
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.add('in-view');
-          } else {
-            entry.target.classList.remove('in-view'); // animate OUT
-          }
-        });
-      }, { threshold: 0.18 });
-
-      targets.forEach(el => observer.observe(el));
-    })();
-  </script>
+    revealItems.forEach(el => io.observe(el));
+  })();
+</script>
 
 </body>
 </html>
