@@ -312,9 +312,17 @@
     <div class="hero-content">
       <h1>Hi. I'm Kevin.</h1>
       <p>I blend creative storytelling with structure, process, and precision.</p>
+
+      <!-- UPDATED: single centered CTA that opens the reel modal -->
       <div class="cta">
-        <a class="btn primary" href="#reel">▶ View My Reel</a>
-        <a class="btn" href="#contact">Let’s Collaborate</a>
+        <a
+          class="btn primary"
+          href="#"
+          data-video="https://player.vimeo.com/video/1152009268?h=9a4a0ccadc&title=0&byline=0&portrait=0"
+          aria-label="Play demo reel"
+        >
+          ▶ View My Reel
+        </a>
       </div>
     </div>
   </section>
@@ -1074,6 +1082,16 @@
         return;
       }
 
+      // NEW: allow any element (hero button, etc.) to open video modal
+      const videoTrigger = e.target.closest('[data-video]');
+      if(videoTrigger){
+        e.preventDefault();
+        const src = videoTrigger.getAttribute('data-video');
+        if(src) openVideoModal(src);
+        return;
+      }
+
+      // Existing: cards still work
       const card = e.target.closest('.card');
       if(!card) return;
 
