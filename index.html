@@ -296,7 +296,7 @@
       </div>
       <nav class="menu">
         <a href="#about">About</a>
-
+        <a href="#" id="navReel">Reel</a>
         <a href="#work">Work</a>
         <a href="#case">Workflow</a>
         <a href="#services">Services</a>
@@ -312,17 +312,9 @@
     <div class="hero-content">
       <h1>Hi. I'm Kevin.</h1>
       <p>I blend creative storytelling with structure, process, and precision.</p>
-
-      <!-- UPDATED: single centered CTA that opens the reel modal -->
       <div class="cta">
-        <a
-          class="btn primary"
-          href="#"
-          data-video="https://player.vimeo.com/video/1152009268?h=9a4a0ccadc&title=0&byline=0&portrait=0"
-          aria-label="Play demo reel"
-        >
-          ▶ View My Reel
-        </a>
+        <!-- UPDATED: single centered button that opens reel in modal -->
+        <a class="btn primary" href="#" id="heroReelBtn">▶ View My Reel</a>
       </div>
     </div>
   </section>
@@ -347,7 +339,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- SELECTED WORK -->
     <section id="work">
@@ -456,32 +447,6 @@
       </div>
     </section>
 
-    <!-- VOICEOVER -->
-    <section id="voiceover">
-      <div class="section-head">
-        <h2>Voiceover Work</h2>
-        <p>Voice work that supports promos, explainers, and polished internal content.</p>
-      </div>
-
-      <div class="pane">
-        <h3>Clean, confident delivery</h3>
-        <p style="color:var(--muted);line-height:1.65;margin:0;">
-          In addition to editing, I've been a voiceover artist for over ten years. I've done a variety of voiceover including educational narration, promotions, and announcing.
-        </p>
-
-        <div style="margin-top:16px;">
-          <a
-            class="btn primary"
-            href="https://www.behance.net/gallery/60848953/Voiceover"
-            target="_blank"
-            rel="noopener"
-          >
-            🎙️ Listen to my work
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- WORKFLOW -->
     <section id="case">
       <div class="section-head"><h2>Workflow and How I Edit</h2><p>From creative exploration to brand-safe delivery, with documented feedback at every step.</p></div>
@@ -501,43 +466,51 @@
       </div>
     </section>
 
-    <!-- SYSTEMS -->
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-head">
+        <h2>What I can do for you and your team</h2>
+        <p>Where I plug in and how I help teams ship better video, faster.</p>
+      </div>
+      <div class="grid">
+        <div class="pane">
+          <h3>Editing & finishing</h3>
+          <p>I cut promos, trailers, explainers, podcasts, and studio conversations with a focus on pacing, clarity, and story. I’m comfortable stepping in at any stage from rough assembly to final polish.</p>
+          <p style="margin-top:10px;color:var(--muted);line-height:1.65;">
+            Includes light script polish and professional voiceover when needed.
+          </p>
+        </div>
+        <div class="pane">
+          <h3>Systems & tooling</h3>
+          <p>I design lightweight systems that remove friction from video production: templates, upload flows, metrics dashboards, and processes that make repeatable work fast, consistent, and measurable.</p>
+        </div>
+        <div class="pane">
+          <h3>Training & enablement</h3>
+          <p>I build simple, practical enablement that helps non-video teammates create their own content covering recording, editing basics, and how to share their content when finished.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEMS (UPDATED: Option A + B merged + fewer visible items) -->
     <section id="systems">
       <div class="section-head">
         <h2>Creative Systems & Tools</h2>
         <p>Workflows and tooling that help teams move faster and stay consistent.</p>
       </div>
 
-      <div class="pane" style="margin-bottom:28px;">
-        <h3>Inspiration & Previsualization Tools</h3>
-        <p>
-          Visual reference platforms like
-          <a href="https://frameset.app" target="_blank" rel="noopener" style="color:var(--brand);"><b>frameset</b></a> and
-          <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:var(--brand);"><b>ShotDeck</b></a> are part of my creative process.
-          I use them to study composition, pacing, and tone; helping to define the visual direction before cutting a frame.
-        </p>
-      </div>
-
       <div class="grid">
+        <!-- MERGED: How-To + Enablement -->
         <div class="pane">
-          <h3>How-To Video System</h3>
-          <p>Templatized 60–90s demos built for scale and speed.</p>
-          <a href="#" class="learn-more" data-project="cs-howto" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
+          <h3>Training & Scalable Video Systems</h3>
+          <p>How-to video templates and enablement that turn non-video teams into confident creators — without slowing production.</p>
+          <a href="#" class="learn-more" data-project="cs-training" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
         </div>
-        <div class="pane">
-          <h3>Internal Enablement Program</h3>
-          <p>Self-paced course using branded assets that turned 100+ stakeholders into capable part-time creators.</p>
-          <a href="#" class="learn-more" data-project="cs-enablement" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
-        </div>
+
+        <!-- KEPT: Metrics -->
         <div class="pane">
           <h3>Video Metrics Dashboard</h3>
           <p>Self-service analytics app (views, play rate, AVD) with Excel export to drive content choices.</p>
           <a href="#" class="learn-more" data-project="cs-metrics" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
-        </div>
-        <div class="pane">
-          <h3>Self-Service Upload API</h3>
-          <p>Authenticated pipeline that eliminated a publishing bottleneck and standardized metadata.</p>
-          <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Learn more about this project →</a>
         </div>
       </div>
 
@@ -551,28 +524,6 @@
         <a href="#" class="learn-more" data-project="cs-podcast" style="color:var(--brand);font-weight:700;">
           Learn more about this project →
         </a>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-      <div class="section-head">
-        <h2>What I can do for you and your team</h2>
-        <p>Where I plug in and how I help teams ship better video, faster.</p>
-      </div>
-      <div class="grid">
-        <div class="pane">
-          <h3>Editing & finishing</h3>
-          <p>I cut promos, trailers, explainers, podcasts, and studio conversations with a focus on pacing, clarity, and story. I’m comfortable stepping in at any stage from rough assembly to final polish.</p>
-        </div>
-        <div class="pane">
-          <h3>Systems & tooling</h3>
-          <p>I design lightweight systems that remove friction from video production: templates, upload flows, metrics dashboards, and processes that make repeatable work fast, consistent, and measurable.</p>
-        </div>
-        <div class="pane">
-          <h3>Training & enablement</h3>
-          <p>I build simple, practical enablement that helps non-video teammates create their own content covering recording, editing basics, and how to share their content when finished.</p>
-        </div>
       </div>
     </section>
 
@@ -711,7 +662,7 @@
         My job was to take a mix of inputs (slides, demo videos, screenshots, text), shape them into a cohesive flow that could be contuinally looped.
       </p>
 
-      <h3>Process</h3>
+      <h3>Process</h3      >
       <ul>
         <li>Collected and organized stakeholder submissions and ensured they met our established best practices</li>
         <li>Partnered with my team’s animator to integrate After Effects-designed motion graphics</li>
@@ -753,23 +704,37 @@
     </div>
   </template>
 
-  <template id="cs-howto">
+  <!-- NEW: MERGED TEMPLATE (Option A + B) -->
+  <template id="cs-training">
     <div>
-      <h2 style="margin:0 0 8px 0;">How-To Video System</h2>
+      <h2 style="margin:0 0 8px 0;">Training & Scalable Video Systems</h2>
       <div class="stat-row">
-        <span class="stat-pill">100+ videos</span>
-        <span class="stat-pill">½ day hackathon</span>
-        <span class="stat-pill">Award-winning</span>
+        <span class="stat-pill">Templates</span>
+        <span class="stat-pill">Enablement</span>
+        <span class="stat-pill">Scale without chaos</span>
+        <span class="stat-pill">Quality guardrails</span>
       </div>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Role: System designer, template author, editor</p>
+      <p style="color:var(--muted);margin:0 0 16px 0;">Role: System designer, editor, enablement author</p>
 
-      <p>This project began with a simple challenge: video was viewed as expensive and time-consuming, even for short instructional demos. I wanted to demonstrate that with the right system, these videos could be templatized, repeatable, and produced quickly without sacrificing clarity anmd accurace. Additionally, the goal was to show that video can be produced quickly.</p>
+      <h3>Why it existed</h3>
+      <p>
+        Video demand grew faster than a single editor could support. Instead of scaling by adding friction,
+        I built repeatable systems that let non-video teammates contribute confidently while keeping quality consistent.
+      </p>
 
-      <p>I designed an end-to-end workflow built around that idea. Product owners and technical documentation writers recorded their own demo footage using guidance I created for consistent capture. They also outlined each step of the demo using a structured intake form, essentially building the blueprint for the final video. Once editors received the footage and the step-by-step outline, we assembled the videos using a standardized project template in Final Cut Pro (and later Premiere Pro). Titles, lower-thirds, transitions, and bumpers were all pre-built into the template, so assembly became a fast, predictable process.</p>
+      <h3>How-To Video System</h3>
+      <ul>
+        <li>Templatized 60–90s demos built for speed and consistency</li>
+        <li>Structured intake form / outline so editors receive “blueprint-ready” inputs</li>
+        <li>Reusable project templates (titles, lower-thirds, bumpers) for predictable assembly</li>
+      </ul>
 
-      <p>The flow became simple: requester captures footage and outlines → editor drops footage into the template → creates a draft → requestor reviews and comments. Because the blueprint was built beforehand, editors could turn these videos around in minutes. </p>
-
-      <p>The system proved its value during a company hackathon, where we produced over a hundred videos in just half a day and won an internal award. The approach was later adopted company-wide as a model for efficient, repeatable “micro-learning” content.</p>
+      <h3>Internal Enablement Program</h3>
+      <ul>
+        <li>Self-paced training for recording, editing basics, exporting, and sharing</li>
+        <li>Branded asset pack so beginners can still produce polished results</li>
+        <li>Reduced bottlenecks by turning stakeholders into capable part-time creators</li>
+      </ul>
 
       <h3>Sample how-to video</h3>
       <div class="embed-16x9">
@@ -779,26 +744,32 @@
           allowfullscreen
         ></iframe>
       </div>
+
+      <p style="margin-top:18px;">
+        Related:
+        <a href="#" class="learn-more" data-project="cs-inspiration" style="color:var(--brand);font-weight:700;">Inspiration & Previsualization</a>
+        •
+        <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Self-Service Upload System</a>
+      </p>
     </div>
   </template>
 
-  <template id="cs-enablement">
+  <!-- NEW: Inspiration pane moved behind modal -->
+  <template id="cs-inspiration">
     <div>
-      <h2 style="margin:0 0 8px 0;">Internal Enablement — Turning 100+ Stakeholders into Part-Time Creators</h2>
+      <h2 style="margin:0 0 8px 0;">Inspiration & Previsualization Tools</h2>
       <div class="stat-row">
-        <span class="stat-pill">100+ learners</span>
-        <span class="stat-pill">Self-paced</span>
-        <span class="stat-pill">Branded asset pack</span>
+        <span class="stat-pill">References</span>
+        <span class="stat-pill">Tone</span>
+        <span class="stat-pill">Pacing</span>
       </div>
-      <p style="color:var(--muted);margin:0 0 16px 0;">Role: Author, producer, asset designer</p>
-
-      <p>The demand for video within the organization continued to grow and as the only full-time video producer/editor, I was the bottleneck. People needed videos for training, demos, internal communications, and product walkthroughs, yet most stakeholders lacked the skill and time to record or edit on their own. And since demand wasn’t going to slow down, I wanted to see if I could provide basic video production training.</p>
-
-      <p>I created a self-serviceable internal enablement program designed to teach non-video professionals how to produce high-quality content on their own. The course covered everything from how to prepare a recording space to best practices for virtual presentations, timeline editing, exporting, and how to share the video across our sites. I also worked with my team’s animator to create a set of brand assets—including opening and closing bumpers, lower-thirds, and overlays—so even beginners could produce videos that looked polished, consistent, and on-brand.</p>
-
-      <p>After the course rolled out, more than a hundred employees across departments were able to create their own videos, many of whom had never edited before. The demand bottleneck dissolved, and I was able to focus on higher-impact projects rather than one-off requests.</p>
-
-      <p>The enablement program didn’t just increase output; it changed the perception that video was challenging and required too much overhead. People felt ownership of their content from start to finish. Quality increased. Turnaround times shrank. And the organization now had a scalable, sustainable way to democratize video creation.</p>
+      <p>
+        Visual reference platforms like
+        <a href="https://frameset.app" target="_blank" rel="noopener" style="color:var(--brand);font-weight:700;"><b>frameset</b></a> and
+        <a href="https://shotdeck.com" target="_blank" rel="noopener" style="color:var(--brand);font-weight:700;"><b>ShotDeck</b></a>
+        are part of my creative process.
+        I use them to study composition, pacing, and tone; helping to define the visual direction before cutting a frame.
+      </p>
     </div>
   </template>
 
@@ -823,6 +794,11 @@
       <p>An added benefit was it gave video creators the ability to search through existing videos and see what was already created. This began to emlinate an ongoing issue of duplicative video content.</p>
       
       <p>The dashboard democratized data, eliminated a major bottleneck, and gave the organization a way to understand video performance at scale without requiring extra tools, budget, or engineering resources.</p>
+
+      <p style="margin-top:18px;">
+        Related:
+        <a href="#" class="learn-more" data-project="cs-upload" style="color:var(--brand);font-weight:700;">Self-Service Upload System</a>
+      </p>
     </div>
   </template>
 
@@ -973,6 +949,9 @@
     const textModal = document.getElementById('textModal');
     const textMount = document.getElementById('textMount');
 
+    // UPDATED: your Vimeo reel embed (opens in modal)
+    const REEL_SRC = "https://player.vimeo.com/video/1152009268?h=9a4a0ccadc&title=0&byline=0&portrait=0";
+
     function ytToEmbed(url){
       try{
         const u = new URL(url);
@@ -1054,6 +1033,18 @@
       textMount.innerHTML = '';
     }
 
+    // HERO + NAV reel buttons open the reel in the existing video modal
+    const heroBtn = document.getElementById('heroReelBtn');
+    const navBtn = document.getElementById('navReel');
+
+    function openReel(e){
+      if(e) { e.preventDefault(); e.stopPropagation(); }
+      openVideoModal(REEL_SRC);
+    }
+
+    if(heroBtn) heroBtn.addEventListener('click', openReel);
+    if(navBtn) navBtn.addEventListener('click', openReel);
+
     document.addEventListener('click', (e)=>{
       const lm = e.target.closest('a.learn-more');
       if(lm){
@@ -1064,16 +1055,6 @@
         return;
       }
 
-      // NEW: allow any element (hero button, etc.) to open video modal
-      const videoTrigger = e.target.closest('[data-video]');
-      if(videoTrigger){
-        e.preventDefault();
-        const src = videoTrigger.getAttribute('data-video');
-        if(src) openVideoModal(src);
-        return;
-      }
-
-      // Existing: cards still work
       const card = e.target.closest('.card');
       if(!card) return;
 
