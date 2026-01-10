@@ -188,7 +188,25 @@
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}
     .modal.open{display:flex}
     .modal .backdrop{position:absolute;inset:0;background:var(--backdrop)}
-    .modal .panel{position:relative;background:var(--bg);border:1px solid var(--hair-dark-strong);border-radius:16px;max-width:960px;width:92%;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+
+    /* ✅ UPDATED: bigger reel/video modal panel */
+    .modal .panel{
+      position:relative;
+      background:var(--bg);
+      border:1px solid var(--hair-dark-strong);
+      border-radius:16px;
+
+      /* Bigger than before */
+      max-width:1200px;              /* was 960px */
+      width:min(96vw, 1200px);       /* was 92% */
+      aspect-ratio:16/9;
+
+      /* Optional cap so it doesn't feel too tall on shorter screens */
+      max-height:86vh;
+
+      box-shadow:0 20px 60px rgba(0,0,0,.6)
+    }
+
     .modal .panel iframe,.modal .panel video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:16px}
 
     /* Close buttons */
@@ -821,60 +839,6 @@
       <p>It was a small tool on the surface, but the impact was large: it removed yet another operational bottleneck and demonstrated that workflow problems can be solved creatively, not just operationally.</p>
     </div>
   </template>
-
-  <!--<template id="cs-podcast">
-    <div>
-      <h2 style="margin:0 0 8px 0;">Podcast Production System — <em>In Star Trek We Trust</em></h2>
-      <div class="stat-row">
-        <span class="stat-pill">2017–2024</span>
-        <span class="stat-pill">Long-form</span>
-        <span class="stat-pill">End-to-end production</span>
-      </div>
-      <p style="color:var(--muted);margin:0 0 16px 0;">
-        Role: Co-creator, producer, editor, and host
-      </p>
-
-      <p>
-        From 2017 to 2024, I co-created and ran <em>In Star Trek We Trust</em>, a long-form podcast covering episodes,
-        films, and new series across the Star Trek universe. Each episode required a full production cycle:
-        topic selection, research, recording, editing, and publishing on a consistent cadence.
-      </p>
-
-      <p>
-        I owned the entire technical workflow end-to-end. That meant building the recording setup, recording each session, handling audio cleanup and mixing, and editing. 
-      </p>
-
-      <p>
-        Over time, the show developed its own internal “system”: shared outlines for each episode, a standard segment
-        structure, reusable intro/outro elements, and a repeatable post-production checklist. That system made it possible
-        to keep a multi-year show sustainable without sacrificing audio quality or listener experience.
-      </p>
-
-      <p>
-        The podcast sharpened the same skills I bring to client work: planning content that respects the audience’s time and building workflows that make long-running creative projects
-        realistically maintainable.
-      </p>
-
-      <h3>Sample episode</h3>
-      <div class="embed-16x9">
-        <iframe
-          src="https://player.vimeo.com/video/1152041121?h=0e857dd7d7&title=0&byline=0&portrait=0"
-          title="In Star Trek We Trust — Sample episode"
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <div style="margin-top:26px;text-align:center;">
-        <a href="https://app.playary.com/podcasts/242273/in-star-trek-we-trust-a-star-trek-podcast"
-           target="_blank"
-           rel="noopener"
-           style="color:var(--brand);font-weight:700;">
-          Listen to more episodes →
-        </a>
-      </div>
-    </div>
-  </template>-->
 
 <script>
   // Year
